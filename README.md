@@ -2,17 +2,17 @@
 ```
 mkdir AspNetCore-DDD
 cd AspNetCore-DDD
+dotnet new globaljson --sdk-version 3.0.100
 dotnet new sln
 mkdir src
 cd src
 mkdir Common
 cd Common
-dotnet new globaljson --sdk-version 3.0.100
 dotnet new classlib -f netcoreapp3.0
 ```
 
 - Open .sln file with Visual Studio
-- Right click on Solution > Add > Existing Item
+- Right click on Solution > Add > Existing Item > global.json
 - Right click on Solution > Add > New Solution Folder > src
 - Right click on `src` folder > Add > Existing Project > Common.csproj
 
