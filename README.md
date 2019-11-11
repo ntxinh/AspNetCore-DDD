@@ -9,6 +9,10 @@ cd src
 mkdir Common
 cd Common
 dotnet new classlib -f netcoreapp3.0
+cd ..
+mkdir WebApi
+cd WebApi
+dotnet new webapi --no-https
 ```
 
 - Open .sln file with Visual Studio
