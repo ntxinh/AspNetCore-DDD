@@ -1,19 +1,28 @@
 # Tech stack
-- .Net Core 3
-- MSSQL
-- Entity Framework Core
+- ASP.NET Core 3.0 (with .NET Core 3.0)
+- ASP.NET WebApi Core
+- ASP.NET Identity Core
+- Entity Framework Core 3.0
+- .NET Core Native DI
 - AutoMapper
+- FluentValidator
 - MediatR
-- Swagger
+- Swagger UI
+- MSSQL
 
 # Design Patterns
-- DDD
+- Domain Driven Design
+- Domain Events
+- Domain Notification
 - CQRS
 - Event Sourcing
-- Generic Repository
 - Unit Of Work
+- Repository & Generic Repository
 - Inversion of Control / Dependency injection
 - ORM
+
+# References
+- https://github.com/EduardoPires/EquinoxProject
 
 # Command create project structure
 ```
@@ -36,8 +45,6 @@ dotnet new webapi --no-https
 - Right click on Solution > Add > Existing Item > global.json
 - Right click on Solution > Add > New Solution Folder > src
 - Right click on `src` folder > Add > Existing Project > Common.csproj
-
-# References
 
 ```
 dotnet new sln -n AspNetCore-DDD
