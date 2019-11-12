@@ -1,3 +1,20 @@
+# Tech stack
+- .Net Core 3
+- MSSQL
+- Entity Framework Core
+- AutoMapper
+- MediatR
+- Swagger
+
+# Design Patterns
+- DDD
+- CQRS
+- Event Sourcing
+- Generic Repository
+- Unit Of Work
+- Inversion of Control / Dependency injection
+- ORM
+
 # Command create project structure
 ```
 mkdir AspNetCore-DDD
