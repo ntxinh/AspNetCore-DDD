@@ -11,11 +11,14 @@ namespace DDD.Services.Api.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(Assembly.GetAssembly(this.GetType()));
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
 
             // Registering Mappings automatically only works if the 
             // Automapper Profile classes are in ASP.NET project
-            AutoMapperConfig.RegisterMappings();
+            //AutoMapperConfig.RegisterMappings();
         }
     }
 }
