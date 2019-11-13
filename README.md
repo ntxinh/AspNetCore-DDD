@@ -20,6 +20,7 @@
 - Repository & Generic Repository
 - Inversion of Control / Dependency injection
 - ORM
+- Mediator
 
 # References
 - https://github.com/EduardoPires/EquinoxProject

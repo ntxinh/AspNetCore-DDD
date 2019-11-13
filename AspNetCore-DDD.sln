@@ -14,16 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C3148427-28E6-49FC-BB4A-F19C6F924C0E}"
-	ProjectSection(SolutionItems) = preProject
-		docs\.gitkeep = docs\.gitkeep
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F61BB13D-2335-4EC6-8C3F-D1F2B664EE13}"
-	ProjectSection(SolutionItems) = preProject
-		tests\.gitkeep = tests\.gitkeep
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Application", "src\DDD.Application\DDD.Application.csproj", "{E75F8656-4D1E-402A-BFFD-B1DA6205E695}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{4540A7C6-2383-4D11-A481-A6CC8D7905E5}"

@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Application\DDD.Application.csproj" />
+    <ProjectReference Include="..\DDD.Infra.CrossCutting.Bus\DDD.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\DDD.Infra.CrossCutting.Identity\DDD.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\DDD.Infra.CrossCutting.IoC\DDD.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
 </Project>
