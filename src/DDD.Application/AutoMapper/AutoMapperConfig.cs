@@ -1,16 +1,25 @@
-using AutoMapper;
+using System;
 
 namespace DDD.Application.AutoMapper
 {
     public class AutoMapperConfig
     {
-        public static MapperConfiguration RegisterMappings()
+        //public static MapperConfiguration RegisterMappings()
+        //{
+        //    return new MapperConfiguration(cfg =>
+        //    {
+        //        cfg.AddProfile(new DomainToViewModelMappingProfile());
+        //        cfg.AddProfile(new ViewModelToDomainMappingProfile());
+        //    });
+        //}
+
+        public static Type[] RegisterMappings()
         {
-            return new MapperConfiguration(cfg =>
+            return new Type[]
             {
-                cfg.AddProfile(new DomainToViewModelMappingProfile());
-                cfg.AddProfile(new ViewModelToDomainMappingProfile());
-            });
+                typeof(DomainToViewModelMappingProfile),
+                typeof(ViewModelToDomainMappingProfile)
+            };
         }
     }
 }
