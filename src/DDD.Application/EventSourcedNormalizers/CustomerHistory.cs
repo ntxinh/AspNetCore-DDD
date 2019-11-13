@@ -56,7 +56,7 @@ namespace DDD.Application.EventSourcedNormalizers
                 switch (e.MessageType)
                 {
                     case "CustomerRegisteredEvent":
-                        values = JsonSerializer.Deserialize<dynamic>(e.Data);
+                        values = JsonSerializer.Deserialize<Dictionary<string, string>>(e.Data);
                         slot.BirthDate = values["BirthDate"];
                         slot.Email = values["Email"];
                         slot.Name = values["Name"];
@@ -66,7 +66,7 @@ namespace DDD.Application.EventSourcedNormalizers
                         slot.Who = e.User;
                         break;
                     case "CustomerUpdatedEvent":
-                        values = JsonSerializer.Deserialize<dynamic>(e.Data);
+                        values = JsonSerializer.Deserialize<Dictionary<string, string>>(e.Data);
                         slot.BirthDate = values["BirthDate"];
                         slot.Email = values["Email"];
                         slot.Name = values["Name"];
@@ -76,7 +76,7 @@ namespace DDD.Application.EventSourcedNormalizers
                         slot.Who = e.User;
                         break;
                     case "CustomerRemovedEvent":
-                        values = JsonSerializer.Deserialize<dynamic>(e.Data);
+                        values = JsonSerializer.Deserialize<Dictionary<string, string>>(e.Data);
                         slot.Action = "Removed";
                         slot.When = values["Timestamp"];
                         slot.Id = values["Id"];

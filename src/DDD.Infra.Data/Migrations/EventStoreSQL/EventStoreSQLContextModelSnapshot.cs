@@ -15,7 +15,7 @@ namespace DDD.Infra.Data.Migrations.EventStoreSQL
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Equinox.Domain.Core.Events.StoredEvent", b =>
+            modelBuilder.Entity("DDD.Domain.Core.Events.StoredEvent", b =>
             {
                 b.Property<Guid>("Id")
                     .ValueGeneratedOnAdd();

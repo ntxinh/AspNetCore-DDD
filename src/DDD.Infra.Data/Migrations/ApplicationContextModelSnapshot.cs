@@ -15,7 +15,7 @@ namespace DDD.Infra.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Equinox.Domain.Models.Customer", b =>
+            modelBuilder.Entity("DDD.Domain.Models.Customer", b =>
             {
                 b.Property<Guid>("Id")
                     .ValueGeneratedOnAdd()

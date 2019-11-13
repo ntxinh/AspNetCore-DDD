@@ -67,3 +67,54 @@ The name for the created output. If no name is specified, the name of the curren
 -o|--output <OUTPUT_DIRECTORY>
 Location to place the generated output. The default is the current directory.
 ```
+
+# Postman
+
+- Get list Customer
+```curl
+curl -X GET \
+  http://localhost:5000/Customer/customer-management
+```
+
+- Get one Customer
+```curl
+curl -X GET \
+  http://localhost:5000/Customer/customer-management/{customerId}
+```
+
+- Create customer
+```curl
+curl -X POST \
+  http://localhost:5000/Customer/customer-management \
+  -H 'content-type: application/json' \
+  -d '{
+	"name": "Xinh Nguyen",
+	"email": "ntxinh@gmail.com",
+	"birthDate": "2000-01-01T23:28:56.782Z"
+}'
+```
+
+- Update customer
+```curl
+curl -X PUT \
+  http://localhost:5000/Customer/customer-management \
+  -H 'content-type: application/json' \
+  -d '{
+	"id": "e7767b0b-93fe-462d-95bb-9aa492d6a177",
+	"name": "Xinh Nguyen 2",
+	"email": "ntxinh@gmail.com",
+	"birthDate": "2000-01-01T23:28:56.782Z"
+}'
+```
+
+- Delete customer
+```curl
+curl -X DELETE \
+  http://localhost:5000/Customer/customer-management/{customerId}
+```
+
+- History
+```curl
+curl -X GET \
+  http://localhost:5000/Customer/customer-management/history/{customerId}
+```
