@@ -32,6 +32,11 @@ namespace DDD.Infra.Data.Repository
             return DbSet;
         }
 
+        public virtual IQueryable<TEntity> GetAll(ISpecification<TEntity> spec)
+        {
+            return ApplySpecification(spec);
+        }
+
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
@@ -51,6 +56,11 @@ namespace DDD.Infra.Data.Repository
         {
             Db.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
+        {
+            return SpecificationEvaluator<TEntity>.GetQuery(DbSet.AsQueryable(), spec);
         }
     }
 }

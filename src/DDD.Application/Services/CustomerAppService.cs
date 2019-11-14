@@ -8,6 +8,7 @@ using DDD.Application.ViewModels;
 using DDD.Domain.Commands;
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Interfaces;
+using DDD.Domain.Specifications;
 using DDD.Infra.Data.Repository.EventSourcing;
 
 namespace DDD.Application.Services
@@ -33,6 +34,12 @@ namespace DDD.Application.Services
         public IEnumerable<CustomerViewModel> GetAll()
         {
             return _customerRepository.GetAll().ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
+        }
+
+        public IEnumerable<CustomerViewModel> GetAll(int skip, int take)
+        {
+            return _customerRepository.GetAll(new CustomerFilterPaginatedSpecification(skip, take))
+                .ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
         }
 
         public CustomerViewModel GetById(Guid id)

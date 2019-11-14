@@ -8,6 +8,7 @@ namespace DDD.Domain.Interfaces
         void Add(TEntity obj);
         TEntity GetById(Guid id);
         IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll(ISpecification<TEntity> spec);
         void Update(TEntity obj);
         void Remove(Guid id);
         int SaveChanges();

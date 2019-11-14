@@ -92,5 +92,13 @@ namespace DDD.Services.Api.Controllers
             var customerHistoryData = _customerAppService.GetAllHistory(id);
             return Response(customerHistoryData);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("customer-management/pagination")]
+        public IActionResult Pagination(int skip, int take)
+        {
+            return Response(_customerAppService.GetAll(skip, take));
+        }
     }
 }

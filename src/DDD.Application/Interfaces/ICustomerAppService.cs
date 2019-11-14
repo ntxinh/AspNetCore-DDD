@@ -9,6 +9,7 @@ namespace DDD.Application.Interfaces
     {
         void Register(CustomerViewModel customerViewModel);
         IEnumerable<CustomerViewModel> GetAll();
+        IEnumerable<CustomerViewModel> GetAll(int skip, int take);
         CustomerViewModel GetById(Guid id);
         void Update(CustomerViewModel customerViewModel);
         void Remove(Guid id);
