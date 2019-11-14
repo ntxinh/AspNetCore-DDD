@@ -25,7 +25,7 @@
 # References
 - https://github.com/EduardoPires/EquinoxProject
 
-# Command create project structure
+# Helpful command
 ```
 mkdir AspNetCore-DDD
 cd AspNetCore-DDD
@@ -66,6 +66,27 @@ The name for the created output. If no name is specified, the name of the curren
 
 -o|--output <OUTPUT_DIRECTORY>
 Location to place the generated output. The default is the current directory.
+```
+
+- Package Manager Console
+```
+Get-Help about_entityframeworkcore
+Add-Migration
+Drop-Database
+Get-DbContext
+Remove-Migration
+Scaffold-DbContext
+Script-Migration
+Update-Database
+```
+
+- dotnet cli
+```
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+dotnet ef migrations remove
+dotnet ef migrations script
+dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models --context-dir Context -c BlogContext
 ```
 
 # Postman

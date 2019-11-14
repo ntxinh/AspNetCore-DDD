@@ -29,7 +29,7 @@ namespace DDD.Infra.Data.Context
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
                 .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{_env.EnvironmentName}.json")
                 .Build();
 
             // define the database to use
