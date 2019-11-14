@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace DDD.Services.Api
 {
@@ -29,6 +30,11 @@ namespace DDD.Services.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapperSetup();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DDD Project", Version = "v1" });
+            });
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
@@ -52,6 +58,12 @@ namespace DDD.Services.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "DDD Project API v1.1");
             });
         }
 
