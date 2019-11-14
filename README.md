@@ -22,60 +22,9 @@
 - ORM
 - Mediator
 
-# Postman
-
-- Swagger:
-  + http://localhost:5000/swagger/index.html
-  + http://localhost:5000/swagger/v1/swagger.json
-
-- Get list Customer
-```curl
-curl -X GET \
-  http://localhost:5000/Customer/customer-management
-```
-
-- Get one Customer
-```curl
-curl -X GET \
-  http://localhost:5000/Customer/customer-management/{customerId}
-```
-
-- Create customer
-```curl
-curl -X POST \
-  http://localhost:5000/Customer/customer-management \
-  -H 'content-type: application/json' \
-  -d '{
-	"name": "Xinh Nguyen",
-	"email": "ntxinh@gmail.com",
-	"birthDate": "2000-01-01T23:28:56.782Z"
-}'
-```
-
-- Update customer
-```curl
-curl -X PUT \
-  http://localhost:5000/Customer/customer-management \
-  -H 'content-type: application/json' \
-  -d '{
-	"id": "e7767b0b-93fe-462d-95bb-9aa492d6a177",
-	"name": "Xinh Nguyen 2",
-	"email": "ntxinh@gmail.com",
-	"birthDate": "2000-01-01T23:28:56.782Z"
-}'
-```
-
-- Delete customer
-```curl
-curl -X DELETE \
-  http://localhost:5000/Customer/customer-management?id={customerId}
-```
-
-- History
-```curl
-curl -X GET \
-  http://localhost:5000/Customer/customer-management/history/{customerId}
-```
+# Swagger
+- http://localhost:5000/swagger/index.html
+- http://localhost:5000/swagger/v1/swagger.json
 
 # References
 - https://github.com/EduardoPires/EquinoxProject

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDD.Services.Api.Controllers
 {
+    //[Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
+    [ApiController]
     public abstract class ApiController : ControllerBase
     {
         private readonly DomainNotificationHandler _notifications;

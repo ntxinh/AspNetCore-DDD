@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDD.Services.Api.Controllers
 {
     //[Authorize]
-    [ApiController]
-    [Route("[controller]")]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;
