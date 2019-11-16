@@ -70,6 +70,18 @@ The name for the created output. If no name is specified, the name of the curren
 
 -o|--output <OUTPUT_DIRECTORY>
 Location to place the generated output. The default is the current directory.
+
+dotnet new console -o task-demo
+dotnet sln add task-demo/task-demo.csproj
+dotnet sln remove task-demo/task-demo.csproj
+dotnet sln list
+dotnet myapp.dll
+dotnet add app/app.csproj reference lib/lib.csproj
+dotnet list reference
+dotnet remove app/app.csproj reference lib/lib.csproj
+dotnet add package Newtonsoft.Json
+dotnet list package
+dotnet remove package Newtonsoft.Json
 ```
 
 - Package Manager Console
