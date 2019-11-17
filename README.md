@@ -1,4 +1,7 @@
-# Tech stack
+# Diagram
+![model][diagram.jpg]
+
+# Techical Stack
 - ASP.NET Core 3.0 (with .NET Core 3.0)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
@@ -24,7 +27,6 @@
 
 # Swagger
 - http://localhost:5000/swagger/index.html
-- http://localhost:5000/swagger/v1/swagger.json
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
