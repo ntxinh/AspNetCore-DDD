@@ -1,5 +1,5 @@
 # Diagram
-![](diagram.jpg)
+![](/docs/diagram.jpg)
 
 # Techical Stack
 - ASP.NET Core 3.0 (with .NET Core 3.0)
