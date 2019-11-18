@@ -4,12 +4,10 @@ using DDD.Application.ViewModels;
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDD.Services.Api.Controllers
 {
-    //[Authorize]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;
@@ -23,7 +21,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("customer-management")]
         public IActionResult Get()
         {
@@ -31,7 +28,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("customer-management/{id:guid}")]
         public IActionResult Get(Guid id)
         {
@@ -41,7 +37,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
@@ -57,7 +52,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPut]
-        //[Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
         public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
         {
@@ -73,7 +67,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpDelete]
-        //[Authorize(Policy = "CanRemoveCustomerData")]
         [Route("customer-management")]
         public IActionResult Delete(Guid id)
         {
@@ -83,7 +76,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("customer-management/history/{id:guid}")]
         public IActionResult History(Guid id)
         {
@@ -92,7 +84,6 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("customer-management/pagination")]
         public IActionResult Pagination(int skip, int take)
         {

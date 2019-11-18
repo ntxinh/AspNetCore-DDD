@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DDD.Application\DDD.Application.csproj" />
     <ProjectReference Include="..\DDD.Infra.CrossCutting.Bus\DDD.Infra.CrossCutting.Bus.csproj" />
-    <ProjectReference Include="..\DDD.Infra.CrossCutting.Identity\DDD.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\DDD.Infra.CrossCutting.IoC\DDD.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 

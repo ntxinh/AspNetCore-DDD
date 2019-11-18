@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DDD.Application\DDD.Application.csproj" />
     <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj" />
-    <ProjectReference Include="..\DDD.Infra.CrossCutting.Identity\DDD.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\DDD.Infra.Data\DDD.Infra.Data.csproj" />
   </ItemGroup>
 

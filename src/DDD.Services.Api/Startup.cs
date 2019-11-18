@@ -1,5 +1,5 @@
-using DDD.Infra.CrossCutting.Identity.Data;
 using DDD.Infra.CrossCutting.IoC;
+using DDD.Infra.Data.Context;
 using DDD.Services.Api.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +26,7 @@ namespace DDD.Services.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapperSetup();
