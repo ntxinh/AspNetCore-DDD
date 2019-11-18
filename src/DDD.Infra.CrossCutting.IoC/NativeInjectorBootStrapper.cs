@@ -67,6 +67,7 @@ namespace DDD.Infra.CrossCutting.IoC
 
             // Infra - Identity
             services.AddScoped<IUser, AspNetUser>();
+            services.AddSingleton<IJwtFactory, JwtFactory>();
         }
     }
 }

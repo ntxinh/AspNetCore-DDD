@@ -1,9 +1,11 @@
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
 using DDD.Infra.CrossCutting.Identity.Models;
 using DDD.Infra.CrossCutting.Identity.Models.AccountViewModels;
+using DDD.Infra.CrossCutting.Identity.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,22 +20,25 @@ namespace DDD.Services.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
+        private readonly IJwtFactory _jwtFactory;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            INotificationHandler<DomainNotification> notifications,
             ILoggerFactory loggerFactory,
+            IJwtFactory jwtFactory,
+            INotificationHandler<DomainNotification> notifications,
             IMediatorHandler mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _jwtFactory = jwtFactory;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("account")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -46,13 +51,16 @@ namespace DDD.Services.Api.Controllers
             if (!result.Succeeded)
                 NotifyError(result.ToString(), "Login failure");
 
+            var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+            var jwt = await _jwtFactory.GenerateJwtToken(model.Email, appUser);
+
             _logger.LogInformation(1, "User logged in.");
-            return Response(model);
+            return Response(jwt);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("account/register")]
+        [Route("register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
