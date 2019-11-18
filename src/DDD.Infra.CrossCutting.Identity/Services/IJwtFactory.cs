@@ -1,10 +1,11 @@
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace DDD.Infra.CrossCutting.Identity.Services
 {
     public interface IJwtFactory
     {
-        Task<string> GenerateJwtToken(string email, IdentityUser identity);
+        Task<string> GenerateJwtToken(string email, IList<Claim> claims);
     }
 }

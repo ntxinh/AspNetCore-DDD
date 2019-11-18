@@ -4,7 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DDD.Infra.CrossCutting.Identity.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
 namespace DDD.Infra.CrossCutting.Identity.Services
@@ -19,16 +18,11 @@ namespace DDD.Infra.CrossCutting.Identity.Services
             ThrowIfInvalidOptions(_jwtOptions);
         }
 
-        public async Task<string> GenerateJwtToken(string email, IdentityUser identity)
+        public async Task<string> GenerateJwtToken(string email, IList<Claim> claims)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-                new Claim("Customers", "Write"),
-                new Claim("Customers", "Remove"),
-            };
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, email));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64));
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(

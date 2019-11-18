@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -52,7 +53,8 @@ namespace DDD.Services.Api.Controllers
                 NotifyError(result.ToString(), "Login failure");
 
             var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-            var jwt = await _jwtFactory.GenerateJwtToken(model.Email, appUser);
+            var claims = await _userManager.GetClaimsAsync(appUser);
+            var jwt = await _jwtFactory.GenerateJwtToken(model.Email, claims);
 
             _logger.LogInformation(1, "User logged in.");
             return Response(jwt);
@@ -76,7 +78,12 @@ namespace DDD.Services.Api.Controllers
             if (result.Succeeded)
             {
                 // User claim for write customers data
-                await _userManager.AddClaimAsync(user, new Claim("Customers", "Write"));
+                var claims = new List<Claim>
+                {
+                    new Claim("Customers", "Write"),
+                    new Claim("Customers", "Remove"),
+                };
+                await _userManager.AddClaimsAsync(user, claims);
 
                 await _signInManager.SignInAsync(user, false);
                 _logger.LogInformation(3, "User created a new account with password.");
