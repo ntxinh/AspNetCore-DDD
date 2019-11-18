@@ -19,9 +19,12 @@ namespace DDD.Infra.CrossCutting.Identity.Services
 
         public async Task<string> GenerateJwtToken(string email, ClaimsIdentity claimsIdentity)
         {
-            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, email));
-            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()));
-            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64));
+            claimsIdentity.AddClaims(new Claim[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
+                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64)
+            });
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(

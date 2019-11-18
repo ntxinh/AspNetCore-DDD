@@ -69,6 +69,7 @@ namespace DDD.Services.Api.Controllers
             var claimsIdentity = new ClaimsIdentity();
             claimsIdentity.AddClaims(claims);
             claimsIdentity.AddClaims(roles.Select(role => new Claim(ClaimsIdentity.DefaultRoleClaimType, role)));
+            // ClaimsIdentity.DefaultRoleClaimType & ClaimTypes.Role is the same
 
             // Generate token
             var jwt = await _jwtFactory.GenerateJwtToken(model.Email, claimsIdentity);

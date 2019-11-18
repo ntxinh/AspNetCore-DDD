@@ -3,6 +3,7 @@ using DDD.Application.Interfaces;
 using DDD.Application.ViewModels;
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
+using DDD.Infra.CrossCutting.Identity.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDD.Services.Api.Controllers
 {
     [Authorize]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;
@@ -42,7 +42,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData", Roles = "Admin")]
+        [Authorize(Policy = "CanWriteCustomerData", Roles = Roles.Admin)]
         [Route("customer-management")]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
@@ -58,7 +58,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData", Roles = "Admin")]
+        [Authorize(Policy = "CanWriteCustomerData", Roles = Roles.Admin)]
         [Route("customer-management")]
         public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
         {
@@ -74,7 +74,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData", Roles = "Admin")]
+        [Authorize(Policy = "CanRemoveCustomerData", Roles = Roles.Admin)]
         [Route("customer-management")]
         public IActionResult Delete(Guid id)
         {

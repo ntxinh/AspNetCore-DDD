@@ -87,7 +87,6 @@ namespace DDD.Services.Api
             services.AddAuthorization(options =>
             {
                 var policy1 = new AuthorizationPolicyBuilder()
-                    //.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser()
                     .RequireRole("Admin")
                     .AddRequirements(new ClaimRequirement("Customers", "Write"))
@@ -99,11 +98,6 @@ namespace DDD.Services.Api
                     .Build();
                 options.AddPolicy("CanWriteCustomerData", policy1);
                 options.AddPolicy("CanRemoveCustomerData", policy2);
-
-                //options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
-                //options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
-
-                //options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Admin"));
             });
 
             // ----- AutoMapper -----
@@ -152,6 +146,11 @@ namespace DDD.Services.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 
