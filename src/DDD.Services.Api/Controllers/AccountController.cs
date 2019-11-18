@@ -48,13 +48,30 @@ namespace DDD.Services.Api.Controllers
                 return Response(model);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
-            if (!result.Succeeded)
-                NotifyError(result.ToString(), "Login failure");
+            // SignIn
+            var signInResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
+            if (!signInResult.Succeeded)
+            {
+                NotifyError(signInResult.ToString(), "Login failure");
+                return Response();
+            }
 
+            // Get User
             var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+
+            // Get Roles
+            var roles = await _userManager.GetRolesAsync(appUser);
+
+            // Get Claims
             var claims = await _userManager.GetClaimsAsync(appUser);
-            var jwt = await _jwtFactory.GenerateJwtToken(model.Email, claims);
+
+            // Init ClaimsIdentity
+            var claimsIdentity = new ClaimsIdentity();
+            claimsIdentity.AddClaims(claims);
+            claimsIdentity.AddClaims(roles.Select(role => new Claim(ClaimsIdentity.DefaultRoleClaimType, role)));
+
+            // Generate token
+            var jwt = await _jwtFactory.GenerateJwtToken(model.Email, claimsIdentity);
 
             _logger.LogInformation(1, "User logged in.");
             return Response(jwt);
@@ -71,26 +88,35 @@ namespace DDD.Services.Api.Controllers
                 return Response(model);
             }
 
+            // Add User
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
+            var identityResult = await _userManager.CreateAsync(user, model.Password);
+            if (!identityResult.Succeeded)
             {
-                // User claim for write customers data
-                var claims = new List<Claim>
-                {
-                    new Claim("Customers", "Write"),
-                    new Claim("Customers", "Remove"),
-                };
-                await _userManager.AddClaimsAsync(user, claims);
-
-                await _signInManager.SignInAsync(user, false);
-                _logger.LogInformation(3, "User created a new account with password.");
+                AddIdentityErrors(identityResult);
                 return Response(model);
             }
 
-            AddIdentityErrors(result);
+            // Add Roles
+            identityResult = await _userManager.AddToRoleAsync(user, "Admin");
+            if (!identityResult.Succeeded)
+            {
+                AddIdentityErrors(identityResult);
+                return Response(model);
+            }
+
+            // Add Claims
+            var claims = new List<Claim>
+            {
+                new Claim("Customers", "Write"),
+                new Claim("Customers", "Remove"),
+            };
+            await _userManager.AddClaimsAsync(user, claims);
+
+            // SignIn
+            //await _signInManager.SignInAsync(user, false);
+
+            _logger.LogInformation(3, "User created a new account with password.");
             return Response(model);
         }
     }

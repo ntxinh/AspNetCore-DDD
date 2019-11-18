@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,17 +17,17 @@ namespace DDD.Infra.CrossCutting.Identity.Services
             ThrowIfInvalidOptions(_jwtOptions);
         }
 
-        public async Task<string> GenerateJwtToken(string email, IList<Claim> claims)
+        public async Task<string> GenerateJwtToken(string email, ClaimsIdentity claimsIdentity)
         {
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, email));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64));
+            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, email));
+            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()));
+            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64));
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
-                claims: claims,
+                claims: claimsIdentity.Claims,
                 notBefore: _jwtOptions.NotBefore,
                 expires: _jwtOptions.Expiration,
                 signingCredentials: _jwtOptions.SigningCredentials);

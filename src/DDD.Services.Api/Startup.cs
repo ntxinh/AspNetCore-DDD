@@ -7,6 +7,7 @@ using DDD.Infra.CrossCutting.IoC;
 using DDD.Services.Api.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -41,6 +42,7 @@ namespace DDD.Services.Api
 
             // ----- JWT -----
             services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -81,10 +83,27 @@ namespace DDD.Services.Api
                 configureOptions.SaveToken = true;
             });
 
+
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
-                options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                var policy1 = new AuthorizationPolicyBuilder()
+                    //.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser()
+                    .RequireRole("Admin")
+                    .AddRequirements(new ClaimRequirement("Customers", "Write"))
+                    .Build();
+                var policy2 = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .RequireRole("Admin")
+                    .AddRequirements(new ClaimRequirement("Customers", "Remove"))
+                    .Build();
+                options.AddPolicy("CanWriteCustomerData", policy1);
+                options.AddPolicy("CanRemoveCustomerData", policy2);
+
+                //options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
+                //options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+
+                //options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Admin"));
             });
 
             // ----- AutoMapper -----

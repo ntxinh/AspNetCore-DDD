@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDD.Services.Api.Controllers
 {
     [Authorize]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;
@@ -41,7 +42,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteCustomerData", Roles = "Admin")]
         [Route("customer-management")]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
@@ -57,7 +58,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        [Authorize(Policy = "CanWriteCustomerData", Roles = "Admin")]
         [Route("customer-management")]
         public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
         {
@@ -73,7 +74,7 @@ namespace DDD.Services.Api.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Authorize(Policy = "CanRemoveCustomerData", Roles = "Admin")]
         [Route("customer-management")]
         public IActionResult Delete(Guid id)
         {
