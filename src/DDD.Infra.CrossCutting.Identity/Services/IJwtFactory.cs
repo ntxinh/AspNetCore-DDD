@@ -5,6 +5,6 @@ namespace DDD.Infra.CrossCutting.Identity.Services
 {
     public interface IJwtFactory
     {
-        Task<string> GenerateJwtToken(string email, ClaimsIdentity claimsIdentity);
+        Task<JwtToken> GenerateJwtToken(ClaimsIdentity claimsIdentity);
     }
 }

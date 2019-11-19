@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,8 +27,8 @@ namespace DDD.Services.Api.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _dbContext;
         private readonly IUser _user;
-        private readonly ILogger _logger;
         private readonly IJwtFactory _jwtFactory;
+        private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -35,8 +36,8 @@ namespace DDD.Services.Api.Controllers
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext dbContext,
             IUser user,
-            ILoggerFactory loggerFactory,
             IJwtFactory jwtFactory,
+            ILoggerFactory loggerFactory,
             INotificationHandler<DomainNotification> notifications,
             IMediatorHandler mediator) : base(notifications, mediator)
         {
@@ -45,8 +46,8 @@ namespace DDD.Services.Api.Controllers
             _roleManager = roleManager;
             _dbContext = dbContext;
             _user = user;
-            _logger = loggerFactory.CreateLogger<AccountController>();
             _jwtFactory = jwtFactory;
+            _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
         [HttpPost]
@@ -57,7 +58,7 @@ namespace DDD.Services.Api.Controllers
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(model);
+                return Response();
             }
 
             // Sign In
@@ -84,7 +85,7 @@ namespace DDD.Services.Api.Controllers
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(model);
+                return Response();
             }
 
             // Add User
@@ -93,7 +94,7 @@ namespace DDD.Services.Api.Controllers
             if (!identityResult.Succeeded)
             {
                 AddIdentityErrors(identityResult);
-                return Response(model);
+                return Response();
             }
 
             // Add UserRoles
@@ -101,7 +102,7 @@ namespace DDD.Services.Api.Controllers
             if (!identityResult.Succeeded)
             {
                 AddIdentityErrors(identityResult);
-                return Response(model);
+                return Response();
             }
 
             // Add RoleClaims
@@ -132,23 +133,40 @@ namespace DDD.Services.Api.Controllers
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(model);
+                return Response();
             }
 
             // Get current RefreshToken
-            var refreshTokenCurrent = _dbContext.RefreshTokens.SingleOrDefault(x => x.Token == model.RefreshToken);
+            var refreshTokenCurrent = _dbContext.RefreshTokens.SingleOrDefault
+                (x => x.Token == model.RefreshToken && !x.Used && !x.Invalidated);
             if (refreshTokenCurrent is null)
-                return Response(model);
+            {
+                NotifyError("RefreshToken", "Refresh token does not exist");
+                return Response();
+            }
             if (refreshTokenCurrent.ExpiryDate < DateTime.UtcNow)
-                return Response(model);
+            {
+                // Update current RefreshToken
+                refreshTokenCurrent.Invalidated = true;
+                await _dbContext.SaveChangesAsync();
+                NotifyError("RefreshToken", "Refresh token invalid");
+                return Response();
+            }
 
             // Get User
             var appUser = await _userManager.FindByIdAsync(refreshTokenCurrent.UserId);
             if (appUser is null)
-                return Response(model);
+            {
+                NotifyError("User", "User does not exist");
+                return Response();
+            }
 
             // Remove current RefreshToken
-            _dbContext.Remove(refreshTokenCurrent);
+            //_dbContext.Remove(refreshTokenCurrent);
+            //await _dbContext.SaveChangesAsync();
+
+            // Update current RefreshToken
+            refreshTokenCurrent.Used = true;
             await _dbContext.SaveChangesAsync();
 
             return Response(await GenerateToken(appUser));
@@ -169,6 +187,8 @@ namespace DDD.Services.Api.Controllers
         {
             // Init ClaimsIdentity
             var claimsIdentity = new ClaimsIdentity();
+            claimsIdentity.AddClaim(new Claim(JwtRegisteredClaimNames.Email, appUser.Email));
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, appUser.Id));
 
             // Get UserClaims
             var userClaims = await _userManager.GetClaimsAsync(appUser);
@@ -188,7 +208,7 @@ namespace DDD.Services.Api.Controllers
             }
 
             // Generate access token
-            var accessToken = await _jwtFactory.GenerateJwtToken(appUser.Email, claimsIdentity);
+            var jwtToken = await _jwtFactory.GenerateJwtToken(claimsIdentity);
 
             // Add refresh token
             var refreshToken = new RefreshToken
@@ -197,13 +217,14 @@ namespace DDD.Services.Api.Controllers
                 UserId = appUser.Id,
                 CreationDate = DateTime.UtcNow,
                 ExpiryDate = DateTime.UtcNow.AddMinutes(90),
+                JwtId = jwtToken.JwtId
             };
             await _dbContext.RefreshTokens.AddAsync(refreshToken);
             await _dbContext.SaveChangesAsync();
 
             return new TokenViewModel
             {
-                AccessToken = accessToken,
+                AccessToken = jwtToken.AccessToken,
                 RefreshToken = refreshToken.Token,
             };
         }
