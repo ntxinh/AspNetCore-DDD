@@ -36,3 +36,5 @@
 - https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.0
 - https://www.red-gate.com/simple-talk/dotnet/c-programming/policy-based-authorization-in-asp-net-core-a-deep-dive/
 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
+- https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB
+- https://github.com/Elfocrash/Youtube.AspNetCoreTutorial

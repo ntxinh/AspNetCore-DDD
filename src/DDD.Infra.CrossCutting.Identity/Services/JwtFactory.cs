@@ -29,13 +29,15 @@ namespace DDD.Infra.CrossCutting.Identity.Services
             });
 
             // Create the JWT security token and encode it.
-            var jwt = new JwtSecurityToken(
+            var jwt = new JwtSecurityToken
+            (
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
                 claims: claimsIdentity.Claims,
                 notBefore: _jwtOptions.NotBefore,
                 expires: _jwtOptions.Expiration,
-                signingCredentials: _jwtOptions.SigningCredentials);
+                signingCredentials: _jwtOptions.SigningCredentials
+            );
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 

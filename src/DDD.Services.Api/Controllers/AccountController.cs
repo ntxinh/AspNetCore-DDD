@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
+using DDD.Domain.Interfaces;
 using DDD.Infra.CrossCutting.Identity.Data;
 using DDD.Infra.CrossCutting.Identity.Models;
 using DDD.Infra.CrossCutting.Identity.Models.AccountViewModels;
@@ -23,15 +24,17 @@ namespace DDD.Services.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _dbContext;
+        private readonly IUser _user;
         private readonly ILogger _logger;
         private readonly IJwtFactory _jwtFactory;
-        private readonly ApplicationDbContext _dbContext;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext dbContext,
+            IUser user,
             ILoggerFactory loggerFactory,
             IJwtFactory jwtFactory,
             INotificationHandler<DomainNotification> notifications,
@@ -41,6 +44,7 @@ namespace DDD.Services.Api.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
             _dbContext = dbContext;
+            _user = user;
             _logger = loggerFactory.CreateLogger<AccountController>();
             _jwtFactory = jwtFactory;
         }
@@ -84,8 +88,8 @@ namespace DDD.Services.Api.Controllers
             }
 
             // Add User
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-            var identityResult = await _userManager.CreateAsync(user, model.Password);
+            var appUser = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var identityResult = await _userManager.CreateAsync(appUser, model.Password);
             if (!identityResult.Succeeded)
             {
                 AddIdentityErrors(identityResult);
@@ -93,7 +97,7 @@ namespace DDD.Services.Api.Controllers
             }
 
             // Add UserRoles
-            identityResult = await _userManager.AddToRoleAsync(user, "Admin");
+            identityResult = await _userManager.AddToRoleAsync(appUser, "Admin");
             if (!identityResult.Succeeded)
             {
                 AddIdentityErrors(identityResult);
@@ -101,14 +105,17 @@ namespace DDD.Services.Api.Controllers
             }
 
             // Add RoleClaims
+            //var role = await _roleManager.FindByNameAsync("Admin");
+            //var roleClaim = new Claim("Customers", "Write");
+            //await _roleManager.AddClaimAsync(role, roleClaim);
 
             // Add UserClaims
-            var claims = new List<Claim>
+            var userClaims = new List<Claim>
             {
                 new Claim("Customers", "Write"),
                 new Claim("Customers", "Remove"),
             };
-            await _userManager.AddClaimsAsync(user, claims);
+            await _userManager.AddClaimsAsync(appUser, userClaims);
 
             // SignIn
             //await _signInManager.SignInAsync(user, false);
@@ -145,6 +152,17 @@ namespace DDD.Services.Api.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Response(await GenerateToken(appUser));
+        }
+
+        [HttpGet]
+        [Route("current")]
+        public IActionResult GetCurrent()
+        {
+            return Response(new
+            {
+                IsAuthenticated = _user.IsAuthenticated(),
+                ClaimsIdentity = _user.GetClaimsIdentity().Select(x => new { x.Type, x.Value }),
+            });
         }
 
         private async Task<TokenViewModel> GenerateToken(ApplicationUser appUser)
