@@ -22,12 +22,14 @@ namespace DDD.Services.Api
 {
     public class Startup
     {
-        private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH";
-        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+        private readonly string SecretKey;
+        private readonly SymmetricSecurityKey _signingKey;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            SecretKey = Configuration.GetSection("SecretKey").Value;
+            _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
         }
 
         public IConfiguration Configuration { get; }

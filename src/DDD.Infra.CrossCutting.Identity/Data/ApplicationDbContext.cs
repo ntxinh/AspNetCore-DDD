@@ -28,5 +28,7 @@ namespace DDD.Infra.CrossCutting.Identity.Data
             // define the database to use
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

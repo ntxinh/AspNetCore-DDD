@@ -21,9 +21,11 @@ namespace DDD.Infra.CrossCutting.Identity.Services
         {
             claimsIdentity.AddClaims(new Claim[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                //new Claim(ClaimTypes.NameIdentifier, user.Id);
+                //new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Email, email),
                 new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64)
+                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
             });
 
             // Create the JWT security token and encode it.
