@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace DDD.Services.Api
 {
@@ -29,7 +28,7 @@ namespace DDD.Services.Api
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // ----- JWT -----
+            // ----- Auth -----
             services.AddCustomizedAuth(Configuration);
 
             // ----- AutoMapper -----
@@ -49,11 +48,10 @@ namespace DDD.Services.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            // ----- Error Handling -----
+            app.UseCustomizedErrorHandling(env);
 
+            // ----- CORS -----
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -61,6 +59,7 @@ namespace DDD.Services.Api
 
             app.UseRouting();
 
+            // ----- Auth -----
             app.UseCustomizedAuth();
 
             app.UseEndpoints(endpoints =>
@@ -68,6 +67,7 @@ namespace DDD.Services.Api
                 endpoints.MapControllers();
             });
 
+            // ----- Swagger UI -----
             app.UseCustomizedSwagger();
         }
 
