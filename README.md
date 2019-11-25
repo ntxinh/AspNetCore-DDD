@@ -1,6 +1,8 @@
 # Diagram
 ![](/docs/diagram.jpg)
 
+![](/docs/architecture.png)
+
 # Techical Stack
 - ASP.NET Core 3.0 (with .NET Core 3.0)
 - ASP.NET WebApi Core
@@ -40,21 +42,21 @@
 - https://github.com/Elfocrash/Youtube.AspNetCoreTutorial
 
 # TODO
-- [ ] Migration, Scaffold
-- [ ] Data Seeding
 - [x] Use multiple environments
-- [ ] Logging
-- [ ] Pagination
-- [ ] Sorting
 - [x] Transaction (Unit of Work)
 - [x] Validation (FluentValidation)
 - [x] Response wrapper
 - [x] JWT
-- [ ] OAuth2
 - [x] Mapping (AutoMapper)
 - [x] API Specification, API Definition (Swagger)
 - [x] ORM {Entity Framework Core}
 - [x] Middleware
-- [ ] Error Handling, Global Exception
 - [x] CORS
+- [ ] Migration, Scaffold
+- [ ] Data Seeding
+- [ ] Logging
+- [ ] Pagination
+- [ ] Sorting
+- [ ] OAuth2
+- [ ] Error Handling, Global Exception
 - [ ] SignalR
