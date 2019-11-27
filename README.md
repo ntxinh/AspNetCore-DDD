@@ -27,6 +27,11 @@
 - ORM
 - Mediator
 
+# How to run
+```sh
+dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev
+```
+
 # Swagger
 - http://localhost:5000/swagger/index.html
 
