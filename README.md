@@ -4,10 +4,10 @@
 ![](/docs/architecture.png)
 
 # Techical Stack
-- ASP.NET Core 3.0 (with .NET Core 3.0)
+- ASP.NET Core 3.1 (with .NET Core 3.1)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
-- Entity Framework Core 3.0
+- Entity Framework Core 3.1
 - .NET Core Native DI
 - AutoMapper
 - FluentValidator
@@ -37,10 +37,10 @@ dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profi
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.0
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-3.0
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.0
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.0
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.1
 - https://www.red-gate.com/simple-talk/dotnet/c-programming/policy-based-authorization-in-asp-net-core-a-deep-dive/
 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
 - https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB

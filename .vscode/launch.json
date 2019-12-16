@@ -9,7 +9,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/DDD.Services.Api/bin/Debug/netcoreapp3.0/DDD.Services.Api.dll",
+      "program": "${workspaceFolder}/src/DDD.Services.Api/bin/Debug/netcoreapp3.1/DDD.Services.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/DDD.Services.Api",
       "stopAtEntry": false,
