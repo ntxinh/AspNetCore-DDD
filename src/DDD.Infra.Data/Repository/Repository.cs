@@ -37,6 +37,12 @@ namespace DDD.Infra.Data.Repository
             return ApplySpecification(spec);
         }
 
+        public virtual IQueryable<TEntity> GetAllSoftDeleted()
+        {
+            return DbSet.IgnoreQueryFilters()
+                .Where(e => EF.Property<bool>(e, "IsDeleted") == true);
+        }
+
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);

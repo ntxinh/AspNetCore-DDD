@@ -48,6 +48,7 @@
 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
 - https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB
 - https://github.com/Elfocrash/Youtube.AspNetCoreTutorial
+- https://www.meziantou.net/entity-framework-core-soft-delete-using-query-filters.htm
 
 # TODO
 - [x] Use multiple environments
@@ -66,6 +67,8 @@
 - [x] HealthCheck
 - [x] Mail
 - [x] Http
+- [x] Database Auditing: CreatedAt/UpdatedAt CreatedBy/UpdatedBy
+- [x] Soft Delete
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -74,7 +77,6 @@
 - [ ] Search
 - [ ] Kafka, RabbitMQ
 - [ ] Microservices, API Gateway
-- [ ] Soft Delete, CreatedAt, UpdatedAt
 - [ ] Multi-tenancy
 - [ ] Docker
 - [ ] StyleCop

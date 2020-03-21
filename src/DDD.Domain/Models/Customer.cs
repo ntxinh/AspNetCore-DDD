@@ -3,7 +3,7 @@ using DDD.Domain.Core.Models;
 
 namespace DDD.Domain.Models
 {
-    public class Customer : Entity
+    public class Customer : EntityAudit
     {
         public Customer(Guid id, string name, string email, DateTime birthDate)
         {

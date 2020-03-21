@@ -20,6 +20,9 @@ namespace DDD.Infra.Data.Mappings
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100)
                 .IsRequired();
+
+            // builder.HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
+            builder.HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

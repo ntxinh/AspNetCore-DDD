@@ -5,6 +5,7 @@ namespace DDD.Domain.Core.Models
     public abstract class Entity
     {
         public Guid Id { get; protected set; }
+        public bool IsDeleted { get; set; }
 
         public override bool Equals(object obj)
         {
