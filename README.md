@@ -35,6 +35,9 @@
 # Swagger
 - http://localhost:5000/swagger
 
+# Health check
+- http://localhost:5000/healthchecks-ui
+
 # References
 - https://github.com/EduardoPires/EquinoxProject
 - https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
@@ -60,15 +63,15 @@
 - [x] Pagination
 - [x] Sorting
 - [x] Error Handling, Global Exception
+- [x] HealthCheck
+- [x] Mail
+- [x] Http
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
 - [ ] OAuth2
 - [ ] SignalR
-- [ ] HealthCheck
-- [ ] Mail
 - [ ] Search
-- [ ] Http
 - [ ] Kafka, RabbitMQ
 - [ ] Microservices, API Gateway
 - [ ] Soft Delete, CreatedAt, UpdatedAt

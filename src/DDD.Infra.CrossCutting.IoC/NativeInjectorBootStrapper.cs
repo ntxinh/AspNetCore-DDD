@@ -8,6 +8,7 @@ using DDD.Domain.Core.Notifications;
 using DDD.Domain.EventHandlers;
 using DDD.Domain.Events;
 using DDD.Domain.Interfaces;
+using DDD.Domain.Services;
 using DDD.Infra.CrossCutting.Bus;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Models;
@@ -49,6 +50,10 @@ namespace DDD.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, bool>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCustomerCommand, bool>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveCustomerCommand, bool>, CustomerCommandHandler>();
+
+            // Domain - 3rd parties
+            services.AddScoped<IHttpService, HttpService>();
+            services.AddScoped<IMailService, MailService>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
