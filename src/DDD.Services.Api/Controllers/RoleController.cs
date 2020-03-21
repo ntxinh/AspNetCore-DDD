@@ -32,6 +32,10 @@ namespace DDD.Services.Api.Controllers
             var role = new IdentityRole(model.Name);
             await _roleManager.CreateAsync(role);
 
+            // Add RoleClaims
+            // var roleClaim = new Claim("Customers", "Write");
+            // await _roleManager.AddClaimAsync(role, roleClaim);
+
             return Response();
         }
     }

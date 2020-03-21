@@ -105,16 +105,11 @@ namespace DDD.Services.Api.Controllers
                 return Response();
             }
 
-            // Add RoleClaims
-            //var role = await _roleManager.FindByNameAsync("Admin");
-            //var roleClaim = new Claim("Customers", "Write");
-            //await _roleManager.AddClaimAsync(role, roleClaim);
-
             // Add UserClaims
             var userClaims = new List<Claim>
             {
-                new Claim("Customers", "Write"),
-                new Claim("Customers", "Remove"),
+                new Claim("Customers_Write", "Write"),
+                new Claim("Customers_Remove", "Remove"),
             };
             await _userManager.AddClaimsAsync(appUser, userClaims);
 

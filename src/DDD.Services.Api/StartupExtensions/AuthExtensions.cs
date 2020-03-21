@@ -68,12 +68,12 @@ namespace DDD.Services.Api.StartupExtensions
                 var policy1 = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .RequireRole("Admin")
-                    .AddRequirements(new ClaimRequirement("Customers", "Write"))
+                    .AddRequirements(new ClaimRequirement("Customers_Write", "Write"))
                     .Build();
                 var policy2 = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .RequireRole("Admin")
-                    .AddRequirements(new ClaimRequirement("Customers", "Remove"))
+                    .AddRequirements(new ClaimRequirement("Customers_Remove", "Remove"))
                     .Build();
                 options.AddPolicy("CanWriteCustomerData", policy1);
                 options.AddPolicy("CanRemoveCustomerData", policy2);
