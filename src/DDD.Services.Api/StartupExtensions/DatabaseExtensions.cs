@@ -1,6 +1,5 @@
 using DDD.Infra.CrossCutting.Identity.Data;
 using DDD.Infra.Data.Context;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +20,6 @@ namespace DDD.Services.Api.StartupExtensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             return services;
-        }
-
-        public static IApplicationBuilder UseCustomizedDatabase(this IApplicationBuilder app)
-        {
-            return app;
         }
     }
 }

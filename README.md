@@ -28,12 +28,12 @@
 - Mediator
 
 # How to run
-```sh
-dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev
-```
+- Visual Studio: `Just run`
+- VSCode: `Just run`
+- Terminal: `dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev`
 
 # Swagger
-- http://localhost:5000/swagger/index.html
+- http://localhost:5000/swagger
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
@@ -57,11 +57,23 @@ dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profi
 - [x] ORM {Entity Framework Core}
 - [x] Middleware
 - [x] CORS
+- [x] Pagination
+- [x] Sorting
+- [x] Error Handling, Global Exception
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
-- [ ] Pagination
-- [ ] Sorting
 - [ ] OAuth2
-- [ ] Error Handling, Global Exception
 - [ ] SignalR
+- [ ] HealthCheck
+- [ ] Mail
+- [ ] Search
+- [ ] Http
+- [ ] Kafka, RabbitMQ
+- [ ] Microservices, API Gateway
+- [ ] Soft Delete, CreatedAt, UpdatedAt
+- [ ] Multi-tenancy
+- [ ] Docker
+- [ ] StyleCop
+- [ ] API Versioning
+- [ ] API Versioning with Swagger

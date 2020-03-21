@@ -1,8 +1,10 @@
 using DDD.Infra.CrossCutting.IoC;
 using DDD.Services.Api.Configurations;
 using DDD.Services.Api.StartupExtensions;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +25,7 @@ namespace DDD.Services.Api
         {
             services.AddControllers();
 
+            // ----- Database -----
             services.AddCustomizedDatabase(Configuration);
 
             // ----- Auth -----
@@ -40,6 +43,8 @@ namespace DDD.Services.Api
             // ----- Swagger UI -----
             services.AddCustomizedSwagger();
 
+            // ----- Health check -----
+            services.AddCustomizedHealthCheck(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +67,15 @@ namespace DDD.Services.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                // Health check
+                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+
+                endpoints.MapHealthChecksUI();
             });
 
             // ----- Swagger UI -----
