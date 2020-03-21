@@ -8,7 +8,7 @@ namespace DDD.Infra.Data.Repository
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
-        public CustomerRepository(ApplicationContext context)
+        public CustomerRepository(ApplicationDbContext context)
             : base(context)
         {
 

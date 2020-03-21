@@ -12,7 +12,6 @@ using DDD.Infra.CrossCutting.Bus;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Models;
 using DDD.Infra.CrossCutting.Identity.Services;
-using DDD.Infra.Data.Context;
 using DDD.Infra.Data.EventSourcing;
 using DDD.Infra.Data.Repository;
 using DDD.Infra.Data.Repository.EventSourcing;
@@ -54,12 +53,10 @@ namespace DDD.Infra.CrossCutting.IoC
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ApplicationContext>();
 
             // Infra - Data EventSourcing
-            services.AddScoped<IEventStoreRepository, EventStoreSQLRepository>();
+            services.AddScoped<IEventStoreRepository, EventStoreSqlRepository>();
             services.AddScoped<IEventStore, SqlEventStore>();
-            services.AddScoped<EventStoreSQLContext>();
 
             // Infra - Identity Services
             services.AddTransient<IEmailSender, AuthEmailMessageSender>();

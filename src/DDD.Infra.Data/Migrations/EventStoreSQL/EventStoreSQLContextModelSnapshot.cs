@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DDD.Infra.Data.Migrations.EventStoreSQL
+namespace DDD.Infra.Data.Migrations.EventStoreSql
 {
-    [DbContext(typeof(EventStoreSQLContext))]
-    partial class EventStoreSQLContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(EventStoreSqlContext))]
+    partial class EventStoreSqlContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

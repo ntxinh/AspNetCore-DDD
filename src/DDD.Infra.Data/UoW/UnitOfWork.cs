@@ -5,9 +5,9 @@ namespace DDD.Infra.Data.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UnitOfWork(ApplicationContext context)
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
         }

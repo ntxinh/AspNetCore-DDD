@@ -8,10 +8,10 @@ namespace DDD.Infra.Data.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly ApplicationContext Db;
+        protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(ApplicationContext context)
+        public Repository(ApplicationDbContext context)
         {
             Db = context;
             DbSet = Db.Set<TEntity>();

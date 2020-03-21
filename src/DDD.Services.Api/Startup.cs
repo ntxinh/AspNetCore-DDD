@@ -1,11 +1,9 @@
-using DDD.Infra.CrossCutting.Identity.Data;
 using DDD.Infra.CrossCutting.IoC;
 using DDD.Services.Api.Configurations;
 using DDD.Services.Api.StartupExtensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,8 +23,7 @@ namespace DDD.Services.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCustomizedDatabase(Configuration);
 
             // ----- Auth -----
             services.AddCustomizedAuth(Configuration);

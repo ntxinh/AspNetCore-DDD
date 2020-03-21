@@ -22,7 +22,7 @@ namespace DDD.Services.Api.StartupExtensions
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 
             var jwtAppSettingOptions = configuration.GetSection(nameof(JwtIssuerOptions));

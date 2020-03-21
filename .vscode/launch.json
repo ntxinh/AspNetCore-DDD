@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": ".NET Core Launch (console)",
+      "name": "dev",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",

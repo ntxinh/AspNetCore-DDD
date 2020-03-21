@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -10,14 +12,24 @@ namespace DDD.Services.Api.StartupExtensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DDD Project", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "ASPNET Core DDD Project",
+                    Description = "",
+                    Contact = new OpenApiContact { Name = "Xinh Nguyen", Email = "nguyentrucxjnh@gmail.com", Url = new Uri("https://nguyentrucxinh.github.io/") },
+                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/nguyentrucxinh/AspNetCore-DDD/blob/master/LICENSE") }
+                });
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
                 });
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -27,9 +39,13 @@ namespace DDD.Services.Api.StartupExtensions
                             {
                                 Type = ReferenceType.SecurityScheme,
                                 Id = "Bearer"
-                            }
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
                         },
-                        new string[] { }
+                        new List<string>()
+                        // new string[] { }
                     }
                 });
                 // Add custom header request
@@ -47,7 +63,7 @@ namespace DDD.Services.Api.StartupExtensions
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "DDD Project API v1.1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASPNET Core DDD Project API v1.1");
             });
 
             return app;

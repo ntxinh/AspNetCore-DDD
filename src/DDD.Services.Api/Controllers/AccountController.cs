@@ -25,7 +25,7 @@ namespace DDD.Services.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ApplicationDbContext _dbContext;
+        private readonly AuthDbContext _dbContext;
         private readonly IUser _user;
         private readonly IJwtFactory _jwtFactory;
         private readonly ILogger _logger;
@@ -34,7 +34,7 @@ namespace DDD.Services.Api.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager,
-            ApplicationDbContext dbContext,
+            AuthDbContext dbContext,
             IUser user,
             IJwtFactory jwtFactory,
             ILoggerFactory loggerFactory,
