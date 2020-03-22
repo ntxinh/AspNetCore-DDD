@@ -32,10 +32,10 @@
 - VSCode: `Just run`
 - Terminal: `dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev`
 
-# Swagger
+# Swagger (Dev env only)
 - http://localhost:5000/swagger
 
-# Health check
+# Health check (Staging & Prod env only)
 - http://localhost:5000/healthchecks-ui
 
 # TODO
@@ -57,6 +57,7 @@
 - [x] Http
 - [x] Database Auditing: CreatedAt/UpdatedAt CreatedBy/UpdatedBy
 - [x] Soft Delete
+- [x] Common: Constants, Helpers
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
