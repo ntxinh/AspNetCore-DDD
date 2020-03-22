@@ -18,6 +18,36 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "http://localhost:5000/"
       },
+    },
+    {
+      "name": "staging",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/DDD.Services.Api/bin/Debug/netcoreapp3.1/DDD.Services.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/DDD.Services.Api",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Staging",
+        "ASPNETCORE_URLS": "http://localhost:5000/"
+      },
+    },
+    {
+      "name": "prod",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/DDD.Services.Api/bin/Debug/netcoreapp3.1/DDD.Services.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/DDD.Services.Api",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_URLS": "http://localhost:5000/"
+      },
     }
   ]
 }

@@ -38,18 +38,6 @@
 # Health check
 - http://localhost:5000/healthchecks-ui
 
-# References
-- https://github.com/EduardoPires/EquinoxProject
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.1
-- https://www.red-gate.com/simple-talk/dotnet/c-programming/policy-based-authorization-in-asp-net-core-a-deep-dive/
-- https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
-- https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB
-- https://github.com/Elfocrash/Youtube.AspNetCoreTutorial
-- https://www.meziantou.net/entity-framework-core-soft-delete-using-query-filters.htm
-
 # TODO
 - [x] Use multiple environments
 - [x] Transaction (Unit of Work)
@@ -82,3 +70,16 @@
 - [ ] StyleCop
 - [ ] API Versioning
 - [ ] API Versioning with Swagger
+
+# References
+- https://github.com/EduardoPires/EquinoxProject
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.1
+- https://www.red-gate.com/simple-talk/dotnet/c-programming/policy-based-authorization-in-asp-net-core-a-deep-dive/
+- https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
+- https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB
+- https://github.com/Elfocrash/Youtube.AspNetCoreTutorial
+- https://www.meziantou.net/entity-framework-core-soft-delete-using-query-filters.htm
+- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments
