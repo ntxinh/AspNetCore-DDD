@@ -1,0 +1,33 @@
+# .NET Core SDK
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
+
+# Sets the working directory
+WORKDIR /app
+
+# Copy Projects
+#COPY *.sln .
+COPY src/DDD.Application/DDD.Application.csproj ./DDD.Application/
+COPY src/DDD.Domain/DDD.Domain.csproj ./DDD.Domain/
+COPY src/DDD.Domain.Core/DDD.Domain.Core.csproj ./DDD.Domain.Core/
+COPY src/DDD.Infra.CrossCutting.Bus/DDD.Infra.CrossCutting.Bus.csproj ./DDD.Infra.CrossCutting.Bus/
+COPY src/DDD.Infra.CrossCutting.Identity/DDD.Infra.CrossCutting.Identity.csproj ./DDD.Infra.CrossCutting.Identity/
+COPY src/DDD.Infra.CrossCutting.IoC/DDD.Infra.CrossCutting.IoC.csproj ./DDD.Infra.CrossCutting.IoC/
+COPY src/DDD.Infra.Data/DDD.Infra.Data.csproj ./DDD.Infra.Data/
+COPY src/DDD.Services.Api/DDD.Services.Api.csproj ./DDD.Services.Api/
+
+# .NET Core Restore
+RUN dotnet restore ./DDD.Services.Api/DDD.Services.Api.csproj
+
+# Copy All Files
+COPY src ./
+
+# .NET Core Build and Publish
+RUN dotnet publish ./DDD.Services.Api/DDD.Services.Api.csproj -c Release -o /publish
+
+# ASP.NET Core Runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS runtime
+WORKDIR /app
+COPY --from=build /publish ./
+#EXPOSE 80
+#EXPOSE 443
+ENTRYPOINT ["dotnet", "DDD.Services.Api.dll"]

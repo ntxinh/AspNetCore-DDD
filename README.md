@@ -58,6 +58,7 @@
 - [x] Database Auditing: CreatedAt/UpdatedAt CreatedBy/UpdatedBy
 - [x] Soft Delete
 - [x] Common: Constants, Helpers
+- [x] Docker
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -67,10 +68,11 @@
 - [ ] Kafka, RabbitMQ
 - [ ] Microservices, API Gateway
 - [ ] Multi-tenancy
-- [ ] Docker
 - [ ] StyleCop
 - [ ] API Versioning
 - [ ] API Versioning with Swagger
+- [ ] Primary Key to Integer
+- [ ] File: Upload/Download
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
