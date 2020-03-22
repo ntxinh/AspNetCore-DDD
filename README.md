@@ -1,7 +1,19 @@
 # Diagram
-![](/docs/diagram.jpg)
 
+## Overview
+![](/docs/overview.png)
+
+## Architecture
 ![](/docs/architecture.png)
+
+## Dependencies
+![](/docs/dependencies.jpg)
+
+## Project dependencies
+![](/docs/project-dependencies.jpg)
+
+## Code flow
+![](/docs/code-flow.jpg)
 
 # Techical Stack
 - ASP.NET Core 3.1 (with .NET Core 3.1)
@@ -32,6 +44,16 @@
 - VSCode: `Just run`
 - Terminal: `dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev`
 
+# Docker
+
+```sh
+docker build -t aspnetcore-docker-image .
+docker run -it --rm -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-image
+docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-image
+```
+
+- http://localhost:3000/
+
 # Swagger (Dev env only)
 - http://localhost:5000/swagger
 
@@ -43,6 +65,8 @@
 - [x] Transaction (Unit of Work)
 - [x] Validation (FluentValidation)
 - [x] Response wrapper
+- [x] Async/Await
+- [x] REST
 - [x] JWT
 - [x] Mapping (AutoMapper)
 - [x] API Specification, API Definition (Swagger)
@@ -59,6 +83,8 @@
 - [x] Soft Delete
 - [x] Common: Constants, Helpers
 - [x] Docker
+- [x] EF: Shadow Properties
+- [x] Events
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -72,7 +98,16 @@
 - [ ] API Versioning
 - [ ] API Versioning with Swagger
 - [ ] Primary Key to Integer
-- [ ] File: Upload/Download
+- [ ] File storage: Upload/Download
+- [ ] Kubernetes
+- [ ] Globalization & Localization
+- [ ] Caching
+- [ ] Kestrel
+- [ ] Secret Manager
+- [ ] Task scheduling & Queues
+- [ ] Session & Cookie
+- [ ] Notifications
+- [ ] Encryption & Hashing
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
@@ -86,3 +121,6 @@
 - https://github.com/Elfocrash/Youtube.AspNetCoreTutorial
 - https://www.meziantou.net/entity-framework-core-soft-delete-using-query-filters.htm
 - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments
+- https://michael-mckenna.com/multi-tenant-asp-dot-net-core-application-tenant-resolution
+- https://stackify.com/writing-multitenant-asp-net-core-applications/
+- https://github.com/DanielRBowen/SimpleMultiTenant
