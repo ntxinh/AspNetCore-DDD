@@ -13,6 +13,7 @@
 ![](/docs/project-dependencies.jpg)
 
 ## Code flow
+![](/docs/flowchart.png)
 ![](/docs/code-flow.jpg)
 
 ## Repository & Unit Of Work
