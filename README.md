@@ -30,6 +30,8 @@
 - MediatR
 - Swagger UI
 - MSSQL
+- xUnit
+- Moq
 
 # Design Patterns
 - Domain Driven Design
@@ -112,6 +114,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Session & Cookie
 - [ ] Notifications
 - [ ] Encryption & Hashing
+- [ ] Unit Testing
+- [ ] Integration Testing
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
