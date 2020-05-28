@@ -14,15 +14,15 @@ namespace DDD.Services.Api.IntegrationTests.IntegrationTests.Controllers
         public WeatherForecastControllerIntegrationTests(CustomWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
-            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
+            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
                 {
                     AllowAutoRedirect = false
                 });
         }
 
         [Theory]
-        [InlineData("/WeatherForecast/HelloWorld")]
-        public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
+        [InlineData("/WeatherForecast/HelloWorld", "text/plain; charset=utf-8")]
+        public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url, string expected)
         {
             // Arrange
 
@@ -31,7 +31,7 @@ namespace DDD.Services.Api.IntegrationTests.IntegrationTests.Controllers
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
-            response.Content.Headers.ContentType.ToString().Should().Be("text/plain; charset=utf-8");
+            response.Content.Headers.ContentType.ToString().Should().Be(expected);
         }
     }
 }

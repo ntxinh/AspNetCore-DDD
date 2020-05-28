@@ -32,6 +32,7 @@
 - MSSQL
 - xUnit
 - Moq
+- Fluent Assertions
 
 # Design Patterns
 - Domain Driven Design
