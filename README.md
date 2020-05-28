@@ -50,6 +50,9 @@
 - VSCode: `Just run`
 - Terminal: `dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev`
 
+# Testing
+- Terminal: `dotnet test`
+
 # Docker
 
 ```sh
