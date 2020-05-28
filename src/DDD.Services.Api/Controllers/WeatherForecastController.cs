@@ -34,5 +34,11 @@ namespace DDD.Services.Api.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        public IActionResult HelloWorld()
+        {
+            return Ok("Hello World");
+        }
     }
 }
