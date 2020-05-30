@@ -45,6 +45,7 @@
 - Inversion of Control / Dependency injection
 - ORM
 - Mediator
+- Specification Pattern
 
 # How to run
 - Visual Studio: `Just run`
@@ -136,3 +137,4 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - https://michael-mckenna.com/multi-tenant-asp-dot-net-core-application-tenant-resolution
 - https://stackify.com/writing-multitenant-asp-net-core-applications/
 - https://github.com/DanielRBowen/SimpleMultiTenant
+- https://deviq.com/specification-pattern/
