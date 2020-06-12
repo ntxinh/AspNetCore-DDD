@@ -96,6 +96,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Docker
 - [x] EF: Shadow Properties
 - [x] Events
+- [x] Unit Testing
+- [x] Integration Testing
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -119,8 +121,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Session & Cookie
 - [ ] Notifications
 - [ ] Encryption & Hashing
-- [ ] Unit Testing
-- [ ] Integration Testing
+- [ ] EF: No-tracking queries
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
