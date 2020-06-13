@@ -4,128 +4,82 @@ using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace DDD.Domain.Services
 {
     public class HttpService : IHttpService
     {
-        private readonly IHttpClientFactory _clientFactory;
-        private readonly HttpClient httpClientA;
-        public Response PullRequests { get; private set; }
-        public bool GetPullRequestsError { get; private set; }
-        private readonly ILogger _logger;
-
-        public HttpService(IHttpClientFactory clientFactory, ILogger<HttpService> logger)
-        {
-            _clientFactory = clientFactory;
-            httpClientA = _clientFactory.CreateClient("HttpClientA");
-            _logger = logger;
-        }
-
-        #region Wrapper
-        private async Task<Response> GetAsync(HttpClient httpClient, string url, Dictionary<string, string> headers)
+        public async Task<T> GetAsync<T>(HttpClient httpClient, string url, Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null)
         {
             try
             {
-                var request = CreateGetRequest(url, headers);
+                var request = CreateGetRequest(url, queryParams, headers);
                 var response = await httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    using var responseStream = await response.Content.ReadAsStreamAsync();
-                    PullRequests = await JsonSerializer.DeserializeAsync<Response>(responseStream);
+                    return await ReadAsAsync<T>(response);
                 }
-                else
-                {
-                    GetPullRequestsError = true;
-                    PullRequests = null;
-                }
-                return PullRequests;
+                return default(T);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something went wrong: {ex}");
-                throw new Exception("Exception inside GetAsync", ex);
+                throw ex;
             }
         }
 
-        private Response Get(HttpClient httpClient, string url, Dictionary<string, string> headers)
+        public async Task<Stream> GetStreamAsync(HttpClient httpClient, string url, Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null)
         {
             try
             {
-                var request = CreateGetRequest(url, headers);
-                var response = httpClient.SendAsync(request).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    using var responseStream = response.Content.ReadAsStreamAsync().Result;
-                    PullRequests = JsonSerializer.DeserializeAsync<Response>(responseStream).Result;
-                }
-                else
-                {
-                    GetPullRequestsError = true;
-                    PullRequests = null;
-                }
-                return PullRequests;
+                // TODO: Handle queryParams, headers
+                return await httpClient.GetStreamAsync(url);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something went wrong: {ex}");
-                throw new Exception("Exception inside Get(HttpClientService)", ex);
+                throw ex;
             }
         }
 
-        private async Task<Response> PostAsync(HttpClient httpClient, string url, object data, Dictionary<string, string> headers)
+        public async Task<T> PostAsJsonAsync<T>(HttpClient httpClient, string url, object data, Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null)
         {
             try
             {
-                var request = CreatePostRequest(url, data, headers);
+                var request = CreatePostAsJsonRequest(url, data, queryParams, headers);
                 var response = await httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    using var responseStream = await response.Content.ReadAsStreamAsync();
-                    PullRequests = await JsonSerializer.DeserializeAsync<Response>(responseStream);
+                    return await ReadAsAsync<T>(response);
                 }
-                else
-                {
-                    GetPullRequestsError = true;
-                    PullRequests = null;
-                }
-                return PullRequests;
+                return default(T);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something went wrong: {ex}");
-                throw new Exception("Exception inside PostAsync(HttpClientService)", ex);
+                throw ex;
             }
         }
 
-        private Response Post(HttpClient httpClient, string url, object data, Dictionary<string, string> headers)
+        public async Task<T> PostAsFormUrlEncodedAsync<T>(HttpClient httpClient, string url, Dictionary<string, string> data, Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null)
         {
             try
             {
-                var request = CreatePostRequest(url, data, headers);
-                var response = httpClient.SendAsync(request).Result;
+                var request = CreatePostAsFormUrlEncodedRequest(url, data, queryParams, headers);
+                var response = await httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    using var responseStream = response.Content.ReadAsStreamAsync().Result;
-                    PullRequests = JsonSerializer.DeserializeAsync<Response>(responseStream).Result;
+                    return await ReadAsAsync<T>(response);
                 }
-                else
-                {
-                    GetPullRequestsError = true;
-                    PullRequests = null;
-                }
-                return PullRequests;
+                return default(T);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something went wrong: {ex}");
-                throw new Exception("Exception inside Post(HttpClientService)", ex);
+                throw ex;
             }
         }
 
-        private HttpRequestMessage CreatePostRequest(string url, object data, Dictionary<string, string> headers)
+        #region Private Method
+        private HttpRequestMessage CreatePostAsJsonRequest(string url, object data, Dictionary<string, string> queryParams, Dictionary<string, string> headers)
         {
+            // TODO: Handle queryParams
             var dataAsString = JsonSerializer.Serialize(data);
             var content = new StringContent(dataAsString, System.Text.Encoding.UTF8, "application/json");
             var request = new HttpRequestMessage(HttpMethod.Post, url)
@@ -142,9 +96,13 @@ namespace DDD.Domain.Services
             return request;
         }
 
-        private HttpRequestMessage CreateGetRequest(string url, Dictionary<string, string> headers)
+        private HttpRequestMessage CreatePostAsFormUrlEncodedRequest(string url, Dictionary<string, string> data, Dictionary<string, string> queryParams, Dictionary<string, string> headers)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            // TODO: Handle queryParams
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new FormUrlEncodedContent(data),
+            };
             if (headers != null)
             {
                 foreach (KeyValuePair<string, string> entry in headers)
@@ -155,47 +113,21 @@ namespace DDD.Domain.Services
             return request;
         }
 
-        private async Task<Stream> GetStreamAsync(HttpClient httpClient, string url)
+        private HttpRequestMessage CreateGetRequest(string url, Dictionary<string, string> queryParams, Dictionary<string, string> headers)
         {
-            try
+            // TODO: Handle queryParams
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            foreach (KeyValuePair<string, string> entry in headers)
             {
-                var stream = await httpClient.GetStreamAsync(url);
-                return stream;
+                request.Headers.Add(entry.Key, entry.Value);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong: {ex}");
-                throw new Exception("Exception inside GetStreamAsync", ex);
-            }
-        }
-        #endregion
-
-        #region Get, Post
-
-        public async Task<Response> GetAsync(string url, Dictionary<string, string> headers = null)
-        {
-            return await GetAsync(httpClientA, url, headers);
+            return request;
         }
 
-        public Response Get(string url, Dictionary<string, string> headers = null)
+        private async Task<T> ReadAsAsync<T>(HttpResponseMessage response)
         {
-            return Get(httpClientA, url, headers);
-        }
-
-        public async Task<Response> PostAsync(string url, object data, Dictionary<string, string> headers = null)
-        {
-            return await PostAsync(httpClientA, url, data, headers);
-        }
-        public Response Post(string url, object data, Dictionary<string, string> headers = null)
-        {
-            return Post(httpClientA, url, data, headers);
-        }
-        #endregion
-
-        #region Stream
-        public async Task<Stream> GetStreamAsync(string url)
-        {
-            return await GetStreamAsync(httpClientA, url);
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<T>(responseStream);
         }
         #endregion
     }
