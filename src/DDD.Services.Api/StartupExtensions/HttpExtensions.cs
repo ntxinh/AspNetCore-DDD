@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
 
 namespace DDD.Services.Api.StartupExtensions
 {
@@ -11,7 +12,7 @@ namespace DDD.Services.Api.StartupExtensions
             services.AddHttpClient("HttpServerA", c =>
             {
                 c.BaseAddress = new Uri(configuration.GetSection("HttpServerA").Value);
-            });
+            }).AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(5, _ => TimeSpan.FromMilliseconds(500)));
 
             return services;
         }

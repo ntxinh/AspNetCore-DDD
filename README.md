@@ -33,6 +33,7 @@
 - xUnit
 - Moq
 - Fluent Assertions
+- Polly
 
 # Design Patterns
 - Domain Driven Design
