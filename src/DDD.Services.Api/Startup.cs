@@ -23,10 +23,18 @@ namespace DDD.Services.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(x => {
+                    x.JsonSerializerOptions.IgnoreNullValues = true;
+                    // x.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                });
+                // Nuget package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+                // .AddNewtonsoftJson(
+                //     options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                // );
 
             // ----- Database -----
-            services.AddCustomizedDatabase(Configuration);
+            services.AddCustomizedDatabase(Configuration, _env);
 
             // ----- Auth -----
             services.AddCustomizedAuth(Configuration);
@@ -56,13 +64,13 @@ namespace DDD.Services.Api
             // ----- Error Handling -----
             app.UseCustomizedErrorHandling(_env);
 
+            app.UseRouting();
+
             // ----- CORS -----
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
-            app.UseRouting();
 
             // ----- Auth -----
             app.UseCustomizedAuth();
