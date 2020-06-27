@@ -128,6 +128,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] EF: No-tracking queries
 - [ ] Dapper, Dapper Contrib
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
+- [ ] Use NetStandard 2.1 for Class Library
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
