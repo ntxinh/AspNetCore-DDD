@@ -99,6 +99,9 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Events
 - [x] Unit Testing
 - [x] Integration Testing
+- [x] Scoped over Transient
+- [x] Use `abstract` keyword to appropriate class
+- [x] Use `IQueryable`, `IEnumerable`, `IList` interfaces
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -123,6 +126,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Notifications
 - [ ] Encryption & Hashing
 - [ ] EF: No-tracking queries
+- [ ] Dapper, Dapper Contrib
+- [ ] BulkInsert, BulkUpdate, Async method for IRepository
 
 # References
 - https://github.com/EduardoPires/EquinoxProject

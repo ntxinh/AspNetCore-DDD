@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Infra.Data.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
