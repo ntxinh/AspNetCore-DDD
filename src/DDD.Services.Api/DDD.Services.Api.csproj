@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DDD.Services.Api</RootNamespace>
+    <AssemblyName>DDD.Services.Api</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

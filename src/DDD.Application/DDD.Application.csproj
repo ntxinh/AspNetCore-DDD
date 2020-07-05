@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DDD.Application</RootNamespace>
+    <AssemblyName>DDD.Application</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

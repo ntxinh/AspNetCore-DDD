@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DDD.Application.UnitTests</RootNamespace>
+    <AssemblyName>DDD.Application.UnitTests</AssemblyName>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DDD.Infra.CrossCutting.Bus</RootNamespace>
+    <AssemblyName>DDD.Infra.CrossCutting.Bus</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

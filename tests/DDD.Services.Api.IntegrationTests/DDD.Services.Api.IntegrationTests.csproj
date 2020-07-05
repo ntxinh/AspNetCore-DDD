@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <RootNamespace>DDD.Services.Api.IntegrationTests</RootNamespace>
+    <AssemblyName>DDD.Services.Api.IntegrationTests</AssemblyName>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
