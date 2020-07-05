@@ -1,23 +1,23 @@
 # Diagram
 
 ## Overview
-![](/docs/overview.png)
+![](/Docs/overview.png)
 
 ## Architecture
-![](/docs/architecture.png)
+![](/Docs/architecture.png)
 
 ## Dependencies
-![](/docs/dependencies.jpg)
+![](/Docs/dependencies.jpg)
 
 ## Project dependencies
-![](/docs/project-dependencies.jpg)
+![](/Docs/project-dependencies.jpg)
 
 ## Code flow
-![](/docs/flowchart.png)
-![](/docs/code-flow.jpg)
+![](/Docs/flowchart.png)
+![](/Docs/code-flow.jpg)
 
 ## Repository & Unit Of Work
-![](/docs/custom-repo-versus-db-context.png)
+![](/Docs/custom-repo-versus-db-context.png)
 
 # Techical Stack
 - ASP.NET Core 3.1 (with .NET Core 3.1)

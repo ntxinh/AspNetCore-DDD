@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Application", "src\DDD.Application\DDD.Application.csproj", "{E75F8656-4D1E-402A-BFFD-B1DA6205E695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Application", "Src\DDD.Application\DDD.Application.csproj", "{E75F8656-4D1E-402A-BFFD-B1DA6205E695}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{4540A7C6-2383-4D11-A481-A6CC8D7905E5}"
 EndProject
@@ -24,29 +24,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infra", "5 - Infra", "{AFFE13FA-84A7-45C9-92B3-A0C37235A2C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain.Core", "src\DDD.Domain.Core\DDD.Domain.Core.csproj", "{A5693260-4B01-4C23-94EF-E34CC10C5AED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain.Core", "Src\DDD.Domain.Core\DDD.Domain.Core.csproj", "{A5693260-4B01-4C23-94EF-E34CC10C5AED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain", "src\DDD.Domain\DDD.Domain.csproj", "{0072D7C5-A494-4464-9B79-269E1D2EE214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain", "Src\DDD.Domain\DDD.Domain.csproj", "{0072D7C5-A494-4464-9B79-269E1D2EE214}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.Bus", "src\DDD.Infra.CrossCutting.Bus\DDD.Infra.CrossCutting.Bus.csproj", "{71D9CE3E-CB3E-4DBF-B0A2-49BD397682B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.Bus", "Src\DDD.Infra.CrossCutting.Bus\DDD.Infra.CrossCutting.Bus.csproj", "{71D9CE3E-CB3E-4DBF-B0A2-49BD397682B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.Identity", "src\DDD.Infra.CrossCutting.Identity\DDD.Infra.CrossCutting.Identity.csproj", "{4C7432EE-CF44-48D5-9783-D5D437726E0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.Identity", "Src\DDD.Infra.CrossCutting.Identity\DDD.Infra.CrossCutting.Identity.csproj", "{4C7432EE-CF44-48D5-9783-D5D437726E0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.IoC", "src\DDD.Infra.CrossCutting.IoC\DDD.Infra.CrossCutting.IoC.csproj", "{91E72AF8-406E-4865-97CC-AC025F09E6C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.CrossCutting.IoC", "Src\DDD.Infra.CrossCutting.IoC\DDD.Infra.CrossCutting.IoC.csproj", "{91E72AF8-406E-4865-97CC-AC025F09E6C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", "{8B5F8FF8-52CE-4C81-B09F-E65E14078090}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 - CrossCutting", "{46AE4EFD-3BD7-4E10-9BA8-B91E39AD41BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.Data", "src\DDD.Infra.Data\DDD.Infra.Data.csproj", "{0B03876F-680D-4C02-BB33-108043B245DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infra.Data", "Src\DDD.Infra.Data\DDD.Infra.Data.csproj", "{0B03876F-680D-4C02-BB33-108043B245DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Services.Api", "src\DDD.Services.Api\DDD.Services.Api.csproj", "{25BD5EB4-6E81-4FDF-95DC-D5797743E6E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Services.Api", "Src\DDD.Services.Api\DDD.Services.Api.csproj", "{25BD5EB4-6E81-4FDF-95DC-D5797743E6E1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{86019360-B934-4FB3-AD9E-CAD3AA4E3635}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{86019360-B934-4FB3-AD9E-CAD3AA4E3635}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Application.UnitTests", "tests\DDD.Application.UnitTests\DDD.Application.UnitTests.csproj", "{C5E7B3EF-D073-47F6-9EFA-19C96ACE368B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Application.UnitTests", "Tests\DDD.Application.UnitTests\DDD.Application.UnitTests.csproj", "{C5E7B3EF-D073-47F6-9EFA-19C96ACE368B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Services.Api.IntegrationTests", "tests\DDD.Services.Api.IntegrationTests\DDD.Services.Api.IntegrationTests.csproj", "{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Services.Api.IntegrationTests", "Tests\DDD.Services.Api.IntegrationTests\DDD.Services.Api.IntegrationTests.csproj", "{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

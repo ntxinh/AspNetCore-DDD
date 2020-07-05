@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/DDD.Services.Api/DDD.Services.Api.csproj",
+                "${workspaceFolder}/Src/DDD.Services.Api/DDD.Services.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/DDD.Services.Api/DDD.Services.Api.csproj",
+                "${workspaceFolder}/Src/DDD.Services.Api/DDD.Services.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/src/DDD.Services.Api/DDD.Services.Api.csproj",
+                "${workspaceFolder}/Src/DDD.Services.Api/DDD.Services.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

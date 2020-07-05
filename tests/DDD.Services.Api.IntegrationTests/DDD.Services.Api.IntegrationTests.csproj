@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DDD.Services.Api\DDD.Services.Api.csproj" />
+    <ProjectReference Include="..\..\Src\DDD.Services.Api\DDD.Services.Api.csproj" />
   </ItemGroup>
 
 </Project>
