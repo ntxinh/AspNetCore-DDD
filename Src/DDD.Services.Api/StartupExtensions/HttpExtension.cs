@@ -17,7 +17,7 @@ namespace DDD.Services.Api.StartupExtensions
                     c.BaseAddress = new Uri(configuration.GetValue<string>("HttpClients:Foo"));
                 })
                 .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(5, _ => TimeSpan.FromMilliseconds(500)))
-                .AddTypedClient(c => Refit.RestService.For<IFoo>(c));
+                .AddTypedClient(c => Refit.RestService.For<IFooClient>(c));
 
             return services;
         }

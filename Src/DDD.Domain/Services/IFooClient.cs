@@ -3,7 +3,7 @@ using Refit;
 
 namespace DDD.Domain.Services
 {
-    public interface IFoo
+    public interface IFooClient
     {
         [Get("/")]
         Task<object> GetAll();
