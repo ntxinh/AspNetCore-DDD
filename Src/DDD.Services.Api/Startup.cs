@@ -38,6 +38,8 @@ namespace DDD.Services.Api
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 
+            services.AddCustomizedHash(Configuration);
+
             // ----- Swagger UI -----
             services.AddCustomizedSwagger(_env);
 

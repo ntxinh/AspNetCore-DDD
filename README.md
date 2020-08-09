@@ -48,6 +48,7 @@
 - ORM
 - Mediator
 - Specification Pattern
+- Options Pattern
 
 # How to run
 - Visual Studio: `Just run`
@@ -104,6 +105,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Use `abstract` keyword to appropriate class
 - [x] Use `IQueryable`, `IEnumerable`, `IList` interfaces
 - [x] Use NetStandard 2.1 for Class Library
+- [x] Hashing
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -126,7 +128,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Task scheduling & Queues
 - [ ] Session & Cookie
 - [ ] Notifications
-- [ ] Encryption & Hashing
+- [ ] Encryption
 - [ ] EF: No-tracking queries
 - [ ] Dapper, Dapper Contrib
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
