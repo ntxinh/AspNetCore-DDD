@@ -34,6 +34,7 @@
 - Moq
 - Fluent Assertions
 - Polly
+- Refit
 
 # Design Patterns
 - Domain Driven Design
