@@ -23,16 +23,6 @@ namespace DDD.Services.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
-                .AddJsonOptions(x => {
-                    x.JsonSerializerOptions.IgnoreNullValues = true;
-                    // x.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                });
-                // Nuget package Microsoft.AspNetCore.Mvc.NewtonsoftJson
-                // .AddNewtonsoftJson(
-                //     options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                // );
-
             // ----- Database -----
             services.AddCustomizedDatabase(Configuration, _env);
 
@@ -48,14 +38,24 @@ namespace DDD.Services.Api
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 
-            // .NET Native DI Abstraction
-            RegisterServices(services);
-
             // ----- Swagger UI -----
             services.AddCustomizedSwagger(_env);
 
             // ----- Health check -----
             services.AddCustomizedHealthCheck(Configuration, _env);
+
+            // .NET Native DI Abstraction
+            RegisterServices(services);
+
+            services.AddControllers()
+                .AddJsonOptions(x => {
+                    x.JsonSerializerOptions.IgnoreNullValues = true;
+                    // x.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                });
+                // Nuget package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+                // .AddNewtonsoftJson(
+                //     options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                // );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,7 +80,7 @@ namespace DDD.Services.Api
                 endpoints.MapControllers();
 
                 // ----- Health check -----
-                HealthCheckExtensions.UseCustomizedHealthCheck(endpoints, _env);
+                HealthCheckExtension.UseCustomizedHealthCheck(endpoints, _env);
             });
 
             // ----- Swagger UI -----

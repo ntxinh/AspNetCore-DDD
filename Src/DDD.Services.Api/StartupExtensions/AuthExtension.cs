@@ -13,11 +13,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DDD.Services.Api.StartupExtensions
 {
-    public static class AuthExtensions
+    public static class AuthExtension
     {
         public static IServiceCollection AddCustomizedAuth(this IServiceCollection services, IConfiguration configuration)
         {
-            var secretKey = configuration.GetSection("SecretKey").Value;
+            var secretKey = configuration.GetValue<string>("SecretKey");
             var _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()

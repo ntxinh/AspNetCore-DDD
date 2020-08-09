@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace DDD.Services.Api.StartupExtensions
 {
-    public static class DatabaseExtensions
+    public static class DatabaseExtension
     {
         public static IServiceCollection AddCustomizedDatabase(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment env)
         {

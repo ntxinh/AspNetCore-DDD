@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace DDD.Services.Api.StartupExtensions
 {
-    public static class ErrorHandlingExtensions
+    public static class ErrorHandlingExtension
     {
         public static IApplicationBuilder UseCustomizedErrorHandling(this IApplicationBuilder app, IWebHostEnvironment env)
         {

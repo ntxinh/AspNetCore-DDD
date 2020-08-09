@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace DDD.Services.Api.StartupExtensions
 {
-    public static class HealthCheckExtensions
+    public static class HealthCheckExtension
     {
         public static IServiceCollection AddCustomizedHealthCheck(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment env)
         {

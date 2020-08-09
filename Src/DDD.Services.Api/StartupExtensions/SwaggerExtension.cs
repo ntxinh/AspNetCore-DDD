@@ -8,7 +8,7 @@ using Microsoft.OpenApi.Models;
 
 namespace DDD.Services.Api.StartupExtensions
 {
-    public static class SwaggerExtensions
+    public static class SwaggerExtension
     {
         public static IServiceCollection AddCustomizedSwagger(this IServiceCollection services, IWebHostEnvironment env)
         {
