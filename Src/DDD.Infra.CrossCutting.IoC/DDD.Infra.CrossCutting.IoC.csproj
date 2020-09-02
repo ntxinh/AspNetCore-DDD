@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>DDD.Infra.CrossCutting.IoC</RootNamespace>
     <AssemblyName>DDD.Infra.CrossCutting.IoC</AssemblyName>
+    <AnalysisLevel>5</AnalysisLevel>
   </PropertyGroup>
 
   <ItemGroup>

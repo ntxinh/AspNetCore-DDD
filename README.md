@@ -106,10 +106,11 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Use `IQueryable`, `IEnumerable`, `IList` interfaces
 - [x] Use NetStandard 2.1 for Class Library
 - [x] Hashing
+- [x] AnalysisLevel: Automatically find latent bugs
 - [ ] Migration, Scaffold
 - [ ] Data Seeding
 - [ ] Logging
-- [ ] OAuth2
+- [ ] OAuth2, OIDC (OpenId Connect)
 - [ ] SignalR
 - [ ] Search
 - [ ] Kafka, RabbitMQ
@@ -130,15 +131,15 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Notifications
 - [ ] Encryption
 - [ ] EF: No-tracking queries
-- [ ] Dapper, Dapper Contrib
+- [ ] Dapper, Dapper Contrib (Optional)
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1
-- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.1
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme
 - https://www.red-gate.com/simple-talk/dotnet/c-programming/policy-based-authorization-in-asp-net-core-a-deep-dive/
 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
 - https://dev.azure.com/Techhowdy/_git/NG_Core_AuthRTDB
@@ -149,3 +150,5 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - https://stackify.com/writing-multitenant-asp-net-core-applications/
 - https://github.com/DanielRBowen/SimpleMultiTenant
 - https://deviq.com/specification-pattern/
+- https://devblogs.microsoft.com/dotnet/automatically-find-latent-bugs-in-your-code-with-net-5/
+- https://xunit.github.io/docs/why-no-netstandard

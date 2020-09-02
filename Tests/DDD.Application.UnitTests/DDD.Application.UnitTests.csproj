@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>DDD.Application.UnitTests</RootNamespace>
     <AssemblyName>DDD.Application.UnitTests</AssemblyName>
+    <AnalysisLevel>5</AnalysisLevel>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
