@@ -1,0 +1,38 @@
+name: .NET Core
+
+on: [workflow_dispatch]
+
+env:
+  WEBAPP_PACKAGE_PATH: './published'
+  NETCORE_VERSION: '3.1.301'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.NETCORE_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    # - name: Test
+    #   run: dotnet test --no-restore --verbosity normal
+
+    - name: Publish app for deploy
+      run: dotnet publish --configuration Release --no-build --output ${{ env.WEBAPP_PACKAGE_PATH }}
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: webapp
+        path: ${{ env.WEBAPP_PACKAGE_PATH }}
