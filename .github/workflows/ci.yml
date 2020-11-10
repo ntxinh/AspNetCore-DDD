@@ -5,6 +5,7 @@ on: [workflow_dispatch]
 env:
   WEBAPP_PACKAGE_PATH: './published'
   NETCORE_VERSION: '3.1.301'
+#   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
   build:
@@ -25,8 +26,20 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    # - name: Test
-    #   run: dotnet test --no-restore --verbosity normal
+#     - name: Test
+#       run: dotnet test --no-restore --verbosity normal
+      
+#     - name: Slack Notify CI
+#       if: always()
+#       uses: adamkdean/simple-slack-notify@master
+#       with:
+#        channel: '#cicd'
+#         status: ${{ job.status }}
+#         success_text: 'Build (#${env.GITHUB_RUN_NUMBER}) completed successfully'
+#         failure_text: 'Build (#${env.GITHUB_RUN_NUMBER}) failed'
+#         cancelled_text: 'Build (#${env.GITHUB_RUN_NUMBER}) was cancelled'
+#         fields: |
+#           [{ "title": "Action URL", "value": "${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}"}]
 
     - name: Publish app for deploy
       run: dotnet publish --configuration Release --no-build --output ${{ env.WEBAPP_PACKAGE_PATH }}
