@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   WEBAPP_PACKAGE_PATH: './published'
-  NETCORE_VERSION: '3.1.301'
+  NETCORE_VERSION: '5.0.102'
 #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
 
 #     - name: Test
 #       run: dotnet test --no-restore --verbosity normal
-      
+
 #     - name: Slack Notify CI
 #       if: always()
 #       uses: adamkdean/simple-slack-notify@master
