@@ -72,7 +72,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - http://localhost:5000/swagger
 
 # Health check (Staging & Prod env only)
-- http://localhost:5000/healthchecks-ui
+- http://localhost:5000/hc-ui
+- http://localhost:5000/hc-json
 
 # TODO
 - [x] Use multiple environments

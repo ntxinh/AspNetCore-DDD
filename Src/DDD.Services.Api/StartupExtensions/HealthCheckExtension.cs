@@ -19,10 +19,10 @@ namespace DDD.Services.Api.StartupExtensions
                 services.AddHealthChecks()
                     .AddSqlServer(configuration.GetConnectionString("DefaultConnection"))
                     .AddDbContextCheck<ApplicationDbContext>();
-                services.AddHealthChecksUI(setupSettings: setup =>
+                services.AddHealthChecksUI(opt =>
                 {
-                    setup.AddHealthCheckEndpoint("endpoint1", "/healthz");
-                });
+                    opt.SetEvaluationTimeInSeconds(15); // time in seconds between check
+                }).AddInMemoryStorage();
             }
 
             return services;
@@ -32,13 +32,17 @@ namespace DDD.Services.Api.StartupExtensions
         {
             if (env.IsProduction() || env.IsStaging())
             {
-                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions
                 {
                     Predicate = _ => true,
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
 
-                endpoints.MapHealthChecksUI();
+                endpoints.MapHealthChecksUI(setup =>
+                {
+                    setup.UIPath = "/hc-ui";
+                    setup.ApiPath = "/hc-json";
+                });
             }
         }
     }
