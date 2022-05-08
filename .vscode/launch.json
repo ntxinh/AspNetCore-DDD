@@ -48,6 +48,33 @@
         "ASPNETCORE_ENVIRONMENT": "Production",
         "ASPNETCORE_URLS": "http://localhost:5000/"
       },
+    },
+    {
+      "name": "CLI Migration",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Src/DDD.CLI.Migration/bin/Debug/netcoreapp3.1/DDD.CLI.Migration.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      // "console": "internalConsole"
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run-All-Dev",
+      "configurations": [
+        "dev",
+        "CLI Migration"
+      ]
+    },
+    {
+      "name": "Run-All-Staging",
+      "configurations": [
+        "staging",
+      ]
     }
   ]
 }
