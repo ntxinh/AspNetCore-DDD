@@ -1,4 +1,4 @@
-namespace DDD.Domain.Services
+namespace DDD.Domain.Services.Http
 {
     public class Response
     {

@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Configuration;
@@ -6,16 +5,14 @@ using Microsoft.Extensions.Configuration;
 // using SendGrid;
 // using SendGrid.Helpers.Mail;
 
-using DDD.Domain.Services.Mail;
-
-namespace DDD.Domain.Services
+namespace DDD.Domain.Services.Mail
 {
     public class MailService : IMailService
     {
         private readonly IConfiguration _configuration;
 //         private readonly string devOpsEmail;
 //         private readonly ISendGridClient _sendGridClient;
-    
+
         public MailService(IConfiguration configuration/*, ISendGridClient sendGridClient*/)
         {
             _configuration = configuration;
@@ -23,11 +20,11 @@ namespace DDD.Domain.Services
 //             devOpsEmail = _configuration.GetSection("DevOpsEmail").Value;
         }
 
-        public void SendMail(MailMessage mailMessage)
+        public async Task Send(MailMessage message)
         {
             throw new System.NotImplementedException();
         }
-        
+
 //         public async Task Send(MailMessage message)
 //         {
 //             if (message.From is null || message.From.Email is null) return;

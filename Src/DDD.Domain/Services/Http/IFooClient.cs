@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Refit;
 
-namespace DDD.Domain.Services
+namespace DDD.Domain.Services.Http
 {
     public interface IFooClient
     {

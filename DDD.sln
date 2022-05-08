@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Application.UnitTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Services.Api.IntegrationTests", "Tests\DDD.Services.Api.IntegrationTests\DDD.Services.Api.IntegrationTests.csproj", "{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.CLI.Migration", "Src\DDD.CLI.Migration\DDD.CLI.Migration.csproj", "{118229C7-F4DD-4B7E-B478-BE84A3B43FA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F25D2A8-A21D-4D56-9B86-9C40F1C52728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{118229C7-F4DD-4B7E-B478-BE84A3B43FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{118229C7-F4DD-4B7E-B478-BE84A3B43FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{118229C7-F4DD-4B7E-B478-BE84A3B43FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{118229C7-F4DD-4B7E-B478-BE84A3B43FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{25BD5EB4-6E81-4FDF-95DC-D5797743E6E1} = {4540A7C6-2383-4D11-A481-A6CC8D7905E5}
 		{C5E7B3EF-D073-47F6-9EFA-19C96ACE368B} = {86019360-B934-4FB3-AD9E-CAD3AA4E3635}
 		{5F25D2A8-A21D-4D56-9B86-9C40F1C52728} = {86019360-B934-4FB3-AD9E-CAD3AA4E3635}
+		{118229C7-F4DD-4B7E-B478-BE84A3B43FA2} = {1572E273-3ADB-4E50-85A0-313E8D684FD2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BBAE7F9-CB34-4464-B09A-C32C57579682}

@@ -9,6 +9,8 @@ using DDD.Domain.EventHandlers;
 using DDD.Domain.Events;
 using DDD.Domain.Interfaces;
 using DDD.Domain.Services;
+using DDD.Domain.Services.Http;
+using DDD.Domain.Services.Mail;
 using DDD.Infra.CrossCutting.Bus;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Models;
