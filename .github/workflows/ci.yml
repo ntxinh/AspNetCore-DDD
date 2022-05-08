@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   WEBAPP_PACKAGE_PATH: './published'
-  NETCORE_VERSION: '5.0.102'
+  NETCORE_VERSION: '5.0.300'
 #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:

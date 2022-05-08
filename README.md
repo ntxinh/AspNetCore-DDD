@@ -108,7 +108,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Use NetStandard 2.1 for Class Library
 - [x] Hashing
 - [x] AnalysisLevel: Automatically find latent bugs
-- [ ] Migration, Scaffold
+- [x] Migration (DbUp)
+- [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
 - [ ] OAuth2, OIDC (OpenId Connect)
