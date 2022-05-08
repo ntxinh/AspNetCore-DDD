@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DDD.Services.Api</RootNamespace>
     <AssemblyName>DDD.Services.Api</AssemblyName>
     <AnalysisLevel>5</AnalysisLevel>
