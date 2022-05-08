@@ -35,6 +35,7 @@
 - Fluent Assertions
 - Polly
 - Refit
+- DbUp
 
 # Design Patterns
 - Domain Driven Design
@@ -51,9 +52,24 @@
 - Options Pattern
 
 # How to run
-- Visual Studio: `Just run`
-- VSCode: `Just run`
-- Terminal: `dotnet run --project src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev`
+- Create file `C:\Users\[UserName]\AppData\Roaming\Microsoft\UserSecrets\51c0770a-8c88-4362-b3b5-a8936796ecef\secrets.json`
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=DDD;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
+```
+
+- For Visual Studio: `Select profile > Run (F5)`
+- For VSCode: `Select configuration > Run (F5)`
+- For Terminal:
+
+```ps
+dotnet build Src/DDD.Services.Api/DDD.Services.Api.csproj
+dotnet run --project Src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev
+```
 
 # Testing
 - Terminal: `dotnet test`
@@ -109,6 +125,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Hashing
 - [x] AnalysisLevel: Automatically find latent bugs
 - [x] Migration (DbUp)
+- [x] User Secrets
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
