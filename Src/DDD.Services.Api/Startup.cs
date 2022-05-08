@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DDD.Infra.CrossCutting.IoC;
 using DDD.Services.Api.Configurations;
 using DDD.Services.Api.StartupExtensions;
@@ -51,7 +52,7 @@ namespace DDD.Services.Api
 
             services.AddControllers()
                 .AddJsonOptions(x => {
-                    x.JsonSerializerOptions.IgnoreNullValues = true;
+                    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                     // x.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                 });
                 // Nuget package Microsoft.AspNetCore.Mvc.NewtonsoftJson

@@ -20,7 +20,7 @@
 ![](/Docs/custom-repo-versus-db-context.png)
 
 # Techical Stack
-- ASP.NET Core 5.0 (with .NET Core 5.0)
+- ASP.NET Core 6.0 (with .NET 6.0)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
 - Entity Framework Core
