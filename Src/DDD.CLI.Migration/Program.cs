@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 
@@ -12,7 +13,9 @@ namespace DDD.CLI.Migration
         {
             var connectionString =
                 args.FirstOrDefault()
-                ?? "";
+                ?? ConfigurationManager.ConnectionStrings["PublishToTargetDB"].ConnectionString;
+
+            if (string.IsNullOrEmpty(connectionString)) return;
 
             // If you want your application to create the database for you
             // EnsureDatabase.For.SqlDatabase(connectionString);
