@@ -3,6 +3,7 @@ using System.Text;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Data;
 using DDD.Infra.CrossCutting.Identity.Models;
+using DDD.Infra.CrossCutting.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -78,6 +79,8 @@ namespace DDD.Services.Api.StartupExtensions
                 options.AddPolicy("CanWriteCustomerData", policy1);
                 options.AddPolicy("CanRemoveCustomerData", policy2);
             });
+
+            services.AddTransient<IAuthService, AuthService>();
 
             return services;
         }
