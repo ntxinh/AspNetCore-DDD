@@ -128,6 +128,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] User Secrets
 - [x] API Versioning
 - [x] API Versioning with Swagger
+- [x] Kubernetes
+- [x] AKS
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -140,7 +142,6 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] StyleCop
 - [ ] Primary Key to Integer
 - [ ] File storage: Upload/Download
-- [ ] Kubernetes
 - [ ] Globalization & Localization
 - [ ] Caching
 - [ ] Kestrel

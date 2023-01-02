@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi
+  labels:
+    app: aspnetcore-ddd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webapi
+  template:
+    metadata:
+      labels:
+        app: aspnetcore-ddd
+        service: webapi
+    spec:
+      containers:
+        - name: webapi
+          # image: aspnetcoreddd.azurecr.io/aspnetcoredddwebapi:#{Build.BuildId}#
+          image: aspnetcoreddd.azurecr.io/aspnetcoredddwebapi:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          # env:
+            # - name: ASPNETCORE_ENVIRONMENT
+            #   value: Development
+            # - name: ASPNETCORE_URLS
+            #   value: https://+:443;http://+:80
