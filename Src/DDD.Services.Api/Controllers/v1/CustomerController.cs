@@ -8,9 +8,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DDD.Services.Api.Controllers
+namespace DDD.Services.Api.Controllers.v1
 {
     [Authorize]
+    [ApiVersion("1.0")]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;

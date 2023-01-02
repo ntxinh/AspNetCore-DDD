@@ -126,6 +126,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] AnalysisLevel: Automatically find latent bugs
 - [x] Migration (DbUp)
 - [x] User Secrets
+- [x] API Versioning
+- [x] API Versioning with Swagger
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
@@ -136,8 +138,6 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Microservices, API Gateway
 - [ ] Multi-tenancy
 - [ ] StyleCop
-- [ ] API Versioning
-- [ ] API Versioning with Swagger
 - [ ] Primary Key to Integer
 - [ ] File storage: Upload/Download
 - [ ] Kubernetes

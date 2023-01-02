@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDD.Services.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 //[Route("api/[controller]/[action]")]
 public abstract class ApiController : ControllerBase
 {

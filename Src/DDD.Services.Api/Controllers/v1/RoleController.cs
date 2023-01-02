@@ -6,8 +6,9 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DDD.Services.Api.Controllers
+namespace DDD.Services.Api.Controllers.v1
 {
+    [ApiVersion("1.0")]
     public class RoleController : ApiController
     {
         private readonly RoleManager<IdentityRole> _roleManager;

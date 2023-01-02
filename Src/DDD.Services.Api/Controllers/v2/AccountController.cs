@@ -17,9 +17,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace DDD.Services.Api.Controllers
+namespace DDD.Services.Api.Controllers.v2
 {
     [Authorize]
+    [ApiVersion("2.0")]
     public class AccountController : ApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;

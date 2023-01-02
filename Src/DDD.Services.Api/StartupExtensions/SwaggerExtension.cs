@@ -21,8 +21,16 @@ namespace DDD.Services.Api.StartupExtensions
                         Version = "v1",
                         Title = "ASPNET Core DDD Project",
                         Description = "",
-                        Contact = new OpenApiContact { Name = "Xinh Nguyen", Email = "nguyentrucxjnh@gmail.com", Url = new Uri("https://nguyentrucxinh.github.io/") },
-                        License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/nguyentrucxinh/AspNetCore-DDD/blob/master/LICENSE") }
+                        Contact = new OpenApiContact { Name = "Xinh Nguyen", Email = "nguyentrucxjnh@gmail.com", Url = new Uri("https://ntxinh.github.io/") },
+                        License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/ntxinh/AspNetCore-DDD/blob/master/LICENSE") }
+                    });
+                    c.SwaggerDoc("v2", new OpenApiInfo
+                    {
+                        Version = "v2",
+                        Title = "ASPNET Core DDD Project",
+                        Description = "",
+                        Contact = new OpenApiContact { Name = "Xinh Nguyen", Email = "nguyentrucxjnh@gmail.com", Url = new Uri("https://ntxinh.github.io/") },
+                        License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/ntxinh/AspNetCore-DDD/blob/master/LICENSE") }
                     });
 
                     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -70,7 +78,22 @@ namespace DDD.Services.Api.StartupExtensions
                 // specifying the Swagger JSON endpoint.
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASPNET Core DDD Project API v1.1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASPNET Core DDD Project API v1.0");
+                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "ASPNET Core DDD Project API v2.0");
+
+                    // Show V1 first in Swagger
+                    // foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                    // {
+                    //     c.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                    //         description.GroupName.ToUpperInvariant());
+                    // }
+
+                    // Show V2 first in Swagger
+                    // foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions.Reverse())
+                    // {
+                    //     options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                    //         description.GroupName.ToUpperInvariant());
+                    // }
                 });
             }
 
