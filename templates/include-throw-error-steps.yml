@@ -1,0 +1,50 @@
+steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        $branchSource = "$(Build.SourceBranch)"
+        $commitId = "$(Build.SourceVersion)"
+        $commitMsg = "$(Build.SourceVersionMessage)"
+
+        $createProjectURL = "https://hooks.slack.com/services/..."
+
+        $projectJSON = @{
+            attachments = @(
+                @{
+                    fallback = 'CICD'
+                    color = '#ff0000'
+                    author_name = 'ntxinh'
+                    author_icon = 'https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec'
+                    fields = @(
+                        @{
+                            title = 'Ref'
+                            value = "$($branchSource)"
+                            short = $true
+                        }
+                        @{
+                            title = 'Event'
+                            value = 'push'
+                            short = $true
+                        }
+                        @{
+                            title = 'Actions URL'
+                            value = '<https://dev.azure.com/MyOrg/MyProject/_build?definitionId=123|Backend>'
+                            short = $true
+                        }
+                        @{
+                            title = 'Commit'
+                            value = "$($commitId)"
+                            short = $true
+                        }
+                        @{
+                            title = 'Message'
+                            value = "$($commitMsg)"
+                            short = $false
+                        }
+                    )
+                }
+            )
+        } | ConvertTo-Json -Depth 5
+
+        $response = Invoke-RestMethod -Uri $createProjectURL -Method Post -ContentType "application/json" -Body ($projectJSON)
