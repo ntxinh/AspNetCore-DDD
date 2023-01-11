@@ -56,6 +56,13 @@ stages:
 
           - upload: manifests
             artifact: manifests
+      - job: NotifyIfError
+        dependsOn: Build
+        condition: failed()
+        steps:
+          - script: echo -----ThrowError-----
+            displayName: Echo
+          - template: templates/include-throw-error-steps.yml
 
   - stage: Deploy
     displayName: Deploy stage
