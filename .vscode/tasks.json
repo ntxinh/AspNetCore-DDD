@@ -36,7 +36,10 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+              "cwd": "${workspaceFolder}/Src/DDD.Services.Api/"
+            }
         }
     ]
 }
