@@ -69,6 +69,7 @@
 ```ps
 dotnet build Src/DDD.Services.Api/DDD.Services.Api.csproj
 dotnet run --project Src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev
+dotnet watch --project Src/DDD.Services.Api/DDD.Services.Api.csproj run
 ```
 
 # Testing
