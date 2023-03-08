@@ -130,6 +130,7 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] API Versioning with Swagger
 - [x] Kubernetes
 - [x] AKS
+- [x] Hot reload
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
