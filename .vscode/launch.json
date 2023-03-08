@@ -5,6 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "watch-dev",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "watch",
+      "program": "${workspaceFolder}/Src/DDD.Services.Api/bin/Debug/net6.0/DDD.Services.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Src/DDD.Services.Api",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000/"
+      },
+    },
+    {
       "name": "dev",
       "type": "coreclr",
       "request": "launch",
