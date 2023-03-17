@@ -132,6 +132,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Kubernetes
 - [x] AKS
 - [x] Hot reload
+- [ ] Autofac or Scrutor
+- [ ] Bogus
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
