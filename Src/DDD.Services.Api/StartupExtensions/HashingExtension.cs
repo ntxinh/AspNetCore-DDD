@@ -1,4 +1,4 @@
-using DDD.Domain.Services.Hash;
+using DDD.Domain.Providers.Hash;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

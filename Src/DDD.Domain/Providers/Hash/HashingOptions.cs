@@ -1,4 +1,4 @@
-namespace DDD.Domain.Services.Hash
+namespace DDD.Domain.Providers.Hash
 {
     public sealed class HashingOptions
     {

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 // using SendGrid;
 // using SendGrid.Helpers.Mail;
 
-namespace DDD.Domain.Services.Mail
+namespace DDD.Domain.Providers.Mail
 {
     public class MailService : IMailService
     {

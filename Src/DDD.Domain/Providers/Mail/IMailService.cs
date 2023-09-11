@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace DDD.Domain.Services.Mail
+namespace DDD.Domain.Providers.Mail
 {
     public interface IMailService
     {

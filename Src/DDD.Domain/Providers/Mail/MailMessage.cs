@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DDD.Domain.Services.Mail
+namespace DDD.Domain.Providers.Mail
 {
     public class MailMessage
     {

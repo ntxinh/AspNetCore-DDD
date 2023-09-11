@@ -1,4 +1,4 @@
-namespace DDD.Domain.Services.Mail
+namespace DDD.Domain.Providers.Mail
 {
     public class MailAddress
     {

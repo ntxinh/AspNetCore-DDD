@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace DDD.Domain.Services.Http
+namespace DDD.Domain.Providers.Http
 {
     public class HttpService : IHttpService
     {

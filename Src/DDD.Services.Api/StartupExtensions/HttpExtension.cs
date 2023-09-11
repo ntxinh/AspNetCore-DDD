@@ -1,10 +1,5 @@
-using System;
-using DDD.Domain.Services;
-using DDD.Domain.Services.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using DDD.Domain.Providers.Http;
 using Polly;
-using Refit;
 
 namespace DDD.Services.Api.StartupExtensions
 {

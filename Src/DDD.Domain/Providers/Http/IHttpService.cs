@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace DDD.Domain.Services.Http
+namespace DDD.Domain.Providers.Http
 {
     public interface IHttpService
     {
