@@ -1,14 +1,10 @@
-using System.Text.Json.Serialization;
+using DDD.Domain.Providers.Hubs;
 using DDD.Infra.CrossCutting.IoC;
 using DDD.Services.Api.Configurations;
 using DDD.Services.Api.StartupExtensions;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using DDD.Domain.Providers.Hubs;
+using System.Text.Json.Serialization;
 
 namespace DDD.Services.Api
 {
@@ -46,6 +42,9 @@ namespace DDD.Services.Api
 
             // ----- SignalR -----
             services.AddCustomizedSignalR();
+
+            // ----- Quartz -----
+            services.AddCustomizedQuartz(Configuration);
 
             // .NET Native DI Abstraction
             RegisterServices(services);
@@ -105,6 +104,9 @@ namespace DDD.Services.Api
 
             // ----- SignalR -----
             app.UseCustomizedSignalR();
+
+            // ----- Quartz -----
+            app.UseCustomizedQuartz();
 
             app.UseEndpoints(endpoints =>
             {

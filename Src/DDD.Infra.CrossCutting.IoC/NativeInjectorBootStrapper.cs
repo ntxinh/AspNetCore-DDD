@@ -8,10 +8,10 @@ using DDD.Domain.Core.Notifications;
 using DDD.Domain.EventHandlers;
 using DDD.Domain.Events;
 using DDD.Domain.Interfaces;
-using DDD.Domain.Services;
+using DDD.Domain.Providers.Hubs;
+using DDD.Domain.Providers.Webhooks;
 using DDD.Domain.Services.Http;
 using DDD.Domain.Services.Mail;
-using DDD.Domain.Providers.Hubs;
 using DDD.Infra.CrossCutting.Bus;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Models;
@@ -22,7 +22,6 @@ using DDD.Infra.Data.Repository.EventSourcing;
 using DDD.Infra.Data.UoW;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DDD.Infra.CrossCutting.IoC
@@ -61,6 +60,7 @@ namespace DDD.Infra.CrossCutting.IoC
 
             // Domain - Providers
             services.AddScoped<INotificationProvider, NotificationProvider>();
+            services.AddScoped<IWebhookProvider, WebhookProvider>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

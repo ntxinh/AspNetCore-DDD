@@ -134,6 +134,8 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Hot reload
 - [x] SignalR
 - [x] Notifications
+- [x] Webhook
+- [x] Task scheduling & Queues: Quartz
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold
@@ -151,13 +153,11 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Caching
 - [ ] Kestrel
 - [ ] Secret Manager
-- [ ] Task scheduling & Queues
 - [ ] Session & Cookie
 - [ ] Encryption
 - [ ] EF: No-tracking queries
 - [ ] Dapper, Dapper Contrib (Optional)
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
-- [ ] Quartz
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
