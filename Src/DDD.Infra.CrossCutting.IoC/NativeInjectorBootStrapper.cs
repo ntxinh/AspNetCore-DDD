@@ -11,6 +11,7 @@ using DDD.Domain.Interfaces;
 using DDD.Domain.Services;
 using DDD.Domain.Services.Http;
 using DDD.Domain.Services.Mail;
+using DDD.Domain.Providers.Hubs;
 using DDD.Infra.CrossCutting.Bus;
 using DDD.Infra.CrossCutting.Identity.Authorization;
 using DDD.Infra.CrossCutting.Identity.Models;
@@ -57,6 +58,9 @@ namespace DDD.Infra.CrossCutting.IoC
             // Domain - 3rd parties
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IMailService, MailService>();
+
+            // Domain - Providers
+            services.AddScoped<INotificationProvider, NotificationProvider>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

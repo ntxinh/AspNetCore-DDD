@@ -132,13 +132,14 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [x] Kubernetes
 - [x] AKS
 - [x] Hot reload
+- [x] SignalR
+- [x] Notifications
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
 - [ ] OAuth2, OIDC (OpenId Connect)
-- [ ] SignalR
 - [ ] Search
 - [ ] Kafka, RabbitMQ
 - [ ] Microservices, API Gateway
@@ -152,11 +153,11 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 - [ ] Secret Manager
 - [ ] Task scheduling & Queues
 - [ ] Session & Cookie
-- [ ] Notifications
 - [ ] Encryption
 - [ ] EF: No-tracking queries
 - [ ] Dapper, Dapper Contrib (Optional)
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
+- [ ] Quartz
 
 # References
 - https://github.com/EduardoPires/EquinoxProject

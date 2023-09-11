@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using DDD.Domain.Providers.Hubs;
 
 namespace DDD.Services.Api
 {
@@ -40,7 +41,11 @@ namespace DDD.Services.Api
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 
+            // ----- Hash -----
             services.AddCustomizedHash(Configuration);
+
+            // ----- SignalR -----
+            services.AddCustomizedSignalR();
 
             // .NET Native DI Abstraction
             RegisterServices(services);
@@ -98,9 +103,15 @@ namespace DDD.Services.Api
             // ----- Auth -----
             app.UseCustomizedAuth();
 
+            // ----- SignalR -----
+            app.UseCustomizedSignalR();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                // ----- SignalR -----
+                endpoints.MapHub<NotificationHub>($"/hub{HubRoutes.Notification}");
 
                 // ----- Health check -----
                 HealthCheckExtension.UseCustomizedHealthCheck(endpoints, _env);
