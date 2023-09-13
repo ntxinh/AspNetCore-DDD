@@ -23,6 +23,7 @@ using DDD.Infra.Data.UoW;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using DDD.Domain.Providers.Crons;
 
 namespace DDD.Infra.CrossCutting.IoC
 {
@@ -61,6 +62,7 @@ namespace DDD.Infra.CrossCutting.IoC
             // Domain - Providers
             services.AddScoped<INotificationProvider, NotificationProvider>();
             services.AddScoped<IWebhookProvider, WebhookProvider>();
+            services.AddScoped<ICronProvider, CronProvider>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

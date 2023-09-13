@@ -1,6 +1,8 @@
 using DDD.Domain.Providers.Webhooks;
 using Microsoft.AspNetCore.Hosting;
 using Quartz;
+// using System.Collections.Generic;
+// using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDD.Domain.Providers.Crons;
@@ -20,9 +22,20 @@ public class NotifyInactiveUserJob : IJob
     {
         await _webhookProvider.Send($"START CheckInactiveUser, Env {_env.EnvironmentName}");
 
-        // Get JobData
+        // // Get JobData
         // var jobData = context.MergedJobDataMap;
-        // var tenantId = (int)jobData.Get(nameof(Tenants.TenantId));
+
+        // // Validate
+        // if (!jobData.ContainsKey(nameof(NotifyInactiveUserConsumerModel.TenantId))
+        //     || !jobData.ContainsKey(nameof(NotifyInactiveUserConsumerModel.UserId))
+        //     || !jobData.ContainsKey(nameof(NotifyInactiveUserConsumerModel.Data))) return;
+
+        // // Parse data
+        // var tenantId = (short)jobData.Get(nameof(NotifyInactiveUserConsumerModel.TenantId));
+        // var userId = (int)jobData.Get(nameof(NotifyInactiveUserConsumerModel.UserId));
+        // var data = (List<object>)jobData.Get(nameof(NotifyInactiveUserConsumerModel.Data));
+
+        // if (!data.Any() || tenantId <= 0 || userId <= 0) return;
 
         // TODO: Your logic here
 
