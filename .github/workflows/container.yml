@@ -28,5 +28,5 @@ jobs:
 
       - name: Build the Docker image
         run: |
-              docker build . --tag ghcr.io/ntxinh/AspNetCore-DDD:latest
-              docker push ghcr.io/ntxinh/AspNetCore-DDD:latest
+              docker build . --tag ghcr.io/ntxinh/aspnetcore-ddd:latest
+              docker push ghcr.io/ntxinh/aspnetcore-ddd:latest
