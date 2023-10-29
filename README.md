@@ -85,6 +85,16 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 
 - http://localhost:3000/
 
+# Podman
+
+```bash
+podman build -t aspnetcore-docker-image .
+podman run -it --rm -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-image
+podman run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-image
+```
+
+- http://localhost:3000/
+
 # Swagger (Dev env only)
 - http://localhost:5000/swagger
 
