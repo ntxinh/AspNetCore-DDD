@@ -1,0 +1,9 @@
+services:
+  web:
+    image: ghcr.io/ntxinh/aspnetcore-ddd:latest
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    # environment:
+    #   ASPNETCORE_ENVIRONMENT: ${MyEnv}

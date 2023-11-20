@@ -85,6 +85,14 @@ docker run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 
 - http://localhost:3000/
 
+```bash
+docker compose up -d
+docker compose ps
+docker compose stop
+```
+
+- http://localhost:80/
+
 # Podman
 
 ```bash
@@ -94,6 +102,14 @@ podman run -d -p 3000:80 --name aspnetcore-docker-container aspnetcore-docker-im
 ```
 
 - http://localhost:3000/
+
+```bash
+podman-compose up -d
+podman-compose ps
+podman-compose stop
+```
+
+- http://localhost:80/
 
 # Swagger (Dev env only)
 - http://localhost:5000/swagger

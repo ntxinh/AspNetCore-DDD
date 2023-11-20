@@ -26,7 +26,27 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build the Docker image
-        run: |
-              docker build . --tag ghcr.io/ntxinh/aspnetcore-ddd:latest
-              docker push ghcr.io/ntxinh/aspnetcore-ddd:latest
+      # Method 1
+      # -
+      #   name: Docker Build and Push
+      #   continue-on-error: true
+      #   run: |
+      #         docker build . --tag ghcr.io/ntxinh/aspnetcore-ddd:latest
+      #         docker push ghcr.io/ntxinh/aspnetcore-ddd:latest
+
+      # Method 2
+      -
+        name: Docker Build and Push by Action
+        # continue-on-error: true
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ghcr.io/ntxinh/aspnetcore-ddd:latest
+
+      # Method 3:
+      # -
+      #   name: Docker Build and Push by Docker Compose
+      #   continue-on-error: true
+      #   run: |
+      #     docker compose build
+      #     docker compose push
