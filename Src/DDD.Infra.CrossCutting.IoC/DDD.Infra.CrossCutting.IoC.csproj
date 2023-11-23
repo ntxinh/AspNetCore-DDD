@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>DDD.Infra.CrossCutting.IoC</RootNamespace>
     <AssemblyName>DDD.Infra.CrossCutting.IoC</AssemblyName>
     <AnalysisLevel>5</AnalysisLevel>

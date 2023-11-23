@@ -1,5 +1,5 @@
 # .NET Core SDK
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Sets the working directory
 WORKDIR /app
@@ -25,7 +25,7 @@ COPY Src ./Src
 RUN dotnet publish ./Src/DDD.Services.Api/DDD.Services.Api.csproj -c Release -o /publish
 
 # ASP.NET Core Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /publish ./
 

@@ -20,7 +20,7 @@
 ![](/Docs/custom-repo-versus-db-context.png)
 
 # Techical Stack
-- ASP.NET Core 6.0 (with .NET 6.0)
+- ASP.NET Core 8.0 (with .NET 8.0)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
 - Entity Framework Core
@@ -52,7 +52,12 @@
 - Options Pattern
 
 # How to run
-- Create file `C:\Users\[UserName]\AppData\Roaming\Microsoft\UserSecrets\51c0770a-8c88-4362-b3b5-a8936796ecef\secrets.json`
+
+- Config User Secret:
+  + Find `<user_secrets_id>` at `DDD.Services.Api.csproj` > `UserSecretsId` (Free to change to any GUID/UUID)
+  + Windows: `C:\Users\[UserName]\AppData\Roaming\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+  + Linux / macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
 
 ```json
 {
@@ -140,7 +145,7 @@ podman-compose stop
 - [x] Database Auditing: CreatedAt/UpdatedAt CreatedBy/UpdatedBy
 - [x] Soft Delete
 - [x] Common: Constants, Helpers
-- [x] Docker
+- [x] Docker, Docker Compose, Github Container Registry
 - [x] EF: Shadow Properties
 - [x] Events
 - [x] Unit Testing
