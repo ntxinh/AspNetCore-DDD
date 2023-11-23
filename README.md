@@ -167,6 +167,7 @@ podman-compose stop
 - [x] Notifications
 - [x] Webhook
 - [x] Task scheduling & Queues: Quartz
+- [x] NPOI
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold

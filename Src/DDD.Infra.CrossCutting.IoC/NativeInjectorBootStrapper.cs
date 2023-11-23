@@ -24,6 +24,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using DDD.Domain.Providers.Crons;
+using DDD.Domain.Providers.Office;
 
 namespace DDD.Infra.CrossCutting.IoC
 {
@@ -55,14 +56,13 @@ namespace DDD.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<UpdateCustomerCommand, bool>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveCustomerCommand, bool>, CustomerCommandHandler>();
 
-            // Domain - 3rd parties
-            services.AddScoped<IHttpService, HttpService>();
-            services.AddScoped<IMailService, MailService>();
-
-            // Domain - Providers
+            // Domain - Providers, 3rd parties
+            services.AddScoped<IHttpProvider, HttpProvider>();
+            services.AddScoped<IMailProvider, MailProvider>();
             services.AddScoped<INotificationProvider, NotificationProvider>();
             services.AddScoped<IWebhookProvider, WebhookProvider>();
             services.AddScoped<ICronProvider, CronProvider>();
+            services.AddScoped<IOfficeProvider, OfficeProvider>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

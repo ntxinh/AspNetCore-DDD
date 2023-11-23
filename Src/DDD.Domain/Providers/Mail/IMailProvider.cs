@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace DDD.Domain.Providers.Mail
 {
-    public interface IMailService
+    public interface IMailProvider
     {
         Task Send(MailMessage message);
     }

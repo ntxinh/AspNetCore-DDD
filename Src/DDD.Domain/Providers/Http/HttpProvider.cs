@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDD.Domain.Providers.Http
 {
-    public class HttpService : IHttpService
+    public class HttpProvider : IHttpProvider
     {
         public async Task<T> GetAsync<T>(HttpClient httpClient, string url, Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null)
         {

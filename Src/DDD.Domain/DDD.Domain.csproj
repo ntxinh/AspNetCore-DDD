@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NPOI" Version="2.6.2" />
     <PackageReference Include="Quartz.AspNetCore" Version="3.7.0" />
     <PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />
   </ItemGroup>

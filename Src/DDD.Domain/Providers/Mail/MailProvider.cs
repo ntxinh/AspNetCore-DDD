@@ -7,13 +7,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace DDD.Domain.Providers.Mail
 {
-    public class MailService : IMailService
+    public class MailProvider : IMailProvider
     {
         private readonly IConfiguration _configuration;
 //         private readonly string devOpsEmail;
 //         private readonly ISendGridClient _sendGridClient;
 
-        public MailService(IConfiguration configuration/*, ISendGridClient sendGridClient*/)
+        public MailProvider(IConfiguration configuration/*, ISendGridClient sendGridClient*/)
         {
             _configuration = configuration;
 //             _sendGridClient = sendGridClient;
