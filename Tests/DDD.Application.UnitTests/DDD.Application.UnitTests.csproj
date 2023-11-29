@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>DDD.Application.UnitTests</RootNamespace>
     <AssemblyName>DDD.Application.UnitTests</AssemblyName>
-    <AnalysisLevel>5</AnalysisLevel>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

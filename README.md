@@ -171,7 +171,7 @@ podman-compose stop
 - [x] Use `IQueryable`, `IEnumerable`, `IList` interfaces
 - [x] Use NetStandard 2.1 for Class Library
 - [x] Hashing
-- [x] AnalysisLevel: Automatically find latent bugs
+- [x] ~~AnalysisLevel: Automatically find latent bugs~~ (It was enabled by default for .NET 5 or above)
 - [x] Migration (DbUp)
 - [x] User Secrets
 - [x] API Versioning
@@ -186,6 +186,8 @@ podman-compose stop
 - [x] Quartz: Fire-and-forget
 - [x] NPOI
 - [x] REST Client
+- [x] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) (Use default rules set)
+- [x] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers) (It was enabled by default for .NET 5 or above)
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold
@@ -196,8 +198,6 @@ podman-compose stop
 - [ ] Kafka, RabbitMQ
 - [ ] Microservices, API Gateway (Ocelot, yarp)
 - [ ] Multi-tenancy
-- [ ] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
-- [ ] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers)
 - [ ] Primary Key to Integer
 - [ ] File storage: Upload/Download
 - [ ] Globalization & Localization

@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>DDD.Services.Api.IntegrationTests</RootNamespace>
     <AssemblyName>DDD.Services.Api.IntegrationTests</AssemblyName>
-    <AnalysisLevel>5</AnalysisLevel>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

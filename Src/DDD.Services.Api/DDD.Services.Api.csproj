@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DDD.Services.Api</RootNamespace>
     <AssemblyName>DDD.Services.Api</AssemblyName>
-    <AnalysisLevel>5</AnalysisLevel>
     <UserSecretsId>51c0770a-8c88-4362-b3b5-a8936796ecef</UserSecretsId>
   </PropertyGroup>
 
