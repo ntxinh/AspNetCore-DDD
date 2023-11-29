@@ -51,13 +51,15 @@
 - Specification Pattern
 - Options Pattern
 
-# How to run
+# Pre-Configuration
 
 - Config User Secret:
   + Find `<user_secrets_id>` at `DDD.Services.Api.csproj` > `UserSecretsId` (Free to change to any GUID/UUID)
   + Windows: `C:\Users\[UserName]\AppData\Roaming\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
   + Linux / macOS: `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
 
+
+- `secrets.json` for Windows:
 
 ```json
 {
@@ -67,11 +69,25 @@
 }
 ```
 
+- LocalDB is a packaging mechanism for SQL Server Express Edition, and is only available for Windows, use [Docker Images](https://hub.docker.com/_/microsoft-mssql-server) for Linux / macOS
+
+- `secrets.json` for Linux / macOS:
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=<ip_address>,1433;Initial Catalog=aspnetcore-ddd;User ID=SA;pwd=<YourNewStrong@Passw0rd>;Integrated Security=False;ConnectRetryCount=0;MultipleActiveResultSets=True"
+  }
+}
+```
+
+# How to run
+
 - For Visual Studio: `Select profile > Run (F5)`
 - For VSCode: `Select configuration > Run (F5)`
 - For Terminal:
 
-```ps
+```bash
 dotnet build Src/DDD.Services.Api/DDD.Services.Api.csproj
 dotnet run --project Src/DDD.Services.Api/DDD.Services.Api.csproj --launch-profile Dev
 dotnet watch --project Src/DDD.Services.Api/DDD.Services.Api.csproj run
