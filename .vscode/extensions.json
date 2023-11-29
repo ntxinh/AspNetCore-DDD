@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "ms-dotnettools.csharp",
+    "josefpihrt-vscode.roslynator"
+  ]
+}
