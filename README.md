@@ -167,7 +167,9 @@ podman-compose stop
 - [x] Notifications
 - [x] Webhook
 - [x] Task scheduling & Queues: Quartz
+- [x] Quartz: Fire-and-forget
 - [x] NPOI
+- [x] REST Client
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold
@@ -176,9 +178,10 @@ podman-compose stop
 - [ ] OAuth2, OIDC (OpenId Connect)
 - [ ] Search
 - [ ] Kafka, RabbitMQ
-- [ ] Microservices, API Gateway
+- [ ] Microservices, API Gateway (Ocelot, yarp)
 - [ ] Multi-tenancy
-- [ ] StyleCop
+- [ ] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
+- [ ] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers)
 - [ ] Primary Key to Integer
 - [ ] File storage: Upload/Download
 - [ ] Globalization & Localization
@@ -189,6 +192,7 @@ podman-compose stop
 - [ ] Encryption
 - [ ] EF: No-tracking queries
 - [ ] Dapper, Dapper Contrib (Optional)
+- [ ] RepoDB
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
 
 # References

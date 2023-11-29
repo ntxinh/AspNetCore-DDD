@@ -1,0 +1,141 @@
+# Local
+@protocol = http
+@hostname = localhost
+@port = 5000
+
+# Prod
+# @protocol = https
+# @hostname =
+# @port = 443
+
+@apiVersion = v1
+@host = {{hostname}}:{{port}}
+@baseUrl = {{protocol}}://{{host}}/api/{{apiVersion}}
+@contentType = application/json
+
+@accountCtrl = Account
+@customerCtrl = Customer/customer-management
+
+###
+
+GET {{protocol}}://{{host}}/swagger
+
+###
+# @name register
+# @prompt email
+# @prompt pw
+POST {{baseUrl}}/{{accountCtrl}}/register
+Content-Type: {{contentType}}
+
+{
+  "email": "{{email}}",
+  "password": "{{pw}}",
+  "confirmPassword": "{{pw}}"
+}
+
+###
+# @name login
+# @prompt email
+# @prompt pw
+POST {{baseUrl}}/{{accountCtrl}}/login
+Content-Type: {{contentType}}
+
+{
+  "email": "{{email}}",
+  "password": "{{pw}}",
+  "rememberMe": false
+}
+
+###
+# @name refresh
+# @prompt accessToken
+# @prompt refreshToken
+POST {{baseUrl}}/{{accountCtrl}}/refresh
+Content-Type: {{contentType}}
+
+{
+  "accessToken": "{{accessToken}}",
+  "refreshToken": "{{refreshToken}}",
+}
+
+###
+
+@authToken = {{login.response.body.data.accessToken}}
+
+# @name current
+GET {{baseUrl}}/{{accountCtrl}}/current
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+# @name GetCustomers
+GET {{baseUrl}}/{{customerCtrl}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+# @name CreateCustomer
+# @prompt customerId
+# @prompt customerName
+# @prompt customerEmail
+# @prompt customerBirthDate
+POST {{baseUrl}}/{{customerCtrl}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "id": "{{customerId}}",
+  "name": "{{customerName}}",
+  "email": "{{customerEmail}}",
+  "birthDate": "{{customerBirthDate}}"
+}
+
+###
+# @name UpdateCustomer
+# @prompt customerId
+# @prompt customerName
+# @prompt customerEmail
+# @prompt customerBirthDate
+PUT {{baseUrl}}/{{customerCtrl}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "id": "{{customerId}}",
+  "name": "{{customerName}}",
+  "email": "{{customerEmail}}",
+  "birthDate": "{{customerBirthDate}}"
+}
+
+###
+# @name DeleteCustomer
+# @prompt customerId
+DELETE {{baseUrl}}/{{customerCtrl}}
+  ?id={{customerId}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+# @name GetCustomer
+# @prompt customerId
+GET {{baseUrl}}/{{customerCtrl}}/{{customerId}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+# @name GetCustomerHistory
+# @prompt customerId
+GET {{baseUrl}}/{{customerCtrl}}/history/{{customerId}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+
+###
+# @name GetCustomerByPagination
+# @prompt skip
+# @prompt take
+GET {{baseUrl}}/{{customerCtrl}}/pagination
+  ?skip={{skip}}
+  &take={{take}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
