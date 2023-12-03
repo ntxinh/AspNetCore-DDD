@@ -1,12 +1,11 @@
 using DDD.Domain.Commands;
 
-namespace DDD.Domain.Validations
+namespace DDD.Domain.Validations;
+
+public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
 {
-    public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
+    public RemoveCustomerCommandValidation()
     {
-        public RemoveCustomerCommandValidation()
-        {
-            ValidateId();
-        }
+        ValidateId();
     }
 }

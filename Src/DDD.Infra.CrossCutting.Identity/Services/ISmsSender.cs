@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 
-namespace DDD.Infra.CrossCutting.Identity.Services
+namespace DDD.Infra.CrossCutting.Identity.Services;
+
+public interface ISmsSender
 {
-    public interface ISmsSender
-    {
-        Task SendSmsAsync(string number, string message);
-    }
+    Task SendSmsAsync(string number, string message);
 }

@@ -1,15 +1,14 @@
 using DDD.Domain.Commands;
 
-namespace DDD.Domain.Validations
+namespace DDD.Domain.Validations;
+
+public class UpdateCustomerCommandValidation : CustomerValidation<UpdateCustomerCommand>
 {
-    public class UpdateCustomerCommandValidation : CustomerValidation<UpdateCustomerCommand>
+    public UpdateCustomerCommandValidation()
     {
-        public UpdateCustomerCommandValidation()
-        {
-            ValidateId();
-            ValidateName();
-            ValidateBirthDate();
-            ValidateEmail();
-        }
+        ValidateId();
+        ValidateName();
+        ValidateBirthDate();
+        ValidateEmail();
     }
 }

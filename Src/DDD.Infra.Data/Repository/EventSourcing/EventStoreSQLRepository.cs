@@ -1,34 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using DDD.Domain.Core.Events;
 using DDD.Infra.Data.Context;
 
-namespace DDD.Infra.Data.Repository.EventSourcing
+namespace DDD.Infra.Data.Repository.EventSourcing;
+
+public class EventStoreSqlRepository : IEventStoreRepository
 {
-    public class EventStoreSqlRepository : IEventStoreRepository
+    private readonly EventStoreSqlContext _context;
+
+    public EventStoreSqlRepository(EventStoreSqlContext context)
     {
-        private readonly EventStoreSqlContext _context;
+        _context = context;
+    }
 
-        public EventStoreSqlRepository(EventStoreSqlContext context)
-        {
-            _context = context;
-        }
+    public IList<StoredEvent> All(Guid aggregateId)
+    {
+        return (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
+    }
 
-        public IList<StoredEvent> All(Guid aggregateId)
-        {
-            return (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
-        }
+    public void Store(StoredEvent theEvent)
+    {
+        _context.StoredEvent.Add(theEvent);
+        _context.SaveChanges();
+    }
 
-        public void Store(StoredEvent theEvent)
-        {
-            _context.StoredEvent.Add(theEvent);
-            _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+    public void Dispose()
+    {
+        _context.Dispose();
     }
 }

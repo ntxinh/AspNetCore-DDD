@@ -1,14 +1,8 @@
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.SignalR;
 
 namespace DDD.Domain.Providers.Hubs;
-
-public interface INotificationHub
-{
-    Task Send(NotificationItem item);
-    Task JoinGroup(string groupName);
-    Task LeaveGroup(string groupName);
-}
 
 public class NotificationHub : Hub<INotificationHub>
 {

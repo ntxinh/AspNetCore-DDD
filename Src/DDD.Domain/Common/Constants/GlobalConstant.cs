@@ -1,6 +1,5 @@
-namespace DDD.Domain.Common.Constants
+namespace DDD.Domain.Common.Constants;
+
+public static class GlobalConstant
 {
-    public static class GlobalConstant
-    {
-    }
 }

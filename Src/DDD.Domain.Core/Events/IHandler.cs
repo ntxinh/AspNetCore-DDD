@@ -1,7 +1,7 @@
-namespace DDD.Domain.Core.Events
+namespace DDD.Domain.Core.Events;
+
+public interface IHandler<in T>
+    where T : Message
 {
-    public interface IHandler<in T> where T : Message
-    {
-        void Handle(T message);
-    }
+    void Handle(T message);
 }

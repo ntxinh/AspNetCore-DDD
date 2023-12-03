@@ -1,4 +1,5 @@
 using DDD.Domain.Providers.Crons;
+
 using Quartz;
 using Quartz.AspNetCore;
 
@@ -23,9 +24,9 @@ public static class QuartzExtensions
             q.AddTrigger(opts => opts
                 .ForJob(jobKey)
                 .WithIdentity($"{nameof(NotifyInactiveUserJob)}-trigger")
+
                 // run at 6:00 PM every weekdays
-                .WithCronSchedule("0 0 18 ? * MON,TUE,WED,THU,FRI *", x => x.InTimeZone(tz))
-            );
+                .WithCronSchedule("0 0 18 ? * MON,TUE,WED,THU,FRI *", x => x.InTimeZone(tz)));
         });
 
         // ASP.NET Core hosting

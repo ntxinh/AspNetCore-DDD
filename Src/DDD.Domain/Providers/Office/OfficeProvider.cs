@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -12,38 +12,19 @@ namespace DDD.Domain.Providers.Office;
 
 public class OfficeProvider : IOfficeProvider
 {
-    public async Task<string> ExportAndUploadExcel<T>(IList<T> data, IList<ExcelFormat> formats, string fileName)
+    public string ExportAndUploadExcel<T>(IList<T> data, IList<ExcelFormat> formats, string fileName)
     {
         var dt = ToDataTable<T>(data);
+
         // dt.TableName = "";
         var dataSet = new DataSet();
         dataSet.Tables.Add(dt);
 
-        var str = await ExportExcel(dataSet, formats, fileName);
+        var str = ExportExcel(dataSet, formats, fileName);
         return str;
     }
 
-    private async Task<string> ExportExcel(DataSet dataSet, IList<ExcelFormat> formats, string fileName)
-    {
-        using (IWorkbook workbook = new XSSFWorkbook())
-        {
-            for (var tableIndex = 0; tableIndex < dataSet.Tables.Count; tableIndex++)
-            {
-                var dt = dataSet.Tables[tableIndex];
-                CreateSheetFromDataTable(workbook, tableIndex, dt, formats);
-            }
-
-            var stream = new MemoryStream();
-            workbook.Write(stream, leaveOpen: true);
-
-            // TODO: Upload
-
-            stream.Close();
-
-            return string.Empty;
-        }
-    }
-
+    // START: Static
     private static void CreateSheetFromDataTable(IWorkbook workbook, int dataTableIndex, DataTable dataTable, IList<ExcelFormat> formats)
     {
         var tableName = string.IsNullOrEmpty(dataTable.TableName) ? $"Sheet {dataTableIndex}" : dataTable.TableName;
@@ -51,7 +32,7 @@ public class OfficeProvider : IOfficeProvider
         var columnCount = dataTable.Columns.Count;
         var rowCount = dataTable.Rows.Count;
 
-        //create the format instance
+        // create the format instance
         IDataFormat format = workbook.CreateDataFormat();
 
         // add column headers
@@ -67,7 +48,10 @@ public class OfficeProvider : IOfficeProvider
                 continue;
             }
 
-            if (colFormat.IsHide) continue;
+            if (colFormat.IsHide)
+            {
+                continue;
+            }
 
             var cell = row.CreateCell(columnIndex);
 
@@ -75,6 +59,7 @@ public class OfficeProvider : IOfficeProvider
             {
                 cell.SetCellValue(colFormat.ColName);
             }
+
             // if (colFormat.IsBold)
             // {
             //     var font = workbook.CreateFont();
@@ -84,7 +69,7 @@ public class OfficeProvider : IOfficeProvider
         }
 
         // add data rows
-        for(var rowIndex = 0; rowIndex < rowCount; rowIndex++)
+        for (var rowIndex = 0; rowIndex < rowCount; rowIndex++)
         {
             var dataRow = dataTable.Rows[rowIndex];
             var sheetRow = sheet.CreateRow(rowIndex + 1);
@@ -105,19 +90,22 @@ public class OfficeProvider : IOfficeProvider
                     continue;
                 }
 
-                if (colFormat.IsHide) continue;
+                if (colFormat.IsHide)
+                {
+                    continue;
+                }
 
                 var cell = sheetRow.CreateCell(columnIndex);
 
-                if (col.DataType == typeof(String))
+                if (col.DataType == typeof(string))
                 {
                     cell.SetCellValue(cellRawValue.ToString());
                 }
-                else if (col.DataType == typeof(Double) || col.DataType == typeof(Decimal))
+                else if (col.DataType == typeof(double) || col.DataType == typeof(decimal))
                 {
                     SetValueAndFormat(workbook, cell, (double)cellRawValue, format.GetFormat("$#,##"));
                 }
-                else if (col.DataType == typeof(Int16) || col.DataType == typeof(Int32) || col.DataType == typeof(Int64))
+                else if (col.DataType == typeof(short) || col.DataType == typeof(int) || col.DataType == typeof(long))
                 {
                     SetValueAndFormat(workbook, cell, (int)cellRawValue, format.GetFormat("0.00"));
                 }
@@ -135,6 +123,55 @@ public class OfficeProvider : IOfficeProvider
         }
     }
 
+    private static void SetValueAndFormat(IWorkbook workbook, ICell cell, int value, short formatId)
+    {
+        cell.SetCellValue(value);
+        ICellStyle cellStyle = workbook.CreateCellStyle();
+        cellStyle.DataFormat = formatId;
+        cell.CellStyle = cellStyle;
+    }
+
+    private static void SetValueAndFormat(IWorkbook workbook, ICell cell, double value, short formatId)
+    {
+        cell.SetCellValue(value);
+        ICellStyle cellStyle = workbook.CreateCellStyle();
+        cellStyle.DataFormat = formatId;
+        cell.CellStyle = cellStyle;
+    }
+
+    private static void SetValueAndFormat(IWorkbook workbook, ICell cell, DateTime value, short formatId)
+    {
+        // set value for the cell
+        cell.SetCellValue(value);
+
+        ICellStyle cellStyle = workbook.CreateCellStyle();
+        cellStyle.DataFormat = formatId;
+        cell.CellStyle = cellStyle;
+    }
+
+    // END: Static
+
+    private string ExportExcel(DataSet dataSet, IList<ExcelFormat> formats, string fileName)
+    {
+        using (IWorkbook workbook = new XSSFWorkbook())
+        {
+            for (var tableIndex = 0; tableIndex < dataSet.Tables.Count; tableIndex++)
+            {
+                var dt = dataSet.Tables[tableIndex];
+                CreateSheetFromDataTable(workbook, tableIndex, dt, formats);
+            }
+
+            var stream = new MemoryStream();
+            workbook.Write(stream, leaveOpen: true);
+
+            // TODO: Upload
+
+            stream.Close();
+
+            return string.Empty;
+        }
+    }
+
     private DataTable ToDataTable<T>(IList<T> data)
     {
         PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
@@ -143,39 +180,18 @@ public class OfficeProvider : IOfficeProvider
         {
             table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
         }
+
         foreach (T item in data)
         {
             DataRow row = table.NewRow();
             foreach (PropertyDescriptor prop in properties)
+            {
                 row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+            }
+
             table.Rows.Add(row);
         }
+
         return table;
-    }
-
-    static void SetValueAndFormat(IWorkbook workbook, ICell cell, int value, short formatId)
-    {
-        cell.SetCellValue(value);
-        ICellStyle cellStyle = workbook.CreateCellStyle();
-        cellStyle.DataFormat = formatId;
-        cell.CellStyle = cellStyle;
-    }
-
-    static void SetValueAndFormat(IWorkbook workbook, ICell cell, double value, short formatId)
-    {
-        cell.SetCellValue(value);
-        ICellStyle cellStyle = workbook.CreateCellStyle();
-        cellStyle.DataFormat = formatId;
-        cell.CellStyle = cellStyle;
-    }
-
-    static void SetValueAndFormat(IWorkbook workbook, ICell cell, DateTime value, short formatId)
-    {
-        //set value for the cell
-        cell.SetCellValue(value);
-
-        ICellStyle cellStyle = workbook.CreateCellStyle();
-        cellStyle.DataFormat = formatId;
-        cell.CellStyle = cellStyle;
     }
 }

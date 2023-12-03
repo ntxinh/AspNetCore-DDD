@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
+
 using Refit;
 
-namespace DDD.Domain.Providers.Http
+namespace DDD.Domain.Providers.Http;
+
+public interface IFooClient
 {
-    public interface IFooClient
-    {
-        [Get("/")]
-        Task<object> GetAll();
-    }
+    [Get("/")]
+    Task<object> GetAll();
 }

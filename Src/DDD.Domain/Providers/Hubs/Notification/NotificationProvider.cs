@@ -1,14 +1,8 @@
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.SignalR;
 
 namespace DDD.Domain.Providers.Hubs;
-
-public interface INotificationProvider
-{
-    Task Send(NotificationItem item);
-    Task JoinGroup(string groupName);
-    Task LeaveGroup(string groupName);
-}
 
 public class NotificationProvider : INotificationProvider
 {
@@ -45,4 +39,3 @@ public class NotificationProvider : INotificationProvider
         await _hubContext.Clients.Group(groupName).Send(item);
     }
 }
-

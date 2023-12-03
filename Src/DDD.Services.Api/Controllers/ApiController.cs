@@ -1,6 +1,8 @@
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,14 +10,16 @@ namespace DDD.Services.Api.Controllers;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
-//[Route("api/[controller]/[action]")]
+
+// [Route("api/[controller]/[action]")]
 public abstract class ApiController : ControllerBase
 {
     private readonly DomainNotificationHandler _notifications;
     private readonly IMediatorHandler _mediator;
 
-    protected ApiController(INotificationHandler<DomainNotification> notifications,
-                            IMediatorHandler mediator)
+    protected ApiController(
+        INotificationHandler<DomainNotification> notifications,
+        IMediatorHandler mediator)
     {
         _notifications = (DomainNotificationHandler)notifications;
         _mediator = mediator;
@@ -25,24 +29,24 @@ public abstract class ApiController : ControllerBase
 
     protected bool IsValidOperation()
     {
-        return (!_notifications.HasNotifications());
+        return !_notifications.HasNotifications();
     }
 
-    protected new IActionResult Response(object result = null)
+    protected new IActionResult Response(object? result = null)
     {
         if (IsValidOperation())
         {
             return Ok(new
             {
                 success = true,
-                data = result
+                data = result,
             });
         }
 
         return BadRequest(new
         {
             success = false,
-            errors = _notifications.GetNotifications().Select(n => n.Value)
+            errors = _notifications.GetNotifications().Select(n => n.Value),
         });
     }
 

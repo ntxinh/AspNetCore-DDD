@@ -1,7 +1,7 @@
-namespace DDD.Domain.Core.Events
+namespace DDD.Domain.Core.Events;
+
+public interface IEventStore
 {
-    public interface IEventStore
-    {
-        void Save<T>(T theEvent) where T : Event;
-    }
+    void Save<T>(T theEvent)
+        where T : Event;
 }

@@ -1,46 +1,57 @@
 using System;
 
-namespace DDD.Domain.Core.Models
+namespace DDD.Domain.Core.Models;
+
+public abstract class Entity
 {
-    public abstract class Entity
+    public Guid Id { get; protected set; }
+
+    public bool IsDeleted { get; set; }
+
+    public override bool Equals(object obj)
     {
-        public Guid Id { get; protected set; }
-        public bool IsDeleted { get; set; }
+        var compareTo = obj as Entity;
 
-        public override bool Equals(object obj)
+        if (ReferenceEquals(this, compareTo))
         {
-            var compareTo = obj as Entity;
-
-            if (ReferenceEquals(this, compareTo)) return true;
-            if (compareTo is null) return false;
-
-            return Id.Equals(compareTo.Id);
+            return true;
         }
 
-        public static bool operator ==(Entity a, Entity b)
+        if (compareTo is null)
         {
-            if (a is null && b is null)
-                return true;
-
-            if (a is null || b is null)
-                return false;
-
-            return a.Equals(b);
+            return false;
         }
 
-        public static bool operator !=(Entity a, Entity b)
+        return Id.Equals(compareTo.Id);
+    }
+
+    public static bool operator ==(Entity a, Entity b)
+    {
+        if (a is null && b is null)
         {
-            return !(a == b);
+            return true;
         }
 
-        public override int GetHashCode()
+        if (a is null || b is null)
         {
-            return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+            return false;
         }
 
-        public override string ToString()
-        {
-            return GetType().Name + " [Id=" + Id + "]";
-        }
+        return a.Equals(b);
+    }
+
+    public static bool operator !=(Entity a, Entity b)
+    {
+        return !(a == b);
+    }
+
+    public override int GetHashCode()
+    {
+        return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return GetType().Name + " [Id=" + Id + "]";
     }
 }

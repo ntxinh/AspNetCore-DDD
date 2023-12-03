@@ -7,6 +7,8 @@
     <RootNamespace>DDD.Services.Api</RootNamespace>
     <AssemblyName>DDD.Services.Api</AssemblyName>
     <UserSecretsId>51c0770a-8c88-4362-b3b5-a8936796ecef</UserSecretsId>
+    <!-- Temp: suppress the warning -->
+    <NoWarn>$(NoWarn);AD0001;NETSDK1206</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
