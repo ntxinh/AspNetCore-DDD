@@ -1,7 +1,8 @@
-using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+
+using Microsoft.Extensions.Configuration;
 
 namespace DDD.Domain.Providers.Webhooks;
 
@@ -18,7 +19,11 @@ public class WebhookProvider : IWebhookProvider
     {
         var client = new HttpClient();
         var uri = _configuration.GetValue<string>("Webhook:Slack");
-        if (string.IsNullOrEmpty(uri)) return;
+        if (string.IsNullOrEmpty(uri))
+        {
+            return;
+        }
+
         await client.PostAsJsonAsync(uri, new { text = message });
     }
 }

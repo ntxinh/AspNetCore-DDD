@@ -9,14 +9,6 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.1" />
     <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
   </ItemGroup>
-
-  <!-- <PropertyGroup>
-    <CodeAnalysisRuleSet>..\StyleCop.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup> -->
 
 </Project>

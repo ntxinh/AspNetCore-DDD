@@ -1,9 +1,12 @@
-using DDD.Domain.Providers.Webhooks;
-using Microsoft.AspNetCore.Hosting;
-using Quartz;
 // using System.Collections.Generic;
 // using System.Linq;
 using System.Threading.Tasks;
+
+using DDD.Domain.Providers.Webhooks;
+
+using Microsoft.AspNetCore.Hosting;
+
+using Quartz;
 
 namespace DDD.Domain.Providers.Crons;
 
@@ -12,6 +15,7 @@ public class NotifyInactiveUserJob : IJob
 {
     private readonly IWebHostEnvironment _env;
     private readonly IWebhookProvider _webhookProvider;
+
     public NotifyInactiveUserJob(IWebHostEnvironment env, IWebhookProvider webhookProvider)
     {
         _env = env;

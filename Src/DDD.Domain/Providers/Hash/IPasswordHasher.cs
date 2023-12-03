@@ -1,9 +1,8 @@
-namespace DDD.Domain.Providers.Hash
-{
-    public interface IPasswordHasher
-    {
-        string Hash(string password);
+namespace DDD.Domain.Providers.Hash;
 
-        (bool Verified, bool NeedsUpgrade) Check(string hash, string password);
-    }
+public interface IPasswordHasher
+{
+    string Hash(string password);
+
+    (bool Verified, bool NeedsUpgrade) Check(string hash, string password);
 }

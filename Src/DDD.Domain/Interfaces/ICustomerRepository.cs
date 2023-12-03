@@ -1,9 +1,8 @@
 using DDD.Domain.Models;
 
-namespace DDD.Domain.Interfaces
+namespace DDD.Domain.Interfaces;
+
+public interface ICustomerRepository : IRepository<Customer>
 {
-    public interface ICustomerRepository : IRepository<Customer>
-    {
-        Customer GetByEmail(string email);
-    }
+    Customer GetByEmail(string email);
 }

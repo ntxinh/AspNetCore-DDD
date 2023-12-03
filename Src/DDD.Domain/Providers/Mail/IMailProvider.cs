@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 
-namespace DDD.Domain.Providers.Mail
+namespace DDD.Domain.Providers.Mail;
+
+public interface IMailProvider
 {
-    public interface IMailProvider
-    {
-        Task Send(MailMessage message);
-    }
+    Task Send(MailMessage message);
 }

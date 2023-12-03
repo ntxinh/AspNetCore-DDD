@@ -1,11 +1,15 @@
 using System;
 
-namespace DDD.Domain.Common.Exceptions
-{
-    public class EntityNotFoundException : Exception
-    {
-        public EntityNotFoundException() { }
+namespace DDD.Domain.Common.Exceptions;
 
-        public EntityNotFoundException(string message) : base(message) { }
+public class EntityNotFoundException : Exception
+{
+    public EntityNotFoundException()
+    {
+    }
+
+    public EntityNotFoundException(string message)
+        : base(message)
+    {
     }
 }

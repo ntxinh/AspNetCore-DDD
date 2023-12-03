@@ -1,9 +1,8 @@
 using System;
 
-namespace DDD.Domain.Interfaces
+namespace DDD.Domain.Interfaces;
+
+public interface IUnitOfWork : IDisposable
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        bool Commit();
-    }
+    bool Commit();
 }

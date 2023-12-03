@@ -1,9 +1,8 @@
-namespace DDD.Domain.Providers.Hash
-{
-    public sealed class HashingOptions
-    {
-        public const string Hashing = "Hashing";
+namespace DDD.Domain.Providers.Hash;
 
-        public int Iterations { get; set; } = 10000;
-    }
+public sealed class HashingOptions
+{
+    public const string Hashing = "Hashing";
+
+    public int Iterations { get; set; } = 10000;
 }

@@ -3,6 +3,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "ms-dotnettools.csharp",
-    "josefpihrt-vscode.roslynator"
+    "josefpihrt-vscode.roslynator",
+    "humao.rest-client"
   ]
 }

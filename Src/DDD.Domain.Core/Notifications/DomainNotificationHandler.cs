@@ -2,39 +2,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using MediatR;
 
-namespace DDD.Domain.Core.Notifications
+namespace DDD.Domain.Core.Notifications;
+
+public class DomainNotificationHandler : INotificationHandler<DomainNotification>
 {
-    public class DomainNotificationHandler : INotificationHandler<DomainNotification>
+    private List<DomainNotification> _notifications;
+
+    public DomainNotificationHandler()
     {
-        private List<DomainNotification> _notifications;
+        _notifications = new List<DomainNotification>();
+    }
 
-        public DomainNotificationHandler()
-        {
-            _notifications = new List<DomainNotification>();
-        }
+    public Task Handle(DomainNotification message, CancellationToken cancellationToken)
+    {
+        _notifications.Add(message);
 
-        public Task Handle(DomainNotification message, CancellationToken cancellationToken)
-        {
-            _notifications.Add(message);
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
+    public virtual List<DomainNotification> GetNotifications()
+    {
+        return _notifications;
+    }
 
-        public virtual List<DomainNotification> GetNotifications()
-        {
-            return _notifications;
-        }
+    public virtual bool HasNotifications()
+    {
+        return GetNotifications().Any();
+    }
 
-        public virtual bool HasNotifications()
-        {
-            return GetNotifications().Any();
-        }
-
-        public void Dispose()
-        {
-            _notifications = new List<DomainNotification>();
-        }
+    public void Dispose()
+    {
+        _notifications = new List<DomainNotification>();
     }
 }

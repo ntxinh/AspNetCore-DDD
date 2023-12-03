@@ -1,8 +1,8 @@
-namespace DDD.Domain.Providers.Mail
+namespace DDD.Domain.Providers.Mail;
+
+public class MailAttachment
 {
-    public class MailAttachment
-    {
-        public string FileName { get; set; }
-        public string MimeType { get; set; }
-    }
+    public string FileName { get; set; }
+
+    public string MimeType { get; set; }
 }

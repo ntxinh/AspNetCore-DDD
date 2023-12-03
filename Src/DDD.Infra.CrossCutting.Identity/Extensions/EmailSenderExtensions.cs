@@ -1,15 +1,14 @@
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+
 using DDD.Infra.CrossCutting.Identity.Services;
 
-namespace DDD.Infra.CrossCutting.Identity.Extensions
+namespace DDD.Infra.CrossCutting.Identity.Extensions;
+
+public static class EmailSenderExtensions
 {
-    public static class EmailSenderExtensions
+    public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
     {
-        public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
-        {
-            return emailSender.SendEmailAsync(email, "Confirm your email",
-                $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
-        }
+        return emailSender.SendEmailAsync(email, "Confirm your email", $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
     }
 }

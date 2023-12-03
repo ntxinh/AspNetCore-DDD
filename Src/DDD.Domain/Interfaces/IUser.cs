@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace DDD.Domain.Interfaces
+namespace DDD.Domain.Interfaces;
+
+public interface IUser
 {
-    public interface IUser
-    {
-        string Name { get; }
-        bool IsAuthenticated();
-        IEnumerable<Claim> GetClaimsIdentity();
-    }
+    string Name { get; }
+
+    bool IsAuthenticated();
+
+    IEnumerable<Claim> GetClaimsIdentity();
 }

@@ -61,6 +61,7 @@ artifacts/
 
 # StyleCop
 StyleCopReport.xml
+# [Ss]tyle[Cc]op.*
 
 # Files built by Visual Studio
 *_i.c
@@ -431,3 +432,5 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+Src/DDD.CLI.Migration/App.config
