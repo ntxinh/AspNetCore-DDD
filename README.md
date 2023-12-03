@@ -212,6 +212,7 @@ podman-compose stop
 - [ ] Dapper, Dapper Contrib (Optional)
 - [ ] RepoDB
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
+- [ ] [MassTransit](https://github.com/MassTransit/MassTransit), [NServiceBus](https://github.com/Particular/NServiceBus)
 
 # References
 - https://github.com/EduardoPires/EquinoxProject
