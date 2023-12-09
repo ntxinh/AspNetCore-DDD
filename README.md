@@ -185,11 +185,12 @@ podman-compose stop
 - [x] Task scheduling & Queues: Quartz
 - [x] Quartz: Fire-and-forget
 - [x] NPOI
-- [x] REST Client
+- [x] [REST Client](https://github.com/Huachao/vscode-restclient)
 - [x] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) (Use [default rules set](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/StyleCop.Analyzers/StyleCop.Analyzers.CodeFixes/rulesets/StyleCopAnalyzersDefault.ruleset) and disable 9 rules: SA0001, SA1200, SA1201, SA1309, SA1400, SA1512, SA1600, SA1601, SA1633)
 - [x] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers) (It was enabled by default for .NET 5 or above)
 - [ ] [OmniSharp Roslyn](https://github.com/OmniSharp/omnisharp-roslyn)
 - [ ] [sonar-dotnet](https://github.com/SonarSource/sonar-dotnet)
+- [ ] [docfx](https://github.com/dotnet/docfx)
 - [ ] Autofac or Scrutor
 - [ ] Bogus
 - [ ] Scaffold
