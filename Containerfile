@@ -14,6 +14,8 @@ COPY Src/DDD.Infra.CrossCutting.Identity/DDD.Infra.CrossCutting.Identity.csproj 
 COPY Src/DDD.Infra.CrossCutting.IoC/DDD.Infra.CrossCutting.IoC.csproj ./Src/DDD.Infra.CrossCutting.IoC/
 COPY Src/DDD.Infra.Data/DDD.Infra.Data.csproj ./Src/DDD.Infra.Data/
 COPY Src/DDD.Services.Api/DDD.Services.Api.csproj ./Src/DDD.Services.Api/
+COPY Directory.Build.props ./Src
+COPY Directory.Packages.props ./Src
 
 # .NET Core Restore
 RUN dotnet restore ./Src/DDD.Services.Api/DDD.Services.Api.csproj
