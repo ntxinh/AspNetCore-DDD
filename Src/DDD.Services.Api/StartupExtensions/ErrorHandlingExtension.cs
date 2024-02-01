@@ -2,12 +2,9 @@ namespace DDD.Services.Api.StartupExtensions;
 
 public static class ErrorHandlingExtension
 {
-    public static IApplicationBuilder UseCustomizedErrorHandling(this IApplicationBuilder app, IWebHostEnvironment env)
+    public static IApplicationBuilder UseCustomizedErrorHandling(this IApplicationBuilder app)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
+        app.UseDeveloperExceptionPage();
 
         return app;
     }

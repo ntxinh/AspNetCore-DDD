@@ -32,7 +32,7 @@ public abstract class ApiController : ControllerBase
         return !_notifications.HasNotifications();
     }
 
-    protected new IActionResult Response(object? result = null)
+    protected new IActionResult Response(object result = null)
     {
         if (IsValidOperation())
         {

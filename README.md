@@ -26,16 +26,19 @@
 - Entity Framework Core
 - .NET Core Native DI
 - AutoMapper
-- FluentValidator
+- FluentValidation
 - MediatR
 - Swagger UI
 - MSSQL
 - xUnit
 - Moq
-- Fluent Assertions
+- FluentAssertions
 - Polly
 - Refit
 - DbUp
+- NPOI
+- Quartz
+- StyleCop
 
 # Design Patterns
 - Domain Driven Design
@@ -69,7 +72,7 @@
 }
 ```
 
-- LocalDB is a packaging mechanism for SQL Server Express Edition, and is only available for Windows, use [Docker Images](https://hub.docker.com/_/microsoft-mssql-server) for Linux / macOS
+- LocalDB is a packaging mechanism for SQL Server Express Edition, and is only available for Windows, use [Microsoft SQL Server](https://hub.docker.com/_/microsoft-mssql-server) or [Azure SQL Edge](https://hub.docker.com/_/microsoft-azure-sql-edge) for Linux / macOS
 
 - `secrets.json` for Linux / macOS:
 
@@ -188,30 +191,30 @@ podman-compose stop
 - [x] [REST Client](https://github.com/Huachao/vscode-restclient)
 - [x] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) (Use [default rules set](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/StyleCop.Analyzers/StyleCop.Analyzers.CodeFixes/rulesets/StyleCopAnalyzersDefault.ruleset) and disable 9 rules: SA0001, SA1200, SA1201, SA1309, SA1400, SA1512, SA1600, SA1601, SA1633)
 - [x] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers) (It was enabled by default for .NET 5 or above)
+- [x] [Secret Manager](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-8.0&tabs=linux)
 - [ ] [OmniSharp Roslyn](https://github.com/OmniSharp/omnisharp-roslyn)
 - [ ] [sonar-dotnet](https://github.com/SonarSource/sonar-dotnet)
 - [ ] [docfx](https://github.com/dotnet/docfx)
-- [ ] Autofac or Scrutor
-- [ ] Bogus
+- [ ] [Autofac](https://github.com/autofac/Autofac)
+- [ ] [Bogus](https://github.com/bchavez/Bogus)
 - [ ] Scaffold
 - [ ] Data Seeding
 - [ ] Logging
 - [ ] OAuth2, OIDC (OpenId Connect)
 - [ ] Search
-- [ ] Kafka, RabbitMQ
-- [ ] Microservices, API Gateway (Ocelot, yarp)
+- [ ] [Kafka](https://github.com/apache/kafka), [RabbitMQ](https://github.com/rabbitmq/rabbitmq-server)
+- [ ] Microservices, API Gateway ([Ocelot](https://github.com/ThreeMammals/Ocelot), [yarp](https://github.com/microsoft/reverse-proxy))
 - [ ] Multi-tenancy
 - [ ] Primary Key to Integer
 - [ ] File storage: Upload/Download
 - [ ] Globalization & Localization
 - [ ] Caching
 - [ ] Kestrel
-- [ ] Secret Manager
 - [ ] Session & Cookie
 - [ ] Encryption
 - [ ] EF: No-tracking queries
-- [ ] Dapper, Dapper Contrib (Optional)
-- [ ] RepoDB
+- [ ] [Dapper](https://github.com/DapperLib/Dapper), [Dapper Contrib](https://github.com/DapperLib/Dapper.Contrib) (Optional)
+- [ ] [RepoDB](https://github.com/mikependon/RepoDB)
 - [ ] BulkInsert, BulkUpdate, Async method for IRepository
 
 # References

@@ -260,9 +260,6 @@ dotnet_naming_style.camelcase.capitalization = camel_case
 
 # Rules:
 
-# SA1101: Prefix local calls with this
-dotnet_diagnostic.SA1101.severity = none
-
 # Custom
 
 # IDE0005: Using directive is unnecessary
@@ -293,3 +290,24 @@ csharp_style_namespace_declarations = file_scoped:warning
 # dotnet_naming_rule.private_static_fields_none.symbols = private_static_fields
 # dotnet_naming_rule.private_static_fields_none.style = underscored
 # dotnet_naming_rule.private_static_fields_none.severity = none
+
+##
+## StyleCop.Analyzers
+##
+
+dotnet_diagnostic.SA0001.severity = None
+dotnet_diagnostic.SA1101.severity = None
+dotnet_diagnostic.SA1200.severity = None
+dotnet_diagnostic.SA1201.severity = None
+dotnet_diagnostic.SA1208.severity = None
+dotnet_diagnostic.SA1309.severity = None
+dotnet_diagnostic.SA1310.severity = None
+dotnet_diagnostic.SA1313.severity = None
+dotnet_diagnostic.SA1400.severity = None
+dotnet_diagnostic.SA1503.severity = None
+dotnet_diagnostic.SA1512.severity = None
+dotnet_diagnostic.SA1515.severity = None
+dotnet_diagnostic.SA1600.severity = None
+dotnet_diagnostic.SA1601.severity = None
+dotnet_diagnostic.SA1602.severity = None
+dotnet_diagnostic.SA1633.severity = None

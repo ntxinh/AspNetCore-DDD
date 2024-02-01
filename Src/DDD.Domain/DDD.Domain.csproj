@@ -1,20 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>DDD.Domain</RootNamespace>
-    <AssemblyName>DDD.Domain</AssemblyName>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\DDD.Domain.Core\DDD.Domain.Core.csproj" />
     <ProjectReference Include="..\DDD.Infra.CrossCutting.Bus\DDD.Infra.CrossCutting.Bus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NPOI" Version="2.6.2" />
-    <PackageReference Include="Quartz.AspNetCore" Version="3.7.0" />
-    <PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />
+    <PackageReference Include="NPOI" />
+    <PackageReference Include="Quartz.AspNetCore" />
+    <PackageReference Include="Refit.HttpClientFactory" />
   </ItemGroup>
 
 </Project>

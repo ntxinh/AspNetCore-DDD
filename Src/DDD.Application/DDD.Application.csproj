@@ -1,13 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>DDD.Application</RootNamespace>
-    <AssemblyName>DDD.Application</AssemblyName>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper" />
   </ItemGroup>
 
   <ItemGroup>

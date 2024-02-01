@@ -1,5 +1,11 @@
 <Project>
   <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- <Nullable>enable</Nullable> -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- <TreatWarningsAsErrors>true</TreatWarningsAsErrors> -->
+
     <!-- This part specifies the ruleset file name. Change to something
          more appropriate if not using StyleCop. -->
     <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet>
@@ -8,7 +14,7 @@
        top-level stylecop.json file be used by all projects. Skip this
        altogether if you are not spefically using StyleCop. -->
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
+    <PackageReference Include="StyleCop.Analyzers">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
