@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   WEBAPP_PACKAGE_PATH: './published'
-  NETCORE_VERSION: '8.0.0'
+  # NETCORE_VERSION: '8.0.0'
 #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
@@ -13,12 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Setup .NET Core ${{ env.NETCORE_VERSION }}
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ env.NETCORE_VERSION }}
+        global-json-file: global.json
+        # dotnet-version: ${{ env.NETCORE_VERSION }}
 
     - name: Install dependencies
       run: dotnet restore
@@ -45,7 +46,7 @@ jobs:
       run: dotnet publish --configuration Release --no-build --output ${{ env.WEBAPP_PACKAGE_PATH }}
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v4
       with:
         name: webapp
         path: ${{ env.WEBAPP_PACKAGE_PATH }}
