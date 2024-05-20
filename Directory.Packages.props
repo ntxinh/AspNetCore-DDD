@@ -42,7 +42,7 @@
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.5.2" />
 
-    <PackageVersion Include="FluentAssertions" Version="5.10.3" />
+    <PackageVersion Include="FluentAssertions" Version="6.12.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.5" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
   </ItemGroup>
