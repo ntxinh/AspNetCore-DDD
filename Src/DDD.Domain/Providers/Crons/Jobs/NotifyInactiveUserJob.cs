@@ -11,16 +11,10 @@ using Quartz;
 namespace DDD.Domain.Providers.Crons;
 
 [DisallowConcurrentExecution]
-public class NotifyInactiveUserJob : IJob
+public class NotifyInactiveUserJob(IWebHostEnvironment env, IWebhookProvider webhookProvider) : IJob
 {
-    private readonly IWebHostEnvironment _env;
-    private readonly IWebhookProvider _webhookProvider;
-
-    public NotifyInactiveUserJob(IWebHostEnvironment env, IWebhookProvider webhookProvider)
-    {
-        _env = env;
-        _webhookProvider = webhookProvider;
-    }
+    private readonly IWebHostEnvironment _env = env;
+    private readonly IWebhookProvider _webhookProvider = webhookProvider;
 
     public async Task Execute(IJobExecutionContext context)
     {

@@ -9,6 +9,7 @@ public class NotificationHub : Hub<INotificationHub>
     public Task Send(NotificationItem item)
     {
         var groupName = $"{nameof(NotificationItem.UserId)}_{item.UserId}";
+
         return Clients.Group(groupName).Send(item);
     }
 

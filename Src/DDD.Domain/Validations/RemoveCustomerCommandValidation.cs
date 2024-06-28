@@ -4,8 +4,5 @@ namespace DDD.Domain.Validations;
 
 public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
 {
-    public RemoveCustomerCommandValidation()
-    {
-        ValidateId();
-    }
+    public RemoveCustomerCommandValidation() => ValidateId();
 }

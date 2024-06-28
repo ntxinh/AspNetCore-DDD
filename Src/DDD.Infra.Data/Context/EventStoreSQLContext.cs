@@ -5,13 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Infra.Data.Context;
 
-public class EventStoreSqlContext : DbContext
+public class EventStoreSqlContext(DbContextOptions<EventStoreSqlContext> options) : DbContext(options)
 {
-    public EventStoreSqlContext(DbContextOptions<EventStoreSqlContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<StoredEvent> StoredEvent { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

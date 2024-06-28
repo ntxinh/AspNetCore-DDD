@@ -31,15 +31,9 @@ public abstract class BaseSpecification<T> : ISpecification<T>
 
     public bool IsPagingEnabled { get; private set; } = false;
 
-    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
-    {
-        Includes.Add(includeExpression);
-    }
+    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression) => Includes.Add(includeExpression);
 
-    protected virtual void AddInclude(string includeString)
-    {
-        IncludeStrings.Add(includeString);
-    }
+    protected virtual void AddInclude(string includeString) => IncludeStrings.Add(includeString);
 
     protected virtual void ApplyPaging(int skip, int take)
     {
@@ -48,19 +42,11 @@ public abstract class BaseSpecification<T> : ISpecification<T>
         IsPagingEnabled = true;
     }
 
-    protected virtual void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
-    {
-        OrderBy = orderByExpression;
-    }
+    protected virtual void ApplyOrderBy(Expression<Func<T, object>> orderByExpression) => OrderBy = orderByExpression;
 
-    protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
-    {
+    protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression) =>
         OrderByDescending = orderByDescendingExpression;
-    }
 
     // Not used anywhere at the moment, but someone requested an example of setting this up.
-    protected virtual void ApplyGroupBy(Expression<Func<T, object>> groupByExpression)
-    {
-        GroupBy = groupByExpression;
-    }
+    protected virtual void ApplyGroupBy(Expression<Func<T, object>> groupByExpression) => GroupBy = groupByExpression;
 }

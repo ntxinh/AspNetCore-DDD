@@ -7,18 +7,11 @@ using MediatR;
 
 namespace DDD.Domain.CommandHandlers;
 
-public class CommandHandler
+public class CommandHandler(IUnitOfWork uow, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
 {
-    private readonly IUnitOfWork _uow;
-    private readonly IMediatorHandler _bus;
-    private readonly DomainNotificationHandler _notifications;
-
-    public CommandHandler(IUnitOfWork uow, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
-    {
-        _uow = uow;
-        _notifications = (DomainNotificationHandler)notifications;
-        _bus = bus;
-    }
+    private readonly IUnitOfWork _uow = uow;
+    private readonly IMediatorHandler _bus = bus;
+    private readonly DomainNotificationHandler _notifications = (DomainNotificationHandler)notifications;
 
     public bool Commit()
     {
@@ -33,6 +26,7 @@ public class CommandHandler
         }
 
         _bus.RaiseEvent(new DomainNotification("Commit", "We had a problem during saving your data."));
+
         return false;
     }
 

@@ -11,15 +11,10 @@ public class EventStoreSqlRepository : IEventStoreRepository
 {
     private readonly EventStoreSqlContext _context;
 
-    public EventStoreSqlRepository(EventStoreSqlContext context)
-    {
-        _context = context;
-    }
+    public EventStoreSqlRepository(EventStoreSqlContext context) => _context = context;
 
-    public IList<StoredEvent> All(Guid aggregateId)
-    {
-        return (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
-    }
+    public IList<StoredEvent> All(Guid aggregateId) =>
+        (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
 
     public void Store(StoredEvent theEvent)
     {
@@ -27,8 +22,5 @@ public class EventStoreSqlRepository : IEventStoreRepository
         _context.SaveChanges();
     }
 
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    public void Dispose() => _context.Dispose();
 }

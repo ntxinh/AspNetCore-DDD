@@ -12,10 +12,7 @@ public abstract class Command : Message
 
     public ValidationResult ValidationResult { get; set; }
 
-    protected Command()
-    {
-        Timestamp = DateTime.Now;
-    }
+    protected Command() => Timestamp = DateTime.Now;
 
     public abstract bool IsValid();
 }

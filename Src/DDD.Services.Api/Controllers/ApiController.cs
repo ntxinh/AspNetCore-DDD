@@ -27,10 +27,7 @@ public abstract class ApiController : ControllerBase
 
     protected IEnumerable<DomainNotification> Notifications => _notifications.GetNotifications();
 
-    protected bool IsValidOperation()
-    {
-        return !_notifications.HasNotifications();
-    }
+    protected bool IsValidOperation() => !_notifications.HasNotifications();
 
     protected new IActionResult Response(object result = null)
     {
@@ -60,10 +57,7 @@ public abstract class ApiController : ControllerBase
         }
     }
 
-    protected void NotifyError(string code, string message)
-    {
-        _mediator.RaiseEvent(new DomainNotification(code, message));
-    }
+    protected void NotifyError(string code, string message) => _mediator.RaiseEvent(new DomainNotification(code, message));
 
     protected void AddIdentityErrors(IdentityResult result)
     {

@@ -10,8 +10,5 @@ public abstract class Message : IRequest<bool>
 
     public Guid AggregateId { get; protected set; }
 
-    protected Message()
-    {
-        MessageType = GetType().Name;
-    }
+    protected Message() => MessageType = GetType().Name;
 }

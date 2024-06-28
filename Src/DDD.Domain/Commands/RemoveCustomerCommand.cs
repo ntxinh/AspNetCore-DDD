@@ -15,6 +15,7 @@ public class RemoveCustomerCommand : CustomerCommand
     public override bool IsValid()
     {
         ValidationResult = new RemoveCustomerCommandValidation().Validate(this);
+
         return ValidationResult.IsValid;
     }
 }

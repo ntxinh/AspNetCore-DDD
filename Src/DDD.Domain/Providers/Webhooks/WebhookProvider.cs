@@ -10,10 +10,7 @@ public class WebhookProvider : IWebhookProvider
 {
     private readonly IConfiguration _configuration;
 
-    public WebhookProvider(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    public WebhookProvider(IConfiguration configuration) => _configuration = configuration;
 
     public async Task Send(string message)
     {

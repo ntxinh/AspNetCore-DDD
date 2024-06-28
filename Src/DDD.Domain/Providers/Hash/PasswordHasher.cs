@@ -6,17 +6,12 @@ using Microsoft.Extensions.Options;
 
 namespace DDD.Domain.Providers.Hash;
 
-public sealed class PasswordHasher : IPasswordHasher
+public sealed class PasswordHasher(IOptions<HashingOptions> options) : IPasswordHasher
 {
     private const int SaltSize = 16; // 128 bit
     private const int KeySize = 32; // 256 bit
 
-    public PasswordHasher(IOptions<HashingOptions> options)
-    {
-        Options = options.Value;
-    }
-
-    private HashingOptions Options { get; }
+    private HashingOptions Options { get; } = options.Value;
 
     public string Hash(string password)
     {

@@ -19,36 +19,24 @@ namespace DDD.Services.Api.Controllers.V1;
 
 [Authorize]
 [ApiVersion("1.0")]
-public class AccountController : ApiController
+public class AccountController(
+    UserManager<ApplicationUser> userManager,
+    SignInManager<ApplicationUser> signInManager,
+    RoleManager<IdentityRole> roleManager,
+    AuthDbContext dbContext,
+    IUser user,
+    IJwtFactory jwtFactory,
+    ILoggerFactory loggerFactory,
+    INotificationHandler<DomainNotification> notifications,
+    IMediatorHandler mediator) : ApiController(notifications, mediator)
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly AuthDbContext _dbContext;
-    private readonly IUser _user;
-    private readonly IJwtFactory _jwtFactory;
-    private readonly ILogger _logger;
-
-    public AccountController(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
-        RoleManager<IdentityRole> roleManager,
-        AuthDbContext dbContext,
-        IUser user,
-        IJwtFactory jwtFactory,
-        ILoggerFactory loggerFactory,
-        INotificationHandler<DomainNotification> notifications,
-        IMediatorHandler mediator)
-        : base(notifications, mediator)
-    {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _roleManager = roleManager;
-        _dbContext = dbContext;
-        _user = user;
-        _jwtFactory = jwtFactory;
-        _logger = loggerFactory.CreateLogger<AccountController>();
-    }
+    private readonly UserManager<ApplicationUser> _userManager = userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
+    private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+    private readonly AuthDbContext _dbContext = dbContext;
+    private readonly IUser _user = user;
+    private readonly IJwtFactory _jwtFactory = jwtFactory;
+    private readonly ILogger _logger = loggerFactory.CreateLogger<AccountController>();
 
     [HttpPost]
     [AllowAnonymous]
@@ -79,6 +67,7 @@ public class AccountController : ApiController
         // var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
 
         _logger.LogInformation(1, "User logged in.");
+
         return Response(await GenerateToken(appUser));
     }
 
@@ -90,6 +79,7 @@ public class AccountController : ApiController
         if (!ModelState.IsValid)
         {
             NotifyModelStateErrors();
+
             return Response();
         }
 
@@ -99,6 +89,7 @@ public class AccountController : ApiController
         if (!identityResult.Succeeded)
         {
             AddIdentityErrors(identityResult);
+
             return Response();
         }
 
@@ -107,6 +98,7 @@ public class AccountController : ApiController
         if (!identityResult.Succeeded)
         {
             AddIdentityErrors(identityResult);
+
             return Response();
         }
 
@@ -122,6 +114,7 @@ public class AccountController : ApiController
         // await _signInManager.SignInAsync(user, false);
 
         _logger.LogInformation(3, "User created a new account with password.");
+
         return Response();
     }
 
@@ -133,6 +126,7 @@ public class AccountController : ApiController
         if (!ModelState.IsValid)
         {
             NotifyModelStateErrors();
+
             return Response();
         }
 
@@ -142,6 +136,7 @@ public class AccountController : ApiController
         if (refreshTokenCurrent is null)
         {
             NotifyError("RefreshToken", "Refresh token does not exist");
+
             return Response();
         }
 
@@ -151,6 +146,7 @@ public class AccountController : ApiController
             refreshTokenCurrent.Invalidated = true;
             await _dbContext.SaveChangesAsync();
             NotifyError("RefreshToken", "Refresh token invalid");
+
             return Response();
         }
 
@@ -159,6 +155,7 @@ public class AccountController : ApiController
         if (appUser is null)
         {
             NotifyError("User", "User does not exist");
+
             return Response();
         }
 
@@ -175,14 +172,11 @@ public class AccountController : ApiController
 
     [HttpGet]
     [Route("current")]
-    public IActionResult GetCurrent()
+    public IActionResult GetCurrent() => Response(new
     {
-        return Response(new
-        {
-            IsAuthenticated = _user.IsAuthenticated(),
-            ClaimsIdentity = _user.GetClaimsIdentity().Select(x => new { x.Type, x.Value }),
-        });
-    }
+        IsAuthenticated = _user.IsAuthenticated(),
+        ClaimsIdentity = _user.GetClaimsIdentity().Select(x => new { x.Type, x.Value }),
+    });
 
     private async Task<TokenViewModel> GenerateToken(ApplicationUser appUser)
     {

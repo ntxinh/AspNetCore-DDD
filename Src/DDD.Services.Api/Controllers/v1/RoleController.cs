@@ -10,18 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace DDD.Services.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
-public class RoleController : ApiController
+public class RoleController(
+    RoleManager<IdentityRole> roleManager,
+    INotificationHandler<DomainNotification> notifications,
+    IMediatorHandler mediator) : ApiController(notifications, mediator)
 {
-    private readonly RoleManager<IdentityRole> _roleManager;
-
-    public RoleController(
-        RoleManager<IdentityRole> roleManager,
-        INotificationHandler<DomainNotification> notifications,
-        IMediatorHandler mediator)
-        : base(notifications, mediator)
-    {
-        _roleManager = roleManager;
-    }
+    private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateViewModel model)
@@ -29,6 +23,7 @@ public class RoleController : ApiController
         if (!ModelState.IsValid)
         {
             NotifyModelStateErrors();
+
             return Response(model);
         }
 

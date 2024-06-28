@@ -5,12 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Infra.CrossCutting.Identity.Data;
 
-public class AuthDbContext : IdentityDbContext<ApplicationUser>
+public class AuthDbContext(DbContextOptions<AuthDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
-    public AuthDbContext(DbContextOptions<AuthDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<RefreshToken> RefreshTokens { get; set; }
 }

@@ -9,10 +9,7 @@ public class CronProvider : ICronProvider
 {
     private readonly ISchedulerFactory _schedulerFactory;
 
-    public CronProvider(ISchedulerFactory schedulerFactory)
-    {
-        _schedulerFactory = schedulerFactory;
-    }
+    public CronProvider(ISchedulerFactory schedulerFactory) => _schedulerFactory = schedulerFactory;
 
     // public async Task NotifyInactiveUser(NotifyInactiveUserConsumerModel payload)
     // {

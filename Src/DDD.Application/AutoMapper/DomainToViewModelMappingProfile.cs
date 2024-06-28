@@ -7,8 +7,5 @@ namespace DDD.Application.AutoMapper;
 
 public class DomainToViewModelMappingProfile : Profile
 {
-    public DomainToViewModelMappingProfile()
-    {
-        CreateMap<Customer, CustomerViewModel>();
-    }
+    public DomainToViewModelMappingProfile() => CreateMap<Customer, CustomerViewModel>();
 }

@@ -2,15 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DDD.Infra.CrossCutting.Identity.Authorization;
 
-public class ClaimRequirement : IAuthorizationRequirement
+public class ClaimRequirement(string claimName, string claimValue) : IAuthorizationRequirement
 {
-    public ClaimRequirement(string claimName, string claimValue)
-    {
-        ClaimName = claimName;
-        ClaimValue = claimValue;
-    }
+    public string ClaimName { get; set; } = claimName;
 
-    public string ClaimName { get; set; }
-
-    public string ClaimValue { get; set; }
+    public string ClaimValue { get; set; } = claimValue;
 }

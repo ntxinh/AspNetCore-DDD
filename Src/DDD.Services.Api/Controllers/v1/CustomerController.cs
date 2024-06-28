@@ -13,26 +13,17 @@ namespace DDD.Services.Api.Controllers.V1;
 
 [Authorize]
 [ApiVersion("1.0")]
-public class CustomerController : ApiController
+public class CustomerController(
+    ICustomerAppService customerAppService,
+    INotificationHandler<DomainNotification> notifications,
+    IMediatorHandler mediator) : ApiController(notifications, mediator)
 {
-    private readonly ICustomerAppService _customerAppService;
-
-    public CustomerController(
-        ICustomerAppService customerAppService,
-        INotificationHandler<DomainNotification> notifications,
-        IMediatorHandler mediator)
-        : base(notifications, mediator)
-    {
-        _customerAppService = customerAppService;
-    }
+    private readonly ICustomerAppService _customerAppService = customerAppService;
 
     [HttpGet]
     [AllowAnonymous]
     [Route("customer-management")]
-    public IActionResult Get()
-    {
-        return Response(_customerAppService.GetAll());
-    }
+    public IActionResult Get() => Response(_customerAppService.GetAll());
 
     [HttpGet]
     [AllowAnonymous]
@@ -52,6 +43,7 @@ public class CustomerController : ApiController
         if (!ModelState.IsValid)
         {
             NotifyModelStateErrors();
+
             return Response(customerViewModel);
         }
 
@@ -68,6 +60,7 @@ public class CustomerController : ApiController
         if (!ModelState.IsValid)
         {
             NotifyModelStateErrors();
+
             return Response(customerViewModel);
         }
 
@@ -92,14 +85,12 @@ public class CustomerController : ApiController
     public IActionResult History(Guid id)
     {
         var customerHistoryData = _customerAppService.GetAllHistory(id);
+
         return Response(customerHistoryData);
     }
 
     [HttpGet]
     [AllowAnonymous]
     [Route("customer-management/pagination")]
-    public IActionResult Pagination(int skip, int take)
-    {
-        return Response(_customerAppService.GetAll(skip, take));
-    }
+    public IActionResult Pagination(int skip, int take) => Response(_customerAppService.GetAll(skip, take));
 }

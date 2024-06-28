@@ -8,15 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Infra.Data.Repository;
 
-public class CustomerRepository : Repository<Customer>, ICustomerRepository
+public class CustomerRepository(ApplicationDbContext context) : Repository<Customer>(context), ICustomerRepository
 {
-    public CustomerRepository(ApplicationDbContext context)
-        : base(context)
-    {
-    }
-
-    public Customer GetByEmail(string email)
-    {
-        return _dbSet.AsNoTracking().FirstOrDefault(c => c.Email == email);
-    }
+    public Customer GetByEmail(string email) => _dbSet.AsNoTracking().FirstOrDefault(c => c.Email == email);
 }
