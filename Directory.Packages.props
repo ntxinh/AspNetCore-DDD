@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="NPOI" Version="2.6.2" />
     <PackageVersion Include="Quartz.AspNetCore" Version="3.7.0" />
-    <PackageVersion Include="Refit.HttpClientFactory" Version="6.0.38" />
+    <PackageVersion Include="Refit.HttpClientFactory" Version="7.1.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
