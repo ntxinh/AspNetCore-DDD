@@ -29,7 +29,7 @@
     <!-- <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" /> -->
 
-    <PackageVersion Include="dbup" Version="4.6.0" />
+    <PackageVersion Include="dbup" Version="5.0.41" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
 
     <!-- Test -->
