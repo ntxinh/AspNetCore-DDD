@@ -11,7 +11,8 @@ public static class DatabaseExtension
     {
         services.AddDbContext<AuthDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
 
             // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             // Configuring it to throw an exception when a query is evaluated client side
@@ -29,7 +30,8 @@ public static class DatabaseExtension
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
 
             // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             if (!env.IsProduction())
@@ -41,7 +43,8 @@ public static class DatabaseExtension
 
         services.AddDbContext<EventStoreSqlContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
 
             // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             if (!env.IsProduction())

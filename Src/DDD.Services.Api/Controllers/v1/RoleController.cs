@@ -1,3 +1,5 @@
+using Asp.Versioning;
+
 using DDD.Domain.Core.Bus;
 using DDD.Domain.Core.Notifications;
 using DDD.Infra.CrossCutting.Identity.Models.RoleViewModels;

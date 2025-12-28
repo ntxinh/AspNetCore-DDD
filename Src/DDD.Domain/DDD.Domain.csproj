@@ -6,6 +6,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NPOI" />
     <PackageReference Include="Quartz.AspNetCore" />
     <PackageReference Include="Refit.HttpClientFactory" />

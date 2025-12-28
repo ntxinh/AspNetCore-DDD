@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 namespace DDD.Services.Api.StartupExtensions;
 
@@ -8,7 +8,7 @@ public static class SwaggerExtension
     {
         if (env.IsDevelopment())
         {
-            services.AddSwaggerGen(c =>
+            /* services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -58,7 +58,7 @@ public static class SwaggerExtension
 
                 // Add custom header request
                 // c.OperationFilter<AddRequiredHeaderParameter>();
-            });
+            }); */
         }
 
         return services;
@@ -68,7 +68,7 @@ public static class SwaggerExtension
     {
         if (env.IsDevelopment())
         {
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            /* // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -91,7 +91,7 @@ public static class SwaggerExtension
                 //     options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
                 //         description.GroupName.ToUpperInvariant());
                 // }
-            });
+            }); */
         }
 
         return app;

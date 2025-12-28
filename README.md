@@ -20,7 +20,7 @@
 ![](/Docs/custom-repo-versus-db-context.png)
 
 # Techical Stack
-- ASP.NET Core 8.0 (with .NET 8.0)
+- ASP.NET Core 10.0 (with .NET 10.0)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
 - Entity Framework Core
@@ -191,7 +191,7 @@ podman-compose stop
 - [x] [REST Client](https://github.com/Huachao/vscode-restclient)
 - [x] [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) (Use [default rules set](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/StyleCop.Analyzers/StyleCop.Analyzers.CodeFixes/rulesets/StyleCopAnalyzersDefault.ruleset) and disable 9 rules: SA0001, SA1200, SA1201, SA1309, SA1400, SA1512, SA1600, SA1601, SA1633)
 - [x] [RoslynAnalyzers](https://github.com/dotnet/roslyn-analyzers) (It was enabled by default for .NET 5 or above)
-- [x] [Secret Manager](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-8.0&tabs=linux)
+- [x] [Secret Manager](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-10.0&tabs=linux)
 - [ ] [OmniSharp Roslyn](https://github.com/OmniSharp/omnisharp-roslyn)
 - [ ] [sonar-dotnet](https://github.com/SonarSource/sonar-dotnet)
 - [ ] [docfx](https://github.com/dotnet/docfx)
