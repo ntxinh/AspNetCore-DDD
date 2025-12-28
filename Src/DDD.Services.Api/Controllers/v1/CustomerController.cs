@@ -1,3 +1,5 @@
+using Asp.Versioning;
+
 using DDD.Application.Interfaces;
 using DDD.Application.ViewModels;
 using DDD.Domain.Core.Bus;

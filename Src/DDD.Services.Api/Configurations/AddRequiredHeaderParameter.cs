@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+/* using Microsoft.OpenApi;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -16,3 +16,4 @@ public class AddRequiredHeaderParameter : IOperationFilter
         });
     }
 }
+ */

@@ -434,3 +434,6 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 Src/DDD.CLI.Migration/App.config
+
+Src/DDD.Services.Api/Logs
+Src/DDD.Services.Api/app.db

@@ -11,13 +11,15 @@ public static class QuartzExtensions
     {
         services.AddQuartz(q =>
         {
-            var myTz = "SE Asia Standard Time";
+            var myTz = OperatingSystem.IsWindows()
+                ? "SE Asia Standard Time"
+                : "Asia/Ho_Chi_Minh";
             var tz = TimeZoneInfo.FindSystemTimeZoneById(myTz);
 
             // Create a "key" for the job
             var jobKey = new JobKey(nameof(NotifyInactiveUserJob));
 
-            // Register the job with the DI container
+            // Register the job with the DI containerAmerica/Phoenix
             q.AddJob<NotifyInactiveUserJob>(opts => opts.WithIdentity(jobKey));
 
             // Create a trigger for the job
