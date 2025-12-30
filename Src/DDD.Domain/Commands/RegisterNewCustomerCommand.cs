@@ -16,6 +16,7 @@ public class RegisterNewCustomerCommand : CustomerCommand
     public override bool IsValid()
     {
         ValidationResult = new RegisterNewCustomerCommandValidation().Validate(this);
+
         return ValidationResult.IsValid;
     }
 }

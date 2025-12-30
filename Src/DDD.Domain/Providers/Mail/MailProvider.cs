@@ -20,10 +20,7 @@ public class MailProvider : IMailProvider
         //             devOpsEmail = _configuration.GetSection("DevOpsEmail").Value;
     }
 
-    public Task Send(MailMessage message)
-    {
-        throw new System.NotImplementedException();
-    }
+    public Task Send(MailMessage message) => throw new System.NotImplementedException();
 
     // public async Task Send(MailMessage message)
     // {

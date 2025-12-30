@@ -8,22 +8,13 @@ using MediatR;
 
 namespace DDD.Infra.CrossCutting.Bus;
 
-public sealed class InMemoryBus : IMediatorHandler
+public sealed class InMemoryBus(IEventStore eventStore, IMediator mediator) : IMediatorHandler
 {
-    private readonly IMediator _mediator;
-    private readonly IEventStore _eventStore;
-
-    public InMemoryBus(IEventStore eventStore, IMediator mediator)
-    {
-        _eventStore = eventStore;
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
+    private readonly IEventStore _eventStore = eventStore;
 
     public Task SendCommand<T>(T command)
-        where T : Command
-    {
-        return _mediator.Send(command);
-    }
+        where T : Command => _mediator.Send(command);
 
     public Task RaiseEvent<T>(T @event)
         where T : Event

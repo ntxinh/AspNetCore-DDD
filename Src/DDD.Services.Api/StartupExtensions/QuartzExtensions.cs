@@ -41,8 +41,5 @@ public static class QuartzExtensions
         return services;
     }
 
-    public static IApplicationBuilder UseCustomizedQuartz(this IApplicationBuilder app)
-    {
-        return app;
-    }
+    public static IApplicationBuilder UseCustomizedQuartz(this IApplicationBuilder app) => app;
 }

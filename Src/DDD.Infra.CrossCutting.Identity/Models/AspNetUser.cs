@@ -7,14 +7,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace DDD.Infra.CrossCutting.Identity.Models;
 
-public class AspNetUser : IUser
+public class AspNetUser(IHttpContextAccessor accessor) : IUser
 {
-    private readonly IHttpContextAccessor _accessor;
-
-    public AspNetUser(IHttpContextAccessor accessor)
-    {
-        _accessor = accessor;
-    }
+    private readonly IHttpContextAccessor _accessor = accessor;
 
     public string Name => _accessor.HttpContext.User.Identity.Name;
 

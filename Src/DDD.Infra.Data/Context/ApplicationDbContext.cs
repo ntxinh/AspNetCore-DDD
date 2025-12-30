@@ -13,13 +13,8 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DDD.Infra.Data.Context;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<Customer> Customers { get; set; }
 
     // public override int SaveChanges()
@@ -37,12 +32,14 @@ public class ApplicationDbContext : DbContext
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         OnBeforeSaving();
+
         return base.SaveChanges(acceptAllChangesOnSuccess);
     }
 
     public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
         OnBeforeSaving();
+
         return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
 

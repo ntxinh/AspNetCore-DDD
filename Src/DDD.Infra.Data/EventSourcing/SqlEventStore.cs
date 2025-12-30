@@ -6,16 +6,10 @@ using DDD.Infra.Data.Repository.EventSourcing;
 
 namespace DDD.Infra.Data.EventSourcing;
 
-public class SqlEventStore : IEventStore
+public class SqlEventStore(IEventStoreRepository eventStoreRepository, IUser user) : IEventStore
 {
-    private readonly IEventStoreRepository _eventStoreRepository;
-    private readonly IUser _user;
-
-    public SqlEventStore(IEventStoreRepository eventStoreRepository, IUser user)
-    {
-        _eventStoreRepository = eventStoreRepository;
-        _user = user;
-    }
+    private readonly IEventStoreRepository _eventStoreRepository = eventStoreRepository;
+    private readonly IUser _user = user;
 
     public void Save<T>(T theEvent)
         where T : Event

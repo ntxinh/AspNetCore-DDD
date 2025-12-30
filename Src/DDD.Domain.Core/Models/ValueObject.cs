@@ -3,15 +3,9 @@ namespace DDD.Domain.Core.Models;
 public abstract class ValueObject<T>
     where T : ValueObject<T>
 {
-    public override bool Equals(object obj)
-    {
-        return obj is T valueObject && EqualsCore(valueObject);
-    }
+    public override bool Equals(object obj) => obj is T valueObject && EqualsCore(valueObject);
 
-    public override int GetHashCode()
-    {
-        return GetHashCodeCore();
-    }
+    public override int GetHashCode() => GetHashCodeCore();
 
     protected abstract int GetHashCodeCore();
 
@@ -32,8 +26,5 @@ public abstract class ValueObject<T>
         return a.Equals(b);
     }
 
-    public static bool operator !=(ValueObject<T> a, ValueObject<T> b)
-    {
-        return !(a == b);
-    }
+    public static bool operator !=(ValueObject<T> a, ValueObject<T> b) => !(a == b);
 }

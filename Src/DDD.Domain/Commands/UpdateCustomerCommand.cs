@@ -17,6 +17,7 @@ public class UpdateCustomerCommand : CustomerCommand
     public override bool IsValid()
     {
         ValidationResult = new UpdateCustomerCommandValidation().Validate(this);
+
         return ValidationResult.IsValid;
     }
 }

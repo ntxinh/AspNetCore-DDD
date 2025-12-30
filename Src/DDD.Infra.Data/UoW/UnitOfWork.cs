@@ -3,22 +3,11 @@ using DDD.Infra.Data.Context;
 
 namespace DDD.Infra.Data.UoW;
 
-public class UnitOfWork : IUnitOfWork
+public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context = context;
 
-    public UnitOfWork(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public bool Commit() => _context.SaveChanges() > 0;
 
-    public bool Commit()
-    {
-        return _context.SaveChanges() > 0;
-    }
-
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    public void Dispose() => _context.Dispose();
 }

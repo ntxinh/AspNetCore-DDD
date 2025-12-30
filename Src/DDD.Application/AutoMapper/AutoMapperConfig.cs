@@ -13,12 +13,9 @@ public class AutoMapperConfig
     //    });
     // }
 
-    public static Type[] RegisterMappings()
-    {
-        return new Type[]
+    public static Type[] RegisterMappings() => new Type[]
         {
             typeof(DomainToViewModelMappingProfile),
             typeof(ViewModelToDomainMappingProfile),
         };
-    }
 }

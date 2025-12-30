@@ -15,40 +15,25 @@ using DDD.Infra.Data.Repository.EventSourcing;
 
 namespace DDD.Application.Services;
 
-public class CustomerAppService : ICustomerAppService
+public class CustomerAppService(
+    IMapper mapper,
+    ICustomerRepository customerRepository,
+    IMediatorHandler bus,
+    IEventStoreRepository eventStoreRepository) : ICustomerAppService
 {
-    private readonly IMapper _mapper;
-    private readonly ICustomerRepository _customerRepository;
-    private readonly IEventStoreRepository _eventStoreRepository;
-    private readonly IMediatorHandler _bus;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICustomerRepository _customerRepository = customerRepository;
+    private readonly IEventStoreRepository _eventStoreRepository = eventStoreRepository;
+    private readonly IMediatorHandler _bus = bus;
 
-    public CustomerAppService(
-        IMapper mapper,
-        ICustomerRepository customerRepository,
-        IMediatorHandler bus,
-        IEventStoreRepository eventStoreRepository)
-    {
-        _mapper = mapper;
-        _customerRepository = customerRepository;
-        _bus = bus;
-        _eventStoreRepository = eventStoreRepository;
-    }
+    public IEnumerable<CustomerViewModel> GetAll() =>
+        _customerRepository.GetAll().ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
 
-    public IEnumerable<CustomerViewModel> GetAll()
-    {
-        return _customerRepository.GetAll().ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
-    }
+    public IEnumerable<CustomerViewModel> GetAll(int skip, int take) =>
+        _customerRepository.GetAll(new CustomerFilterPaginatedSpecification(skip, take))
+                           .ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
 
-    public IEnumerable<CustomerViewModel> GetAll(int skip, int take)
-    {
-        return _customerRepository.GetAll(new CustomerFilterPaginatedSpecification(skip, take))
-            .ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
-    }
-
-    public CustomerViewModel GetById(Guid id)
-    {
-        return _mapper.Map<CustomerViewModel>(_customerRepository.GetById(id));
-    }
+    public CustomerViewModel GetById(Guid id) => _mapper.Map<CustomerViewModel>(_customerRepository.GetById(id));
 
     public void Register(CustomerViewModel customerViewModel)
     {
@@ -68,13 +53,8 @@ public class CustomerAppService : ICustomerAppService
         _bus.SendCommand(removeCommand);
     }
 
-    public IList<CustomerHistoryData> GetAllHistory(Guid id)
-    {
-        return CustomerHistory.ToJavaScriptCustomerHistory(_eventStoreRepository.All(id));
-    }
+    public IList<CustomerHistoryData> GetAllHistory(Guid id) =>
+        CustomerHistory.ToJavaScriptCustomerHistory(_eventStoreRepository.All(id));
 
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-    }
+    public void Dispose() => GC.SuppressFinalize(this);
 }

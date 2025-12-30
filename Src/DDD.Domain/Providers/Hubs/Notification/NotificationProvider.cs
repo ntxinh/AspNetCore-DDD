@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DDD.Domain.Providers.Hubs;
 
-public class NotificationProvider : INotificationProvider
+public class NotificationProvider(IHubContext<NotificationHub, INotificationHub> hubContext) : INotificationProvider
 {
-    private readonly IHubContext<NotificationHub, INotificationHub> _hubContext;
-
-    public NotificationProvider(IHubContext<NotificationHub, INotificationHub> hubContext)
-    {
-        _hubContext = hubContext;
-    }
+    private readonly IHubContext<NotificationHub, INotificationHub> _hubContext = hubContext;
 
     public async Task JoinGroup(string groupName)
     {

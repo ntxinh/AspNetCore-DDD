@@ -13,30 +13,24 @@ using MediatR;
 
 namespace DDD.Domain.CommandHandlers;
 
-public class CustomerCommandHandler : CommandHandler,
+public class CustomerCommandHandler(
+    ICustomerRepository customerRepository,
+    IUnitOfWork uow,
+    IMediatorHandler bus,
+    INotificationHandler<DomainNotification> notifications) : CommandHandler(uow, bus, notifications),
     IRequestHandler<RegisterNewCustomerCommand, bool>,
     IRequestHandler<UpdateCustomerCommand, bool>,
     IRequestHandler<RemoveCustomerCommand, bool>
 {
-    private readonly ICustomerRepository _customerRepository;
-    private readonly IMediatorHandler _bus;
-
-    public CustomerCommandHandler(
-        ICustomerRepository customerRepository,
-        IUnitOfWork uow,
-        IMediatorHandler bus,
-        INotificationHandler<DomainNotification> notifications)
-        : base(uow, bus, notifications)
-    {
-        _customerRepository = customerRepository;
-        _bus = bus;
-    }
+    private readonly ICustomerRepository _customerRepository = customerRepository;
+    private readonly IMediatorHandler _bus = bus;
 
     public Task<bool> Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
     {
         if (!message.IsValid())
         {
             NotifyValidationErrors(message);
+
             return Task.FromResult(false);
         }
 
@@ -45,6 +39,7 @@ public class CustomerCommandHandler : CommandHandler,
         if (_customerRepository.GetByEmail(customer.Email) != null)
         {
             _bus.RaiseEvent(new DomainNotification(message.MessageType, "The customer e-mail has already been taken."));
+
             return Task.FromResult(false);
         }
 
@@ -63,6 +58,7 @@ public class CustomerCommandHandler : CommandHandler,
         if (!message.IsValid())
         {
             NotifyValidationErrors(message);
+
             return Task.FromResult(false);
         }
 
@@ -74,6 +70,7 @@ public class CustomerCommandHandler : CommandHandler,
             if (!existingCustomer.Equals(customer))
             {
                 _bus.RaiseEvent(new DomainNotification(message.MessageType, "The customer e-mail has already been taken."));
+
                 return Task.FromResult(false);
             }
         }
@@ -93,6 +90,7 @@ public class CustomerCommandHandler : CommandHandler,
         if (!message.IsValid())
         {
             NotifyValidationErrors(message);
+
             return Task.FromResult(false);
         }
 
@@ -106,8 +104,5 @@ public class CustomerCommandHandler : CommandHandler,
         return Task.FromResult(true);
     }
 
-    public void Dispose()
-    {
-        _customerRepository.Dispose();
-    }
+    public void Dispose() => _customerRepository.Dispose();
 }
