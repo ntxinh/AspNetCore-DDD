@@ -38,7 +38,7 @@ jobs:
       -
         name: Docker Build and Push by Action
         # continue-on-error: true
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           tags: ghcr.io/ntxinh/aspnetcore-ddd:latest
